@@ -1,0 +1,26 @@
+GE Logicmaster 90-30 → ControlLogix 1756-L81E conversion report
+Program: TEMPER (USS Fairfield Dual Line Temper Mill)
+
+Base tags: 2373
+Alias tags (GE nicknames): 649
+Routines: 44
+Mapped rungs: 1783
+Unmapped rungs (NOP with original print in comment): 0
+
+Tag rules:
+  %I/%Q/%M/%T/%S/%SA/%SC = BOOL  named I0001, Q0001, ...
+  %R/%AI/%AQ = INT (16-bit) named R0001, AI0001, ...
+  Nickname → alias; ladder uses the alias when present.
+  Hyphens in nicknames (S07-01A) become underscores (S07_01A).
+
+Routines follow GE blocks. MainRoutine is _MAIN and JSRs SYSBITS first.
+Each rung comment starts with the original GE rung number.
+
+Unmapped / review notes:
+  DISPB1 GE 20: review GE hardware functions: DO_IO, DO_IO (NOP — replace with MSG/GSV/IOT)
+  MISC GE 14: review GE hardware functions: COMM_ (NOP — replace with MSG/GSV/IOT)
+  MISC GE 17: review GE hardware functions: COMM_ (NOP — replace with MSG/GSV/IOT)
+  MISC GE 20: review GE hardware functions: COMM_ (NOP — replace with MSG/GSV/IOT)
+  MISC GE 33: review GE hardware functions: COMM_ (NOP — replace with MSG/GSV/IOT)
+  PLCFLT GE 17: review GE hardware functions: SVC_, SVC_ (NOP — replace with MSG/GSV/IOT)
+  SETTIME GE 6: review GE hardware functions: SVC_ (NOP — replace with MSG/GSV/IOT)
