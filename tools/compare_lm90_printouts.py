@@ -155,6 +155,12 @@ def is_xref_header(line: str) -> bool:
     return s.startswith("REFERENCE NICKNAME") or s.startswith("REFERENCE  NICKNAME")
 
 
+def is_rung_comment_line(line: str) -> bool:
+    if "<<" in line and "RUNG" in line:
+        return False
+    return "(*" in line or "******" in line
+
+
 def extract_outputs(rung: Rung) -> frozenset[str]:
     dests: set[str] = set()
     prev = ""
@@ -351,8 +357,6 @@ def parse_rungs(lines: list[str]) -> tuple[list[Rung], list[str]]:
     def flush() -> None:
         nonlocal current, pending_comments
         if current is not None:
-            if pending_comments and not current.comments:
-                current.comments = pending_comments
             rungs.append(current)
         current = None
         pending_comments = []
@@ -413,9 +417,14 @@ def parse_rungs(lines: list[str]) -> tuple[list[Rung], list[str]]:
         if raw.strip().startswith("===="):
             continue
 
+        if is_rung_comment_line(raw) and not RUNG_RE.search(raw):
+            pending_comments.append(raw)
+            continue
+
         rm = RUNG_RE.search(raw)
         if rm:
-            flush()
+            if current is not None:
+                rungs.append(current)
             starred = raw.lstrip().startswith("*")
             current = Rung(
                 block=current_block,
@@ -428,14 +437,6 @@ def parse_rungs(lines: list[str]) -> tuple[list[Rung], list[str]]:
             continue
 
         if current is None:
-            if "(*" in raw or "******" in raw:
-                pending_comments.append(raw)
-            continue
-
-        if "(*" in raw or (raw.strip().startswith("|") and "******" in raw):
-            extra = clean_comment(raw)
-            if extra:
-                current.comments.append(raw)
             continue
         if not raw.strip():
             continue

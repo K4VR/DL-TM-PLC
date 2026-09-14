@@ -1,0 +1,331 @@
+REMARK,"AIRKNIF 91026 rung comments for Studio 5000 Logix Designer V32. Tools > Import > Tags and Logic Comments. If Owning Element is blank, comments match by Location (rung number). Otherwise check 'Match all ladder diagram rung comments by rung number only'. Location is the 0-based Logix rung index in printout order (GE _MAIN -> MainRoutine, then COAT_WG)."
+REMARK,Each comment starts with the GE printout rung number. Printout rung comments are appended when present. Change the program/routine names below if the Airknife project uses different names.
+RCOMMENT,Airknife,MainRoutine,"GE Rung 8$N$NSimulate Mode for testing ACT Galv Control$N$NOveride then toggle (F11, F12) SIMULAT, %M0931 on to block outputs$NToggle (F12) SIMBLAS, %M933 on to simulate Blower Switch in Auto$NToggle (F12) SIMKNA, %M0932 on to simulate Knives in Auto$N$NTo Enable the new (jan, 2016) Coating Weight Gauge to read values,$N%M901 ""ENA_CWG"" must be high.$N$NTo Enablae the new Coating Weight Gauge to control the thickness,$N%M902 ""ENA_GAL"" must be high.$N$NThe ""COAT_WG"" block is where all the mapping to/from the ACT Coating$NWeight Gauge occurs.$NThis is also where the interface to the Galv Thickness Controll happens.",,0
+RCOMMENT,Airknife,MainRoutine,GE Rung 11$N$NTHE NEXT THREE RUNGS ARE FOR BLOWER CONTROL.,,1
+RCOMMENT,Airknife,MainRoutine,GE Rung 12,,2
+RCOMMENT,Airknife,MainRoutine,GE Rung 13,,3
+RCOMMENT,Airknife,MainRoutine,GE Rung 15$N$NBLOWER DRIVE FAULT DETECTION$NA SIGNAL MUST BE RECEIVED WITHIN 3 SECONDS FROM A DRIVE RUN CONTACT$NAFTER THE OUTPUT HAS BEEN ENERGIZED.,,4
+RCOMMENT,Airknife,MainRoutine,GE Rung 16,,5
+RCOMMENT,Airknife,MainRoutine,GE Rung 17,,6
+RCOMMENT,Airknife,MainRoutine,GE Rung 18,,7
+RCOMMENT,Airknife,MainRoutine,GE Rung 19,,8
+RCOMMENT,Airknife,MainRoutine,GE Rung 20,,9
+RCOMMENT,Airknife,MainRoutine,GE Rung 22$N$NTHE AUTO AND MANUAL BLOWER SPEED INPUTS ARE SCALED TO 0-4095 IN THE$NCONFIGUATION FOR THE ANALOG INPUT CARD.,,10
+RCOMMENT,Airknife,MainRoutine,GE Rung 23,,11
+RCOMMENT,Airknife,MainRoutine,GE Rung 24,,12
+RCOMMENT,Airknife,MainRoutine,GE Rung 25,,13
+RCOMMENT,Airknife,MainRoutine,GE Rung 27$N$NTHE NEXT GROUP OF RUNGS CONTROL INDICATOR LIGHTS.,,14
+RCOMMENT,Airknife,MainRoutine,GE Rung 28,,15
+RCOMMENT,Airknife,MainRoutine,GE Rung 29,,16
+RCOMMENT,Airknife,MainRoutine,GE Rung 30,,17
+RCOMMENT,Airknife,MainRoutine,GE Rung 31,,18
+RCOMMENT,Airknife,MainRoutine,GE Rung 32,,19
+RCOMMENT,Airknife,MainRoutine,GE Rung 33,,20
+RCOMMENT,Airknife,MainRoutine,GE Rung 34,,21
+RCOMMENT,Airknife,MainRoutine,GE Rung 35,,22
+RCOMMENT,Airknife,MainRoutine,GE Rung 36,,23
+RCOMMENT,Airknife,MainRoutine,GE Rung 38$N$NTHE NEXT 8 RUNGS MOVE THE DISTANCE TRANSDUCER POSITION INPUT VALUES$N(1DT - 8DT) INTO DATA REGISTERS R1 - R8.,,24
+RCOMMENT,Airknife,MainRoutine,GE Rung 39,,25
+RCOMMENT,Airknife,MainRoutine,GE Rung 40,,26
+RCOMMENT,Airknife,MainRoutine,GE Rung 41,,27
+RCOMMENT,Airknife,MainRoutine,GE Rung 42,,28
+RCOMMENT,Airknife,MainRoutine,GE Rung 43,,29
+RCOMMENT,Airknife,MainRoutine,GE Rung 44,,30
+RCOMMENT,Airknife,MainRoutine,GE Rung 45,,31
+RCOMMENT,Airknife,MainRoutine,GE Rung 47$N$NTHESE RUNGS TAKE THE KNIFE POSITION AT THE TIME THE KNIFE IS COMMANDED T$NO MAKE A MM$NTO MAKE A MOVEMENT. IF THE KNIFE HAS NOT MOVED +/- 25 COUNTS WITHIN 3$NTHREE SECONDS A FAULT IS SET.,,32
+RCOMMENT,Airknife,MainRoutine,GE Rung 48,,33
+RCOMMENT,Airknife,MainRoutine,GE Rung 49,,34
+RCOMMENT,Airknife,MainRoutine,GE Rung 50,,35
+RCOMMENT,Airknife,MainRoutine,GE Rung 51,,36
+RCOMMENT,Airknife,MainRoutine,GE Rung 52,,37
+RCOMMENT,Airknife,MainRoutine,GE Rung 53,,38
+RCOMMENT,Airknife,MainRoutine,GE Rung 54,,39
+RCOMMENT,Airknife,MainRoutine,GE Rung 55,,40
+RCOMMENT,Airknife,MainRoutine,GE Rung 56,,41
+RCOMMENT,Airknife,MainRoutine,GE Rung 57,,42
+RCOMMENT,Airknife,MainRoutine,GE Rung 58,,43
+RCOMMENT,Airknife,MainRoutine,GE Rung 59,,44
+RCOMMENT,Airknife,MainRoutine,GE Rung 60,,45
+RCOMMENT,Airknife,MainRoutine,GE Rung 61,,46
+RCOMMENT,Airknife,MainRoutine,GE Rung 62,,47
+RCOMMENT,Airknife,MainRoutine,GE Rung 63,,48
+RCOMMENT,Airknife,MainRoutine,GE Rung 64,,49
+RCOMMENT,Airknife,MainRoutine,GE Rung 65,,50
+RCOMMENT,Airknife,MainRoutine,GE Rung 66,,51
+RCOMMENT,Airknife,MainRoutine,GE Rung 67,,52
+RCOMMENT,Airknife,MainRoutine,GE Rung 68,,53
+RCOMMENT,Airknife,MainRoutine,GE Rung 69,,54
+RCOMMENT,Airknife,MainRoutine,GE Rung 70,,55
+RCOMMENT,Airknife,MainRoutine,GE Rung 71,,56
+RCOMMENT,Airknife,MainRoutine,GE Rung 72,,57
+RCOMMENT,Airknife,MainRoutine,GE Rung 73,,58
+RCOMMENT,Airknife,MainRoutine,GE Rung 74,,59
+RCOMMENT,Airknife,MainRoutine,GE Rung 75,,60
+RCOMMENT,Airknife,MainRoutine,GE Rung 76,,61
+RCOMMENT,Airknife,MainRoutine,GE Rung 77,,62
+RCOMMENT,Airknife,MainRoutine,GE Rung 78,,63
+RCOMMENT,Airknife,MainRoutine,GE Rung 79,,64
+RCOMMENT,Airknife,MainRoutine,GE Rung 80,,65
+RCOMMENT,Airknife,MainRoutine,GE Rung 81,,66
+RCOMMENT,Airknife,MainRoutine,GE Rung 82,,67
+RCOMMENT,Airknife,MainRoutine,GE Rung 83,,68
+RCOMMENT,Airknife,MainRoutine,GE Rung 84,,69
+RCOMMENT,Airknife,MainRoutine,GE Rung 85,,70
+RCOMMENT,Airknife,MainRoutine,GE Rung 86,,71
+RCOMMENT,Airknife,MainRoutine,GE Rung 87,,72
+RCOMMENT,Airknife,MainRoutine,GE Rung 88,,73
+RCOMMENT,Airknife,MainRoutine,GE Rung 90$N$NTHE NEXT TWO RUNGS MOVE THE KNIFE ROTATION POSITION ENCODER INPUT DATA$N(1ENC - 2ENC) INTO DATA REGISTERS R9-R10.,,74
+RCOMMENT,Airknife,MainRoutine,GE Rung 91,,75
+RCOMMENT,Airknife,MainRoutine,GE Rung 93$N$NTHIS RUNG GENERATES A PULSE EVERY 100ms TO UPDATE THE CONTROL DESK$NDISPLAYS.,,76
+RCOMMENT,Airknife,MainRoutine,GE Rung 95$N$NTHE NEXT TWO RUNGS MOVES DISPLAY DATA TO THE ANALOG OUTPUTS TO DRIVE$NTHE CONTROL DESK DISPLAYS.,,77
+RCOMMENT,Airknife,MainRoutine,"GE Rung 97$N$NIF THE PUSHBUTTON PANEL DOES NOT HAVE CONTROL POWER, THEN ZERO IS$NMOVED TO THE ANALOG OUTPUTS TO DRIVE THE DISPLAY.",,78
+RCOMMENT,Airknife,MainRoutine,"GE Rung 99$N$NTHE REMAINDER OF THE RUNGS CONTROL THE POT FUNCTIONS.$NWHEN AN E-STOP EXISTS, ALL INTERNAL AND EXTERNAL OUTPUTS$NWITHIN THE MCR AREA WILL BE DE-ENERGIZED.",,79
+RCOMMENT,Airknife,MainRoutine,GE Rung 101$N$NTHE NEXT 2 RUNGS CONVERT THE ENCODER INPUT ( WHICH IS SCALED BY THE$NGENIOUS BLOCK FROM 4-20ma IN TO 0-4095 OUT) TO 0 TO 3600 DEGREES.,,80
+RCOMMENT,Airknife,MainRoutine,GE Rung 102,,81
+RCOMMENT,Airknife,MainRoutine,GE Rung 104$N$NTHE NEXT 8 RUNGS GENERATE THE LIMITS TO WHICH THE FRONT KNIFE IS ALLOWED$NTO ROTATE IN SLOW SPEED BELOW THE ELEVATOR MID-POSITION.,,82
+RCOMMENT,Airknife,MainRoutine,GE Rung 105,,83
+RCOMMENT,Airknife,MainRoutine,GE Rung 106,,84
+RCOMMENT,Airknife,MainRoutine,GE Rung 107,,85
+RCOMMENT,Airknife,MainRoutine,GE Rung 108,,86
+RCOMMENT,Airknife,MainRoutine,GE Rung 109,,87
+RCOMMENT,Airknife,MainRoutine,GE Rung 110,,88
+RCOMMENT,Airknife,MainRoutine,GE Rung 111,,89
+RCOMMENT,Airknife,MainRoutine,"GE Rung 113$N$NTHE NEXT 4 RUNGS DETERMINE A VALID (NOT MORE THAN 1 BUTTON DEPRESSED)$NREQUEST FOR FRONT KNIFE ROTATION. 4SS IS A SELECTOR SWITCH LOCATED AT$NTHE PUSBUTTON PANEL (AT THE POT) TO CONTROL WHICH OPERATOR STATION IS$NACTIVE. WHEN IN ""LOCAL"" %I245 IS OFF AND THE PUSHBUTTON PANEL IS ACTIVE.$NWHEN IN ""REMOTE"" %I245 IS ON AND THE CONTROL DESK BECOMES ACTIVE.$N""LOCAL"" IS USED FOR MAINTENANCE AND ""REMOTE"" IS USED FOR NORMAL$NOPERATION.",,90
+RCOMMENT,Airknife,MainRoutine,GE Rung 114,,91
+RCOMMENT,Airknife,MainRoutine,GE Rung 115,,92
+RCOMMENT,Airknife,MainRoutine,GE Rung 116,,93
+RCOMMENT,Airknife,MainRoutine,"GE Rung 118$N$NTHE NEXT 7 RUNGS ENERGIZE THE FRONT KNIFE DRIVE INTERFACE RELAYS$N101CR-107CR. THE KNIFE DIRECTION/SPEED RELAYS 101CR-104CR ARE$NINTERLOCKED WITH KNIFE ROTATION LIMITS (SEE DWG 8819-1189) AND$NTHE ELEVATOR MID-POSITION.$N$NUP SLOW ROTATION IS ALLOWED FROM 0 THRU 10 DEGREES, 155 THRU 190$NDEGREES, 335 THRU 360 DEGREES OR ANYWHERE ABOVE THE MID-POSITION.",,94
+RCOMMENT,Airknife,MainRoutine,GE Rung 120$N$NUP FAST ROTATION IS ONLY ALLOWED ABOVE MID-POSITION WITH THE BAFFLES$NDISENGAGED.,,95
+RCOMMENT,Airknife,MainRoutine,"GE Rung 122$N$NDOWN SLOW ROTATION IS ALLOWED FROM  0 THRU 25 DEGREES, 170 THRU$N205 DEGREES, 350 THRU 360 DEGREES OR ANYWHERE ABOVE MID-POSITION.",,96
+RCOMMENT,Airknife,MainRoutine,GE Rung 124$N$NDOWN FAST IS ONLY ALLOWED ABOVE MID-POSITION WITH THE BAFFLES$NDISENGAGED.,,97
+RCOMMENT,Airknife,MainRoutine,GE Rung 125,,98
+RCOMMENT,Airknife,MainRoutine,GE Rung 127$N$NDISABLES (ENERGIZES) THE BRAKE ANYTIME 101CR - 104CR ARE ENERGIZED.,,99
+RCOMMENT,Airknife,MainRoutine,GE Rung 129$N$NENABLE ROTATION DRIVES WHEN NOT IN E-STOP,,100
+RCOMMENT,Airknife,MainRoutine,GE Rung 131$N$NTHE NEXT 8 RUNGS GENERATE THE LIMITS TO WHICH THE REAR KNIFE IS$NALLOWED TO ROTATE IN SLOW SPEED BELOW THE ELEVATOR MID-POSITION.,,101
+RCOMMENT,Airknife,MainRoutine,GE Rung 132,,102
+RCOMMENT,Airknife,MainRoutine,GE Rung 133,,103
+RCOMMENT,Airknife,MainRoutine,GE Rung 134,,104
+RCOMMENT,Airknife,MainRoutine,GE Rung 135,,105
+RCOMMENT,Airknife,MainRoutine,GE Rung 136,,106
+RCOMMENT,Airknife,MainRoutine,GE Rung 137,,107
+RCOMMENT,Airknife,MainRoutine,GE Rung 138,,108
+RCOMMENT,Airknife,MainRoutine,GE Rung 140$N$NTHE NEXT 4 RUNGS DETERMINE A VALID (NOT MORE THAN 1 BUTTON PRESSED)$NREQUEST FOR REAR KNIFE ROTATION.,,109
+RCOMMENT,Airknife,MainRoutine,GE Rung 141,,110
+RCOMMENT,Airknife,MainRoutine,GE Rung 142,,111
+RCOMMENT,Airknife,MainRoutine,GE Rung 143,,112
+RCOMMENT,Airknife,MainRoutine,"GE Rung 145$N$NTHE NEXT 6 RUNGS ENERGIZE THE DRIVE INTERFACE RELAYS 91CR - 96CR.$NTHE KNIFE DIRECTION/SPEED RELAYS 91CR - 94CR ARE INTERLOCKED WITH$NKNIFE ROTATION LIMITS (SEE DWG 8819-1189) AND ELEVATOR MID-POSITION$NSWITCHES.$N$NUP SLOW ROTATION IS ALLOWED FROM 0 THRU 10 DEGREES, 155 THRU 190$NDEGREES, 335 THRU 360 DEGREES OR ANYWHERE ABOVE THE MID-POSITION OF$NTHE ELEVATOR.",,113
+RCOMMENT,Airknife,MainRoutine,GE Rung 147$N$NUP FAST IS ONLY ALLOWED ABOVE MID-POSITION WITH THE BAFFLES DISENGAGED.,,114
+RCOMMENT,Airknife,MainRoutine,"GE Rung 149$N$NDOWN SLOW ROTATION IS ALLOWED FROM 0 THRU 25 DEGREES, 170 THRU 205$NDEGREES, 350 THRU 360 DEGREES OR ANYWHERE ABOVE THE ELEVATOR$NMID-POSITION.",,115
+RCOMMENT,Airknife,MainRoutine,GE Rung 151$N$NDOWN FAST IS ONLY ALLOWED ABOVE THE MID-POSITION WITH THE BAFFLES$NDISENGAGED.,,116
+RCOMMENT,Airknife,MainRoutine,GE Rung 152,,117
+RCOMMENT,Airknife,MainRoutine,GE Rung 154$N$NDISABLES (ENERGIZES) THE BRAKE WHENEVER 91CR - 94CR ARE ENERGIZED.,,118
+RCOMMENT,Airknife,MainRoutine,"GE Rung 156$N$NELEVATOR DOWN BELOW MID-POSITION IS ALLOWED ONLY WHEN THE KNIVES ARE$NIN THEIR NORMAL OPERATING RANGE (0 THRU 10 DEGREES, 170 THRU 190$NDEGREES OR 350 THRU 360 DEGREES).",,119
+RCOMMENT,Airknife,MainRoutine,GE Rung 158$N$NDRIVE SIDE ELEVATOR UP CONTROL RELAY.,,120
+RCOMMENT,Airknife,MainRoutine,GE Rung 160$N$NDRIVE SIDE ELEVATOR DOWN CONTROL RELAY.,,121
+RCOMMENT,Airknife,MainRoutine,"GE Rung 162$N$NELEVATOR DOWN BELOW MID-POSITION IS ALLOWED ONLY WHEN THE KNIVES ARE$NIN THEIR NORMAL OPERATING RANGE (0 THRU 10 DEGREES, 170 THRU 190$NDEGREES OR 350 THRU 360 DEGREES).",,122
+RCOMMENT,Airknife,MainRoutine,GE Rung 164$N$NOPERATOR SIDE ELEVATOR UP CONTROL RELAY.,,123
+RCOMMENT,Airknife,MainRoutine,GE Rung 166$N$NOPERATOR SIDE ELEVATOR DOWN CONTROL RELAY.,,124
+RCOMMENT,Airknife,MainRoutine,GE Rung 168$N$NTHE NEXT 2 RUNGS DETERMINE THE MODE OF THE KNIFE HORIZONTAL$NPOSITIONERS.,,125
+RCOMMENT,Airknife,MainRoutine,GE Rung 169,,126
+RCOMMENT,Airknife,MainRoutine,GE Rung 170,,127
+RCOMMENT,Airknife,MainRoutine,GE Rung 171,,128
+RCOMMENT,Airknife,MainRoutine,GE Rung 172,,129
+RCOMMENT,Airknife,MainRoutine,GE Rung 173,,130
+RCOMMENT,Airknife,MainRoutine,GE Rung 174,,131
+RCOMMENT,Airknife,MainRoutine,"GE Rung 176$N$NUse Gap Auto to only allow movement if the correct mode from ACT$Nis on.$N$NSkew mode, Passline mode (temp. disabled 3/24/17, ATM mode,$Nand Z-Assist mode.",,132
+RCOMMENT,Airknife,MainRoutine,GE Rung 179$N$NUse height movement in Auto when ACT is in Height or Z-assist mode$N$NUse this timer to keep the Manual Request high for a time delay after$Nswithcing back to auto.,,133
+RCOMMENT,Airknife,MainRoutine,"GE Rung 181$N$NUse this timer to pulse the moves for the knives in and out.$NThis is to prevent overshoot and emulate how the operator$Nbumps the knives in and out.$N$NSetpoint in 1st Timer, PULSEKN, %M0906 is the off delay (200 = 2secs)$NSetpoint in 2nd Timer, PULSKNR, %M0907 is the on time (25 = 250ms)",,134
+RCOMMENT,Airknife,MainRoutine,GE Rung 182,,135
+RCOMMENT,Airknife,MainRoutine,GE Rung 183,,136
+RCOMMENT,Airknife,MainRoutine,GE Rung 184,,137
+RCOMMENT,Airknife,MainRoutine,GE Rung 185,,138
+RCOMMENT,Airknife,MainRoutine,GE Rung 187$N$NAUTO MODE INDICATOR LIGHT CONTROL RELAYS.,,139
+RCOMMENT,Airknife,MainRoutine,GE Rung 189$N$NTHE NEXT 2 RUNGS GENERATE REQUESTS FOR THE DRIVE SIDE FRONT$NHORIZONTAL POSITIONERS.,,140
+RCOMMENT,Airknife,MainRoutine,GE Rung 190,,141
+RCOMMENT,Airknife,MainRoutine,GE Rung 191,,142
+RCOMMENT,Airknife,MainRoutine,GE Rung 193$N$NTHE NEXT 6 RUNGS ARE INTERFACE RELAYS FOR 1DR (FRONT KNIFE$NDRIVESIDE).,,143
+RCOMMENT,Airknife,MainRoutine,GE Rung 194,,144
+RCOMMENT,Airknife,MainRoutine,GE Rung 195,,145
+RCOMMENT,Airknife,MainRoutine,GE Rung 196,,146
+RCOMMENT,Airknife,MainRoutine,GE Rung 197,,147
+RCOMMENT,Airknife,MainRoutine,GE Rung 198,,148
+RCOMMENT,Airknife,MainRoutine,GE Rung 200$N$NTHE NEXT 2 RUNGS GENERATE REQUESTS FOR THE OPERATOR SIDE FRONT$NHORIZONTAL POSITIONER.,,149
+RCOMMENT,Airknife,MainRoutine,GE Rung 201,,150
+RCOMMENT,Airknife,MainRoutine,GE Rung 203$N$NFAST SPEED SELECT FOR 2MTR (OPERATOR SIDE FRONT HORIZONTAL).,,151
+RCOMMENT,Airknife,MainRoutine,GE Rung 205$N$NTHE NEXT 6 RUNGS ARE INTERFACE RELAYS FOR 2DR (OPERATOR SIDE FRONT$NKNIFE HORIZONTAL).,,152
+RCOMMENT,Airknife,MainRoutine,GE Rung 206,,153
+RCOMMENT,Airknife,MainRoutine,GE Rung 207,,154
+RCOMMENT,Airknife,MainRoutine,GE Rung 208,,155
+RCOMMENT,Airknife,MainRoutine,GE Rung 209,,156
+RCOMMENT,Airknife,MainRoutine,GE Rung 210,,157
+RCOMMENT,Airknife,MainRoutine,GE Rung 212$N$NENABLES THE FRONT KNIFE HORIZONTAL POSITIONER DRIVES.,,158
+RCOMMENT,Airknife,MainRoutine,GE Rung 214$N$NTHE NEXT 2 RUNGS GENERATE REQUESTS FOR THE DRIVE SIDE REAR KNIFE$NHORIZONTAL POSITIONER.,,159
+RCOMMENT,Airknife,MainRoutine,GE Rung 215,,160
+RCOMMENT,Airknife,MainRoutine,GE Rung 217$N$NFAST SPEED CONTROL FOR 3MTR.,,161
+RCOMMENT,Airknife,MainRoutine,GE Rung 219$N$NTHE NEXT 6 RUNGS ARE THR INTERFACE RELAYS FOR 3DR.,,162
+RCOMMENT,Airknife,MainRoutine,GE Rung 220,,163
+RCOMMENT,Airknife,MainRoutine,GE Rung 221,,164
+RCOMMENT,Airknife,MainRoutine,GE Rung 222,,165
+RCOMMENT,Airknife,MainRoutine,GE Rung 223,,166
+RCOMMENT,Airknife,MainRoutine,GE Rung 224,,167
+RCOMMENT,Airknife,MainRoutine,GE Rung 226$N$NTHE NEXT 2 RUNGS GENERATE REQUESTS FOR THE OPERATOR SIDE REAR KNIFE$NHORIZONTAL POSITIONER.,,168
+RCOMMENT,Airknife,MainRoutine,GE Rung 227,,169
+RCOMMENT,Airknife,MainRoutine,GE Rung 229$N$NFAST SPEED CONTROL OF 4MTR.,,170
+RCOMMENT,Airknife,MainRoutine,GE Rung 231$N$NTHE NEXT 6 RUNGS ARE INTERFACE RELAYS FOR 4DR (REAR KNIFE OPERATOR$NSIDE HORIZONTAL POSITIONER).,,171
+RCOMMENT,Airknife,MainRoutine,GE Rung 232,,172
+RCOMMENT,Airknife,MainRoutine,GE Rung 233,,173
+RCOMMENT,Airknife,MainRoutine,GE Rung 234,,174
+RCOMMENT,Airknife,MainRoutine,GE Rung 235,,175
+RCOMMENT,Airknife,MainRoutine,GE Rung 236,,176
+RCOMMENT,Airknife,MainRoutine,GE Rung 238$N$NENABLES THE REAR KNIFE HORIZONTAL POSITIONER DRIVES.,,177
+RCOMMENT,Airknife,MainRoutine,GE Rung 239,,178
+RCOMMENT,Airknife,MainRoutine,GE Rung 240,,179
+RCOMMENT,Airknife,MainRoutine,GE Rung 241,,180
+RCOMMENT,Airknife,MainRoutine,GE Rung 242,,181
+RCOMMENT,Airknife,MainRoutine,GE Rung 244$N$NENABLE REVERSE MOVEMENT OF DRIVE SIDE SINK ROLL DURING MAINTENACE.,,182
+RCOMMENT,Airknife,MainRoutine,GE Rung 245,,183
+RCOMMENT,Airknife,MainRoutine,GE Rung 246,,184
+RCOMMENT,Airknife,MainRoutine,GE Rung 247,,185
+RCOMMENT,Airknife,MainRoutine,GE Rung 249$N$NTHE NEXT 4 RUNGS GENERATE AC MOTOR STARTER FAULTS. A STARTER MUST$NENERGIZE WITHIN 3 SECONDS OF A REQUEST OR A FAULT WILL OCCUR.,,186
+RCOMMENT,Airknife,MainRoutine,GE Rung 250,,187
+RCOMMENT,Airknife,MainRoutine,GE Rung 251,,188
+RCOMMENT,Airknife,MainRoutine,GE Rung 252,,189
+RCOMMENT,Airknife,MainRoutine,GE Rung 254$N$NSTARTER FAULT INDICATOR LIGHT ON THE PUSHBUTTON PANEL.,,190
+RCOMMENT,Airknife,MainRoutine,GE Rung 255,,191
+RCOMMENT,Airknife,MainRoutine,GE Rung 256,,192
+RCOMMENT,Airknife,MainRoutine,GE Rung 257,,193
+RCOMMENT,Airknife,MainRoutine,GE Rung 258,,194
+RCOMMENT,Airknife,MainRoutine,GE Rung 260$N$NRESET STARTER FAULTS,,195
+RCOMMENT,Airknife,MainRoutine,"GE Rung 262$N$NWHEN A DISENGAGE PUSHBUTTON REQUEST IS SEEN IN AUTO MODE, AUTO MODE$NIS DISABLED (LOCKED OUT) UNTIL THE AUTO/MAN SELECTOR SWITCH IS TOGGLED$NOR A BAFFLE ENGAGE PUSHBUTTON IS PRESSED. BAFFLE REQUESTS FROM THE WELD$NTRACKING ARE IGNORED WHILE THIS RUNG IS TRUE.",,196
+RCOMMENT,Airknife,MainRoutine,GE Rung 263,,197
+RCOMMENT,Airknife,MainRoutine,GE Rung 265$N$NBAFFLES DISENGEGE REQUEST IS USED TO DE-ENERGIZE THE ENGAGE SOLENOID$NAND ENERGIZE THE DISENGAGE SOLENOID. BAFFLE DISENGAGE HAS PRIORITY OVER$NENGAGE.,,198
+RCOMMENT,Airknife,MainRoutine,GE Rung 267$N$NBAFFLE ENGAGE CONTROL RELAY.,,199
+RCOMMENT,Airknife,MainRoutine,GE Rung 269$N$NBAFFLE DISENGAGE CONTROL RELAY.,,200
+RCOMMENT,Airknife,MainRoutine,GE Rung 270,,201
+RCOMMENT,Airknife,MainRoutine,GE Rung 271,,202
+RCOMMENT,Airknife,MainRoutine,GE Rung 273$N$NBAFFLES ENGAGED INDICATOR LIGHT ON PUSHBUTTON PANEL.,,203
+RCOMMENT,Airknife,MainRoutine,GE Rung 275$N$NBAFFLES DISENGAGED INDICATOR LIGHT ON PUSHBUTTON PANEL.,,204
+RCOMMENT,Airknife,MainRoutine,GE Rung 277$N$NBAFFLE MODE INDICATOR LIGHTS.,,205
+RCOMMENT,Airknife,MainRoutine,GE Rung 278,,206
+RCOMMENT,Airknife,COAT_WG,GE Rung 5$N$NMap the registers bits sent from ACT into %M Bits.$N%R501 into %M833-%M848$N%R502 into %M849-%M864$N%R503 into %M865-%M880$N%R504 itno %M881-%M896$N$NSee the end of this block to see where the bits going to ACT are mapped$Ninto Registers:$N%M705-%M720 into $R401$N%M721-%M736 into %R402$N%M737-%M752 into %R403$N%M753-%M768 into %R404$N$NCreate a Heartbeat Timer to ACT. Originally created as a 3 sec HB,,0
+RCOMMENT,Airknife,COAT_WG,GE Rung 6,,1
+RCOMMENT,Airknife,COAT_WG,GE Rung 7,,2
+RCOMMENT,Airknife,COAT_WG,GE Rung 8,,3
+RCOMMENT,Airknife,COAT_WG,"GE Rung 10$N$NACT Appendix B: 2.4.K.1.02$NKnife Position Top Drive Side$N$NAt %AI0028=4098, TGD=4.6""$NAt %AI0028=3010, TGD=1.75""$N$NUsing Y=MX+B for distance travelled of 2.85""$N$NTGD=10.72679*(AI0028/4095) -6.124651",,4
+RCOMMENT,Airknife,COAT_WG,GE Rung 11,,5
+RCOMMENT,Airknife,COAT_WG,GE Rung 13$N$NDetermine Skew of Top Knives$N$NDetermine Top Side knife to Knife distance,,6
+RCOMMENT,Airknife,COAT_WG,"GE Rung 15$N$NACT Appendix B: 2.4.K.1.03$NKnife Position Bottom Operator Side$N$NAt %AI0033=1614, BGO=4.5""$NAt %AI0033=3465, BGO=0.4""$N$NUsing Y=MX+B for distance travelled of 4.1""$N$NBGO=-9.0705*(AI0033/4095) +8.07504",,7
+RCOMMENT,Airknife,COAT_WG,GE Rung 16,,8
+RCOMMENT,Airknife,COAT_WG,"GE Rung 18$N$NACT Appendix B: 2.4.K.1.04$NKnife Position Bottom Drive Side$N$NAt %AI0027=1301, BGD=5.5""$NAt %AI0027=3803, BGD=-1.25""$N$NUsing Y+MX+B of distance travelled of 6.75""$N$NBGD=-11.04077*(AI0027/4095) +9.00989",,9
+RCOMMENT,Airknife,COAT_WG,GE Rung 19,,10
+RCOMMENT,Airknife,COAT_WG,GE Rung 20,,11
+RCOMMENT,Airknife,COAT_WG,GE Rung 21,,12
+RCOMMENT,Airknife,COAT_WG,GE Rung 22,,13
+RCOMMENT,Airknife,COAT_WG,GE Rung 23,,14
+RCOMMENT,Airknife,COAT_WG,"GE Rung 25$N$NACT Appendix B: 2.5$NKnife Height Operator$N$NAt %AI0035 = 3747, KHO = 24.05$NAt %AI0035 = 1185, KHO =  0.25""$N$NUsing Y=MX+B for distance travelled of 23.08""$N$NKHO = 38.040*(%AI0029/4095) - 10.758",,15
+RCOMMENT,Airknife,COAT_WG,GE Rung 26,,16
+RCOMMENT,Airknife,COAT_WG,"GE Rung 28$N$NACT Appendix b: 2.5$NKnife Height Drive$N$NAt %AI0029 = 3790, KHD = 24.05""$NAt %AI0029 = 1205, KHD =  0.30""$N$NUsing Y=MX+B for a distance travelled of 23.75""$N$NKHD = 37.623* (%AI0035/4095) - 10.77",,17
+RCOMMENT,Airknife,COAT_WG,GE Rung 29,,18
+RCOMMENT,Airknife,COAT_WG,"GE Rung 31$N$NACT Appendix B: 2.5$NKnife Height$N$NKnife Height, KHA is the average of the Operator and Drive Side Heights",,19
+RCOMMENT,Airknife,COAT_WG,"GE Rung 34$N$NACT Appendix B: Section 5.1.1$NR00431-435 Next Product$Nmapped from Wonderware at R00581-585$N$NACT Appendix B: 2.8.1$NStabilizing Roll Position Operator Side$N$NAt %AI0036=1188, SRO=1.0""$NAt %AI0036=2275, SRO=4.0""$N$NUsing Y+MX+B for a distance travelled of 5.0""$NSRO=-18.8362 *(AI0036/4095) +6.46456",,20
+RCOMMENT,Airknife,COAT_WG,GE Rung 35,,21
+RCOMMENT,Airknife,COAT_WG,"GE Rung 37$N$NACT Appendix B: 2.8.2$NStabilizing Roll Position Drive Side$N$NAt %AI0030=977, SRD=1.0""$NAt %AI0030=1980, SRD=-4.125""$N$NUsing Y=MX+B for a distance travelled of 5.125""$NSRD=-20.9241 *(AI0030/4095) +6.0",,22
+RCOMMENT,Airknife,COAT_WG,GE Rung 38,,23
+RCOMMENT,Airknife,COAT_WG,"GE Rung 40$N$NACT Appendix B: 2.8.3 (Not in original workbook, but ACT also wanted the$Navg Stab Roll Position$N$NStabilizing Roll Position Average",,24
+RCOMMENT,Airknife,COAT_WG,GE Rung 41,,25
+RCOMMENT,Airknife,COAT_WG,GE Rung 42,,26
+RCOMMENT,Airknife,COAT_WG,GE Rung 43,,27
+RCOMMENT,Airknife,COAT_WG,"GE Rung 45$N$NACT Appendix B: 2.8.3 (Not in ""As Shipped"" Worksheet)$NKnife Angle Top$N$NNote that the slope used in the MUL_REAL block is 100x that of the DMC$NGauge since the percentage calculated is between 0 & 1.0, not 0 & 100%",,28
+RCOMMENT,Airknife,COAT_WG,"GE Rung 47$N$NACT Appendix 3.2.k.1.0.x$NKnife Positions from ACT$N$NPermissive to move Knives in Auto. When in CLC Operatiing Mode, ACT$Ncontrols the Pressure.  Then if the oter modes, Z-Assist, Passline,$NSkew and ATM mode are selected, then the Knives can be moved$Nautomatically.",,29
+RCOMMENT,Airknife,COAT_WG,GE Rung 49$N$NACT Appendix B: Section 5.1.2$N$NR00436-440 Next Coating Weight Designation$Nmapped from Wonderware at R00586-590$N$N3/14/17$N%R436-440 was being overwritten due to being defined twice in wonderware$Nso$NACT changed to %R496-500,,30
+RCOMMENT,Airknife,COAT_WG,GE Rung 50,,31
+RCOMMENT,Airknife,COAT_WG,GE Rung 51,,32
+RCOMMENT,Airknife,COAT_WG,GE Rung 52,,33
+RCOMMENT,Airknife,COAT_WG,GE Rung 53,,34
+RCOMMENT,Airknife,COAT_WG,GE Rung 54,,35
+RCOMMENT,Airknife,COAT_WG,GE Rung 55,,36
+RCOMMENT,Airknife,COAT_WG,GE Rung 56,,37
+RCOMMENT,Airknife,COAT_WG,GE Rung 57,,38
+RCOMMENT,Airknife,COAT_WG,GE Rung 58,,39
+RCOMMENT,Airknife,COAT_WG,GE Rung 59,,40
+RCOMMENT,Airknife,COAT_WG,GE Rung 60,,41
+RCOMMENT,Airknife,COAT_WG,GE Rung 62$N$NAuto Mode Parameters based on Setpoints from ACT,,42
+RCOMMENT,Airknife,COAT_WG,GE Rung 63,,43
+RCOMMENT,Airknife,COAT_WG,GE Rung 64,,44
+RCOMMENT,Airknife,COAT_WG,GE Rung 66$N$NTop Knives Operator Side Position Regulator,,45
+RCOMMENT,Airknife,COAT_WG,GE Rung 67,,46
+RCOMMENT,Airknife,COAT_WG,GE Rung 68,,47
+RCOMMENT,Airknife,COAT_WG,GE Rung 69,,48
+RCOMMENT,Airknife,COAT_WG,GE Rung 70,,49
+RCOMMENT,Airknife,COAT_WG,GE Rung 71,,50
+RCOMMENT,Airknife,COAT_WG,GE Rung 72,,51
+RCOMMENT,Airknife,COAT_WG,GE Rung 73,,52
+RCOMMENT,Airknife,COAT_WG,GE Rung 74,,53
+RCOMMENT,Airknife,COAT_WG,GE Rung 75,,54
+RCOMMENT,Airknife,COAT_WG,GE Rung 77$N$NTop Knives Drive Side Position Regulator,,55
+RCOMMENT,Airknife,COAT_WG,GE Rung 78,,56
+RCOMMENT,Airknife,COAT_WG,GE Rung 79,,57
+RCOMMENT,Airknife,COAT_WG,GE Rung 80,,58
+RCOMMENT,Airknife,COAT_WG,GE Rung 81,,59
+RCOMMENT,Airknife,COAT_WG,GE Rung 82,,60
+RCOMMENT,Airknife,COAT_WG,GE Rung 83,,61
+RCOMMENT,Airknife,COAT_WG,GE Rung 84,,62
+RCOMMENT,Airknife,COAT_WG,GE Rung 85,,63
+RCOMMENT,Airknife,COAT_WG,GE Rung 86,,64
+RCOMMENT,Airknife,COAT_WG,GE Rung 88$N$NBottom Knives Operator Side Position Regulator,,65
+RCOMMENT,Airknife,COAT_WG,GE Rung 89,,66
+RCOMMENT,Airknife,COAT_WG,GE Rung 90,,67
+RCOMMENT,Airknife,COAT_WG,GE Rung 91,,68
+RCOMMENT,Airknife,COAT_WG,GE Rung 92,,69
+RCOMMENT,Airknife,COAT_WG,GE Rung 93,,70
+RCOMMENT,Airknife,COAT_WG,GE Rung 94,,71
+RCOMMENT,Airknife,COAT_WG,GE Rung 95,,72
+RCOMMENT,Airknife,COAT_WG,GE Rung 96,,73
+RCOMMENT,Airknife,COAT_WG,GE Rung 97,,74
+RCOMMENT,Airknife,COAT_WG,GE Rung 99$N$NBottom Knives Drive Side Position Regulator,,75
+RCOMMENT,Airknife,COAT_WG,GE Rung 100,,76
+RCOMMENT,Airknife,COAT_WG,GE Rung 101,,77
+RCOMMENT,Airknife,COAT_WG,GE Rung 102,,78
+RCOMMENT,Airknife,COAT_WG,GE Rung 103,,79
+RCOMMENT,Airknife,COAT_WG,GE Rung 104,,80
+RCOMMENT,Airknife,COAT_WG,GE Rung 105,,81
+RCOMMENT,Airknife,COAT_WG,GE Rung 106,,82
+RCOMMENT,Airknife,COAT_WG,GE Rung 107,,83
+RCOMMENT,Airknife,COAT_WG,GE Rung 108,,84
+RCOMMENT,Airknife,COAT_WG,GE Rung 109,,85
+RCOMMENT,Airknife,COAT_WG,GE Rung 110,,86
+RCOMMENT,Airknife,COAT_WG,GE Rung 111,,87
+RCOMMENT,Airknife,COAT_WG,GE Rung 112,,88
+RCOMMENT,Airknife,COAT_WG,GE Rung 113,,89
+RCOMMENT,Airknife,COAT_WG,GE Rung 114,,90
+RCOMMENT,Airknife,COAT_WG,GE Rung 115,,91
+RCOMMENT,Airknife,COAT_WG,"GE Rung 117$N$NACT Appendix B: 3.3$NKnife Height from ACT$N$NSince ACT only wants one Height Reference, the Height Positions from$Nthe Operator Side Elevator and Drive SIde Elevator are averaged.$N$NWhen they send the Height Reference in Auto Mode, The Difference from$NKnife Height Reference minus Knife Height Average is added/subtracted$Nto/from the individual Height to determinece the Calcualted Height$NSetpoint.  The reference useds is clamped.$N$NEX:  If KHO=13"" and KHD=11"" KHA=12""$NIf ACT sends a setpoint of 14"" then 2"" (Setpoint minus actual) is$Nadded to the current heights to become the calculated setpoint.$NKHO_SPA=15"" and KHD_SPA=13"" then after movement KHA=14""",,92
+RCOMMENT,Airknife,COAT_WG,GE Rung 119$N$NStop Movement if Knife Height is at the upper or lower limit,,93
+RCOMMENT,Airknife,COAT_WG,GE Rung 120,,94
+RCOMMENT,Airknife,COAT_WG,GE Rung 121,,95
+RCOMMENT,Airknife,COAT_WG,GE Rung 124$N$NStore the Knife Height Reference from current scan to detect a change$N$NDetermine the error to add to each side's height reference.,,96
+RCOMMENT,Airknife,COAT_WG,GE Rung 127$N$NLoad the setpoint error limits for going up and going down$N$NDetermine The Direction to move each Elevator that controls the height$N$NMake Sure that the Height Difference between the Operator SIde and$NDrive Side is not too big.,,97
+RCOMMENT,Airknife,COAT_WG,GE Rung 128,,98
+RCOMMENT,Airknife,COAT_WG,GE Rung 129,,99
+RCOMMENT,Airknife,COAT_WG,GE Rung 130,,100
+RCOMMENT,Airknife,COAT_WG,GE Rung 131,,101
+RCOMMENT,Airknife,COAT_WG,GE Rung 132,,102
+RCOMMENT,Airknife,COAT_WG,GE Rung 133,,103
+RCOMMENT,Airknife,COAT_WG,GE Rung 134,,104
+RCOMMENT,Airknife,COAT_WG,GE Rung 135,,105
+RCOMMENT,Airknife,COAT_WG,GE Rung 136,,106
+RCOMMENT,Airknife,COAT_WG,GE Rung 137,,107
+RCOMMENT,Airknife,COAT_WG,GE Rung 138,,108
+RCOMMENT,Airknife,COAT_WG,GE Rung 139,,109
+RCOMMENT,Airknife,COAT_WG,GE Rung 141$N$NAverage the Analog Inputs for five scans for the Gap Positions to act$Nas a filter.,,110
+RCOMMENT,Airknife,COAT_WG,GE Rung 142,,111
+RCOMMENT,Airknife,COAT_WG,GE Rung 143,,112
+RCOMMENT,Airknife,COAT_WG,GE Rung 144,,113
+RCOMMENT,Airknife,COAT_WG,GE Rung 145,,114
+RCOMMENT,Airknife,COAT_WG,GE Rung 146,,115
+RCOMMENT,Airknife,COAT_WG,GE Rung 147,,116
+RCOMMENT,Airknife,COAT_WG,GE Rung 148,,117
+RCOMMENT,Airknife,COAT_WG,GE Rung 149,,118
+RCOMMENT,Airknife,COAT_WG,GE Rung 150,,119
+RCOMMENT,Airknife,COAT_WG,GE Rung 151,,120
+RCOMMENT,Airknife,COAT_WG,GE Rung 152,,121
