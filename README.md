@@ -1,18 +1,17 @@
 # DL-TM-PLC
 
-Studio 5000 import of the USS Fairfield Dual Line Temper Mill PLC program **TEMPER**, converted from a mid-1990s GE Logicmaster 90-30 printout to a ControlLogix **1756-L81E** project.
+Studio 5000 imports of GE Logicmaster 90-30 programs converted to ControlLogix **1756-L81E**.
 
-## Import file
+## Import files
 
-Open this file in Studio 5000 Logix Designer **v32.11 or newer** (File → Open):
+Open in Studio 5000 Logix Designer **v32.11 or newer** (File → Open):
 
-`import/TEMPER_1756-L81E.L5X`
+| Program | L5X | Source printout |
+|---|---|---|
+| **TEMPER** (Dual Line Temper Mill) | `import/TEMPER_1756-L81E.L5X` | `source/TemperMillProgram.txt` |
+| **PIOPLC** (910PIO air-knife / gap PIO) | `import/PIOPLC_1756-L81E.L5X` | `source/910pio/PIOPLC.txt` |
 
-A conversion log listing remaining review items is next to it:
-
-`import/TEMPER_1756-L81E.report.txt`
-
-The original Logicmaster printout is in `source/` (`TemperMillProgram.docx` and an extracted `TemperMillProgram.txt`).
+Conversion logs listing remaining review items sit next to each L5X (`*.report.txt`).
 
 ## Tag rules
 
@@ -28,17 +27,17 @@ The original Logicmaster printout is in `source/` (`TemperMillProgram.docx` and 
 | `%AQ0041` | `AQ0041` | INT |
 
 - The **% is stripped**. Ladder never uses `%`.
-- A GE **nickname** becomes a Logix **alias** of that base tag. Logic uses the alias when one exists (`PRSLED` → `I0005`).
-- Hyphens in nicknames become underscores (`S07-01A` → `S07_01A`).
+- A GE **nickname** becomes a Logix **alias** of that base tag. Logic uses the alias when one exists (`PRSLED` → `I0005`, `CTL_ON` → `I0003`).
+- Hyphens in nicknames become underscores (`S07-01A` → `S07_01A`, `TOPC-Y` → `TOPC_Y`).
 - Tag descriptions come from the Logicmaster variable table.
 
 ## Program layout
 
-- Controller: `TEMPER`, processor `1756-L81E`, product code 164, revision **32.11**.
+- Processor `1756-L81E`, product code 164, revision **32.11**.
 - CPU in slot 0 of a 10-slot 1756 backplane. No I/O modules are configured; GE addresses are memory-image tags for later remapping onto 1756 I/O.
-- Continuous task `MainTask` runs program `TEMPER`.
+- Continuous task `MainTask` runs the converted program.
 - `_MAIN` is Logix `MainRoutine`. It JSRs `SYSBITS` first (GE `%S` clocks and first-scan), then the original CALL order.
-- Each GE block is a subroutine of the same name (`AGC`, `ESTOP`, `RUNPERM`, …).
+- Each GE block is a subroutine of the same name (`AGC`, `TOP_OP`, `ACT_CWG`, …).
 - Every Logix rung comment starts with **`GE Rung N`** from the printout.
 
 `SYSBITS` emulates:
@@ -49,13 +48,22 @@ The original Logicmaster printout is in `source/` (`TemperMillProgram.docx` and 
 
 `%S0008` `ALW_OFF` is left at 0.
 
+### PIOPLC (910PIO)
+
+GE program name **PIOPLC** from a Logicmaster 90-30/90-20/MICRO v9.05 printout. Blocks:
+
+`MainRoutine` → `TOP_OP`, `TDR_OP`, `BOP_OP`, `BDR_OP`, `ACT_CWG`, `FT_PULS`
+
 ## How to regenerate
 
 ```bash
 python3 -m pip install -r requirements.txt
 python3 -m tools.lm90_to_l5x source/TemperMillProgram.txt import/TEMPER_1756-L81E.L5X
-python3 -m pytest tests/test_lm90_import.py -v
+python3 -m tools.lm90_to_l5x source/910pio/PIOPLC.txt import/PIOPLC_1756-L81E.L5X --controller PIOPLC --program PIOPLC
+python3 -m pytest tests -v
 ```
+
+CP437 DOS printouts (original 910PIO file) are decoded automatically.
 
 ## Conversion limits (review before download)
 

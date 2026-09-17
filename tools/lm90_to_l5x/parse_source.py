@@ -38,16 +38,37 @@ class RawProgram:
     block_order: list[str]
 
 
+PAGE_TITLES = {
+    "USS01 90-30 PLC",
+    "Temper_Mill",
+    "910PIO",
+    "PIOPLC",
+}
+
+IL_LINE_RE = re.compile(r"^[│| ]*#\d+\s+")
+IL_PARAM_RE = re.compile(r"^[│| ]*P\d+:")
+
+
 def _is_page_header(line: str) -> bool:
     s = line.strip()
     if PAGE_PROGRAM_RE.match(line):
         return True
     if PAGE_DATE_RE.search(line):
         return True
-    if s == "USS01 90-30 PLC":
+    if s in PAGE_TITLES:
         return True
-    if s == "Temper_Mill":
+    if "IL TEXT FOR RUNG CONTINUED" in line:
         return True
+    return False
+
+
+def _is_il_listing(line: str) -> bool:
+    s = line.replace("│", " ").replace("|", " ")
+    if IL_LINE_RE.match(s) or IL_PARAM_RE.match(s):
+        return True
+    if "END OF PROGRAM" in line or "END OF SUBR" in line:
+        if re.search(r"#\d+", line):
+            return True
     return False
 
 
@@ -152,6 +173,8 @@ def parse_rungs(lines: list[str]) -> tuple[list[RawRung], list[str]]:
         )
         if any(j in text for j in junk):
             return ""
+        if text.upper() in {"COMMENT", "COMMENTS"}:
+            return ""
         if len(text) > 800:
             text = text[:800] + "…"
         return text
@@ -210,11 +233,13 @@ def parse_rungs(lines: list[str]) -> tuple[list[RawRung], list[str]]:
             continue
         if "(*" in line and "BLOCK:" not in line and not any(ch in line for ch in "├┤┌└"):
             extra = collapse_desc(re.sub(r"[│()*]", " ", line))
-            if extra:
+            if extra and extra.upper() not in {"COMMENT", "COMMENTS"}:
                 if current.comment:
                     current.comment = collapse_desc(current.comment + " " + extra)
                 else:
                     current.comment = extra
+            continue
+        if _is_il_listing(line):
             continue
         if not line.strip():
             continue

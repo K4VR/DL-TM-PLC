@@ -9,7 +9,8 @@ sys.path.insert(0, str(ROOT))
 
 from tools.lm90_to_l5x.convert_logic import build_conversion, convert_rung
 from tools.lm90_to_l5x.emit_l5x import emit_l5x
-from tools.lm90_to_l5x.model import Conversion, sanitize_alias
+from tools.lm90_to_l5x.extract import decode_printout_bytes
+from tools.lm90_to_l5x.model import Conversion, TagDef, sanitize_alias
 from tools.lm90_to_l5x.parse_source import parse_declarations, parse_program, RawRung
 
 
@@ -243,6 +244,107 @@ def test_move_does_not_treat_register_as_contact():
     joined = " ".join(r.text for r in out)
     assert "XIC(R00631)" not in joined
     assert "COP(R00631,R00411,4)" in joined.replace(" ", "")
+
+
+NICK_CALL = """│ALW_ON  ┌─────────────┐
+├──┤ ├───┤ CALL TOP_OP ├
+│        │ (SUBROUTINE)│
+│        └─────────────┘
+"""
+
+NICK_NE = """│CTL_ON  ┌─────┐                                                         %T0004
+├──┤ ├───┤ NE_ │┌──────────────────────────────────────────────────────────( )──
+│        │ INT ││
+│        │     ││
+│TOP_REQ─┤I1  Q├┘
+│        │     │
+│ CONST ─┤I2   │
+│ +00000 └─────┘
+"""
+
+MOD_DINT = """│%M0016          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ DIV_├─────────────────────────────────┤ MOD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00365─┤I1  Q├─%R00367                 %R00385─┤I1  Q├─%R00369
+│                │     │                                 │     │
+│        %R00363─┤I2   │                         %R00363─┤I2   │
+│                └─────┘                                 └─────┘
+"""
+
+
+NICK_MOVE = """│%T0004  ┌─────┐                 ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │                 │ INT │
+│        │     │                 │     │                 │     │
+│TOP_REQ─┤IN  Q├─TOP_UPD  CONST ─┤IN  Q├─TOP_REQ  CONST ─┤IN  Q├─TOP_CTR
+│        │ LEN │          +00000 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│                 │00001│
+│        └─────┘                 └─────┘                 └─────┘
+"""
+
+
+def _conv_with_nicks() -> Conversion:
+    conv = Conversion()
+    conv.tags["I0003"] = TagDef("I0003", "BOOL", "Gap Ctl Requested On")
+    conv.tags["R00001"] = TagDef("R00001", "INT", "Top Op Gap Requested Output")
+    conv.tags["R00002"] = TagDef("R00002", "INT", "Top Op Gap Updated Output Req")
+    conv.tags["R00004"] = TagDef("R00004", "INT", "Top Op Gap Output Counter")
+    conv.aliases["CTL_ON"] = TagDef("CTL_ON", "BOOL", "Gap Ctl Requested On", alias_for="I0003")
+    conv.aliases["TOP_REQ"] = TagDef("TOP_REQ", "INT", "Top Op Gap Requested Output", alias_for="R00001")
+    conv.aliases["TOP_UPD"] = TagDef("TOP_UPD", "INT", "Top Op Gap Updated Output Req", alias_for="R00002")
+    conv.aliases["TOP_CTR"] = TagDef("TOP_CTR", "INT", "Top Op Gap Output Counter", alias_for="R00004")
+    conv.nicknames["CTL_ON"] = "CTL_ON"
+    conv.nicknames["TOP_REQ"] = "TOP_REQ"
+    conv.nicknames["TOP_UPD"] = "TOP_UPD"
+    conv.nicknames["TOP_CTR"] = "TOP_CTR"
+    return conv
+
+
+def test_cp437_printout_decode():
+    raw = "│%I0003        CTL_ON\r\n".encode("cp437")
+    text = decode_printout_bytes(raw)
+    assert "│%I0003" in text
+    assert "CTL_ON" in text
+
+
+def test_nickname_only_call_uses_alias():
+    conv = Conversion()
+    out = convert_rung(RawRung(9, 12, "_MAIN", "", NICK_CALL.splitlines()), conv)
+    joined = " ".join(r.text for r in out)
+    assert "JSR(TOP_OP,0)" in joined
+    assert "XIC(ALW_ON)" in joined
+    assert "%" not in joined
+
+
+def test_nickname_compare_and_coil():
+    conv = _conv_with_nicks()
+    out = convert_rung(RawRung(3, 1, "TOP_OP", "", NICK_NE.splitlines()), conv)
+    joined = " ".join(r.text for r in out)
+    assert "XIC(CTL_ON)" in joined
+    assert "NEQ(TOP_REQ,0)" in joined
+    assert "OTE(T0004)" in joined
+    assert "%" not in joined
+    assert "GE Rung 3" in out[0].comment
+
+
+def test_nickname_move_destinations():
+    conv = _conv_with_nicks()
+    out = convert_rung(RawRung(4, 4, "TOP_OP", "", NICK_MOVE.splitlines()), conv)
+    joined = " ".join(r.text for r in out).replace(" ", "")
+    assert "MOV(TOP_REQ,TOP_UPD)" in joined
+    assert "MOV(0,TOP_REQ)" in joined
+    assert "MOV(0,TOP_CTR)" in joined
+    assert "%" not in joined
+
+
+def test_mod_dint():
+    conv = Conversion()
+    out = convert_rung(RawRung(26, 62, "FT_PULS", "", MOD_DINT.splitlines()), conv)
+    joined = " ".join(r.text for r in out).replace(" ", "")
+    assert "MOD(" in joined
+    assert "DIV(" in joined
+    assert "R00365D" in joined or "R00365" in joined
 
 
 def test_full_program_tags_and_l5x():

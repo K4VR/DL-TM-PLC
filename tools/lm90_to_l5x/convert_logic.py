@@ -19,9 +19,9 @@ from .parse_source import REF_RE, RawProgram, RawRung
 CONTACT_NO = re.compile(r"┤ ?├")
 CONTACT_NC = re.compile(r"┤/├")
 COIL_RE = re.compile(r"\((SM|RM| |S|R|/|\^|M|v)\)")
-FUNC_NAME_RE = re.compile(r"┤\s*(CALL\s+[A-Z0-9_ ]+|MOVE_|BLK_|BLKMV|ADD_|SUB_|MUL_|DIV_|EQ_|NE_|GT_|GE_|LT_|LE_|TMR|OFDT|ONDTR|AND_|OR_|NOT_|SHL_|BIT_|DO_IO|RANGE|INT_|COMM_|SVC_|UPCTR)\s*[├│]")
+FUNC_NAME_RE = re.compile(r"┤\s*(CALL\s+[A-Z0-9_ ]+|MOVE_|BLK_|BLKMV|ADD_|SUB_|MUL_|DIV_|MOD_|EQ_|NE_|GT_|GE_|LT_|LE_|TMR|OFDT|ONDTR|AND_|OR_|NOT_|SHL_|BIT_|DO_IO|RANGE|INT_|COMM_|SVC_|UPCTR)\s*[├│]")
 FUNC_SCAN_RE = re.compile(
-    r"┤\s*(CALL\s+[A-Z0-9_ ]+|MOVE_|BLK_|BLKMV|ADD_|SUB_|MUL_|DIV_|EQ_|NE_|GT_|GE_|LT_|LE_|TMR|OFDT|ONDTR|AND_|OR_|NOT_|SHL_|BIT_|DO_IO|RANGE|INT_|COMM_|SVC_)\s*"
+    r"┤\s*(CALL\s+[A-Z0-9_ ]+|MOVE_|BLK_|BLKMV|ADD_|SUB_|MUL_|DIV_|MOD_|EQ_|NE_|GT_|GE_|LT_|LE_|TMR|OFDT|ONDTR|AND_|OR_|NOT_|SHL_|BIT_|DO_IO|RANGE|INT_|COMM_|SVC_)\s*"
 )
 INPUT_FUNCS = {"EQ_", "NE_", "GT_", "GE_", "LT_", "LE_", "RANGE"}
 TIMER_FUNCS = {"TMR", "OFDT", "ONDTR"}
@@ -34,6 +34,7 @@ OUTPUT_FUNCS = {
     "SUB_",
     "MUL_",
     "DIV_",
+    "MOD_",
     "AND_",
     "OR_",
     "NOT_",
@@ -47,6 +48,7 @@ OUTPUT_FUNCS = {
 } | TIMER_FUNCS | COUNTER_FUNCS
 CONST_RE = re.compile(r"([+-]\d+|0[0-9A-Fa-f]+|\d+)")
 REF_TOKEN_RE = re.compile(r"%[A-Z]+\d+")
+NICK_TOKEN_RE = re.compile(r"[A-Z][A-Z0-9_-]{0,7}")
 
 
 def _norm_box(s: str) -> str:
@@ -76,6 +78,35 @@ def resolve_name(ref: str, conv: Conversion) -> str:
         if alias.alias_for == tag:
             return alias.name
     return tag
+
+
+def resolve_print_name(conv: Conversion, token: str) -> str:
+    """Resolve a printout token (%ref, address, or nickname) to the Logix name, preferring aliases."""
+    token = token.strip()
+    if not token:
+        return token
+    key = token.upper()
+    if key in conv.nicknames:
+        return conv.nicknames[key]
+    if token.startswith("%") or re.match(r"[A-Z]+\d+$", token):
+        return ensure_tag(conv, token)
+    return token
+
+
+def _nicks_on_line(line: str, conv: Conversion) -> list[tuple[int, str]]:
+    found: list[tuple[int, str]] = []
+    for m in NICK_TOKEN_RE.finditer(line):
+        raw = m.group(0)
+        up = raw.upper()
+        if up not in conv.nicknames:
+            for key, (nick, desc) in KNOWN_SYSTEM.items():
+                if nick.upper() == up:
+                    ensure_tag(conv, key, desc)
+                    conv.nicknames[up] = nick
+                    break
+        if up in conv.nicknames:
+            found.append((m.start(), raw))
+    return found
 
 
 def ensure_tag(conv: Conversion, ref: str, desc: str = "") -> str:
@@ -138,6 +169,15 @@ def _next_reg(tag: str) -> str:
     return f"{m.group(1)}{int(m.group(2)) + 1:0{width}d}"
 
 
+def _next_operand(conv: Conversion, name: str) -> str:
+    base = name
+    if name in conv.aliases:
+        base = conv.aliases[name].alias_for or name
+    nxt = _next_reg(base)
+    ensure_tag(conv, nxt)
+    return resolve_name(nxt, conv)
+
+
 @dataclass
 class Contact:
     x: int
@@ -154,13 +194,20 @@ class Coil:
     operand: str = ""
 
 
-def _assoc_operand(lines: list[str], x: int, y: int) -> str:
+def _assoc_operand(lines: list[str], x: int, y: int, conv: Conversion | None = None) -> str:
     lo, hi = max(0, x - 4), min(len(lines[y]) if lines else 0, x + 8)
     for yy in range(y, -1, -1):
         line = lines[yy]
         for start, ref in _refs_on_line(line):
             if lo - 2 <= start <= hi and datatype_for(ge_ref_to_tag(ref)) == "BOOL":
                 return ref
+        if conv is not None:
+            for start, nick in _nicks_on_line(line, conv):
+                if lo - 2 <= start <= hi:
+                    alias = conv.nicknames[nick.upper()]
+                    base = conv.aliases[alias].alias_for if alias in conv.aliases else None
+                    if base and datatype_for(base) == "BOOL":
+                        return base
         # stop if we hit another rail
         if yy < y and ("├" in line or "┤ TMR" in line or "┤MOVE_" in line):
             if yy < y - 6:
@@ -209,6 +256,9 @@ def _find_operand_near(lines: list[str], x: int, y: int, conv: Conversion) -> st
         for start, ref in refs:
             if lo <= start < x:
                 return ensure_tag(conv, ref)
+        for start, nick in _nicks_on_line(line, conv):
+            if lo <= start < x:
+                return resolve_print_name(conv, nick)
         if "CONST" in line[max(0, lo - 8) : x + 2]:
             const = _find_const_left(lines, x, yy)
             if const is not None:
@@ -262,7 +312,7 @@ def _scan_func_boxes(lines: list[str], conv: Conversion) -> list[FuncBox]:
                     if pin in {"IN", "I1", "IN1", "IN2", "IN3", "IN4", "IN5", "IN6", "IN7", "PV", "BIT", "ST", "FNC", "PARM", "L1", "L2", "I2"}:
                         box.pins[pin] = _find_operand_near(padded, px, yy, conv)
                     if pin == "R":
-                        op = _assoc_operand(padded, px, yy)
+                        op = _assoc_operand(padded, px, yy, conv)
                         if op:
                             box.pins["R"] = ensure_tag(conv, op)
                     if pin in {"Q"} or ("Q" in region[:8] and "IN  Q" in region):
@@ -300,8 +350,16 @@ def _scan_func_boxes(lines: list[str], conv: Conversion) -> list[FuncBox]:
                             box.pins.setdefault("IN", _find_operand_near(padded, x, yy, conv))
                         elif lm:
                             box.pins.setdefault("IN", ensure_tag(conv, lm.group(0)))
+                        else:
+                            nicks = _nicks_on_line(left, conv)
+                            if nicks:
+                                box.pins.setdefault("IN", resolve_print_name(conv, nicks[-1][1]))
                         if rm:
                             box.pins.setdefault("Q", ensure_tag(conv, rm.group(0)))
+                        else:
+                            nicks = _nicks_on_line(right, conv)
+                            if nicks:
+                                box.pins.setdefault("Q", resolve_print_name(conv, nicks[0][1]))
                     if "┤I1  Q├" in padded[yy][x - 2 : x + 18] or "┤I1  Q" in padded[yy][x : x + 16]:
                         left = padded[yy][max(0, x - 18) : x + 2]
                         right = padded[yy][x + 6 : x + 24]
@@ -309,8 +367,16 @@ def _scan_func_boxes(lines: list[str], conv: Conversion) -> list[FuncBox]:
                         rm = REF_TOKEN_RE.search(right)
                         if lm:
                             box.pins.setdefault("I1", ensure_tag(conv, lm.group(0)))
+                        else:
+                            nicks = _nicks_on_line(left, conv)
+                            if nicks:
+                                box.pins.setdefault("I1", resolve_print_name(conv, nicks[-1][1]))
                         if rm:
                             box.pins.setdefault("Q", ensure_tag(conv, rm.group(0)))
+                        else:
+                            nicks = _nicks_on_line(right, conv)
+                            if nicks:
+                                box.pins.setdefault("Q", resolve_print_name(conv, nicks[0][1]))
                         if "CONST" in left:
                             box.pins.setdefault("I1", _find_operand_near(padded, x, yy, conv))
             boxes.append(box)
@@ -344,6 +410,10 @@ def _bind_function_pins(padded: list[str], boxes: list[FuncBox], conv: Conversio
             right = line[m.end() : m.end() + 18]
             left_ref = REF_TOKEN_RE.search(left)
             right_ref = REF_TOKEN_RE.search(right)
+            left_nick = None
+            nicks = _nicks_on_line(left, conv)
+            if nicks:
+                left_nick = nicks[-1][1]
             if "CONST" in left or _left_has_const(padded, m.start(), y):
                 val = _find_const_left(padded, m.start(), y)
                 if val is None:
@@ -358,6 +428,11 @@ def _bind_function_pins(padded: list[str], boxes: list[FuncBox], conv: Conversio
                 box.pins[pin] = name
                 if pin in {"IN", "IN1"}:
                     box.pins["IN"] = name
+            elif left_nick:
+                name = resolve_print_name(conv, left_nick)
+                box.pins[pin] = name
+                if pin in {"IN", "IN1"}:
+                    box.pins["IN"] = name
             if has_q:
                 if not right_ref:
                     for yy in range(y, min(len(padded), y + 3)):
@@ -367,10 +442,20 @@ def _bind_function_pins(padded: list[str], boxes: list[FuncBox], conv: Conversio
                             break
                 if right_ref:
                     box.pins["Q"] = ensure_tag(conv, right_ref.group(0))
+                else:
+                    right_nick = None
+                    for yy in range(y, min(len(padded), y + 3)):
+                        chunk = padded[yy][m.end() : m.end() + 18]
+                        nicks = _nicks_on_line(chunk, conv)
+                        if nicks:
+                            right_nick = nicks[0][1]
+                            break
+                    if right_nick:
+                        box.pins["Q"] = resolve_print_name(conv, right_nick)
             elif pin == "Q" and right_ref:
                 box.pins.setdefault("Q", ensure_tag(conv, right_ref.group(0)))
             if pin == "R":
-                op = _assoc_operand(padded, m.start(), y)
+                op = _assoc_operand(padded, m.start(), y, conv)
                 if op:
                     box.pins["R"] = ensure_tag(conv, op)
         # LEN
@@ -394,7 +479,7 @@ def _scan_contacts_coils(lines: list[str], conv: Conversion) -> tuple[list[Conta
                 continue
         for m in CONTACT_NC.finditer(line):
             x = m.start()
-            op = _assoc_operand(padded, x, y)
+            op = _assoc_operand(padded, x, y, conv)
             if op:
                 contacts.append(Contact(x=x, y=y, nc=True, operand=ensure_tag(conv, op)))
         for m in CONTACT_NO.finditer(line):
@@ -402,7 +487,7 @@ def _scan_contacts_coils(lines: list[str], conv: Conversion) -> tuple[list[Conta
             # skip if this is actually NC (┤/├ contains ┤ then / then ├)
             if x + 1 < len(line) and line[x + 1] == "/":
                 continue
-            op = _assoc_operand(padded, x, y)
+            op = _assoc_operand(padded, x, y, conv)
             if op:
                 contacts.append(Contact(x=x, y=y, nc=False, operand=ensure_tag(conv, op)))
         for m in COIL_RE.finditer(line):
@@ -419,7 +504,7 @@ def _scan_contacts_coils(lines: list[str], conv: Conversion) -> tuple[list[Conta
                 "M": "OTE",
                 "v": "NTRANS",
             }.get(kind_ch, "OTE")
-            op = _assoc_operand(padded, x, y)
+            op = _assoc_operand(padded, x, y, conv)
             if op:
                 coils.append(Coil(x=x, y=y, kind=kind, operand=ensure_tag(conv, op)))
     return contacts, coils
@@ -607,6 +692,13 @@ def _func_instruction(box: FuncBox, lines: list[str], conv: Conversion) -> str |
                 if _operand_datatype(conv, src) == "BOOL" and _operand_datatype(conv, dest) == "BOOL":
                     return f"BOOLBLK|{src}|{dest}|{length}"
                 return f"COP({src},{dest},{length})"
+            if length > 1 and src.lstrip("+-").isdigit():
+                parts = []
+                cur = dest
+                for _ in range(length):
+                    parts.append(f"MOV({src},{_src(cur, dint, conv)})")
+                    cur = _next_operand(conv, cur)
+                return "".join(parts)
             if _operand_datatype(conv, dest) == "BOOL":
                 if src.lstrip("+-").isdigit():
                     return f"OTE({dest})" if int(src) else f"OTU({dest})"
@@ -650,7 +742,7 @@ def _func_instruction(box: FuncBox, lines: list[str], conv: Conversion) -> str |
                 return f"FLL(0,{dest},{length})"
             return f"MOV(0,{dest})"
         return None
-    if n in {"ADD_", "SUB_", "MUL_", "DIV_"}:
+    if n in {"ADD_", "SUB_", "MUL_", "DIV_", "MOD_"}:
         inst = n.replace("_", "")
         a = _src(box.pins.get("I1") or box.pins.get("IN1") or box.pins.get("IN", "0"), dint, conv)
         b = _src(box.pins.get("I2") or box.pins.get("IN2", "0"), dint, conv)
@@ -733,6 +825,7 @@ def _has_func(lines: list[str]) -> bool:
             "┤ SUB_",
             "┤ MUL_",
             "┤ DIV_",
+            "┤ MOD_",
             "┤ EQ_",
             "┤ NE_",
             "┤ GT_",
@@ -1049,6 +1142,8 @@ def build_conversion(raw: RawProgram) -> Conversion:
         if d.nickname:
             alias = sanitize_alias(d.nickname)
             if alias == tag:
+                conv.nicknames[d.nickname.upper()] = tag
+                conv.nicknames[alias.upper()] = tag
                 continue
             if alias in conv.tags:
                 alias = f"{alias}_{tag}"
@@ -1058,8 +1153,12 @@ def build_conversion(raw: RawProgram) -> Conversion:
                 description=d.description,
                 alias_for=tag,
             )
+            conv.nicknames[d.nickname.upper()] = alias
+            conv.nicknames[alias.upper()] = alias
     for key, (nick, desc) in KNOWN_SYSTEM.items():
         ensure_tag(conv, key, desc)
+        if nick:
+            conv.nicknames[nick.upper()] = nick
 
     # collect refs from rungs
     for rung in raw.rungs:

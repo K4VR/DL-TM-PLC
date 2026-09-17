@@ -1,0 +1,19 @@
+GE Logicmaster 90-30 → ControlLogix 1756-L81E conversion report
+Program: PIOPLC (controller PIOPLC)
+
+Base tags: 351
+Alias tags (GE nicknames): 90
+Routines: 8
+Mapped rungs: 228
+Unmapped rungs (NOP with original print in comment): 0
+
+Tag rules:
+  %I/%Q/%M/%T/%S/%SA/%SC = BOOL  named I0001, Q0001, ...
+  %R/%AI/%AQ = INT (16-bit) named R0001, AI0001, ...
+  Nickname → alias; ladder uses the alias when present.
+  Hyphens in nicknames (S07-01A) become underscores (S07_01A).
+
+Routines follow GE blocks. MainRoutine is _MAIN and JSRs SYSBITS first.
+Each rung comment starts with the original GE rung number.
+
+Unmapped / review notes:

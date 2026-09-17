@@ -105,7 +105,29 @@ def _alias_xml(tag: TagDef) -> str:
     )
 
 
-def emit_l5x(conv: Conversion, controller: str = "TEMPER") -> str:
+DEFAULT_TITLE = (
+    "USS Fairfield Dual Line Temper Mill — GE Series 90-30 program TEMPER imported for "
+    "1756-L81E. Base tags are GE references without %. Nicknames are aliases. Logic uses "
+    "the alias when one exists."
+)
+
+
+def emit_l5x(
+    conv: Conversion,
+    controller: str = "TEMPER",
+    program: str | None = None,
+    title: str | None = None,
+) -> str:
+    program = program or controller
+    title = title or (
+        DEFAULT_TITLE
+        if controller == "TEMPER"
+        else (
+            f"GE Logicmaster 90-30 program {program} imported for 1756-L81E. "
+            "Base tags are GE references without %. Nicknames are aliases. "
+            "Logic uses the alias when one exists."
+        )
+    )
     now = datetime.now().strftime("%a %b %d %H:%M:%S %Y")
     tags_xml = []
     for name in sorted(conv.tags):
@@ -127,26 +149,25 @@ def emit_l5x(conv: Conversion, controller: str = "TEMPER") -> str:
             )
         if not rungs:
             rungs.append('<Rung Number="0" Type="N">\n<Text>\n<![CDATA[NOP();]]>\n</Text>\n</Rung>\n')
-        main = ' MainRoutineName="MainRoutine"' if block.name == "MainRoutine" else ""
         routines.append(
             f'<Routine Name="{escape(block.name)}" Type="RLL">\n'
             f"{_desc(block.description)}"
             f"<RLLContent>\n{''.join(rungs)}</RLLContent>\n</Routine>\n"
         )
 
-    program = (
-        '<Program Name="TEMPER" TestEdits="false" MainRoutineName="MainRoutine" '
+    program_xml = (
+        f'<Program Name="{escape(program)}" TestEdits="false" MainRoutineName="MainRoutine" '
         'Disabled="false" UseAsFolder="false">\n'
-        f"{_desc('GE Logicmaster 90-30 program TEMPER converted for ControlLogix 1756-L81E')}"
+        f"{_desc(f'GE Logicmaster 90-30 program {program} converted for ControlLogix 1756-L81E')}"
         "<Tags/>\n<Routines>\n"
         f"{''.join(routines)}</Routines>\n</Program>\n"
     )
 
     return f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="{SOFTWARE_REV}" TargetName="{controller}" TargetType="Controller" ContainsContext="false" Owner="DL-TM-PLC conversion" ExportDate="{now}" ExportOptions="NoRawData L5KData DecoratedData ForceProtectedEncoding AllProjDocTrans">
-<Controller Use="Target" Name="{controller}" ProcessorType="1756-L81E" MajorRev="{MAJOR}" MinorRev="{MINOR}" ProjectCreationDate="{now}" LastModifiedDate="{now}" SFCExecutionControl="CurrentActive" SFCRestartPosition="MostRecent" SFCLastScan="DontScan" ProjectSN="16#0000_0000" MatchProjectToController="false" CanUseRPIFromProducer="false" InhibitAutomaticFirmwareUpdate="0" PassThroughConfiguration="EnabledWithAppend" DownloadProjectDocumentationAndExtendedProperties="true" DownloadProjectCustomProperties="true" ReportMinorOverflow="false">
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="{SOFTWARE_REV}" TargetName="{escape(controller)}" TargetType="Controller" ContainsContext="false" Owner="DL-TM-PLC conversion" ExportDate="{now}" ExportOptions="NoRawData L5KData DecoratedData ForceProtectedEncoding AllProjDocTrans">
+<Controller Use="Target" Name="{escape(controller)}" ProcessorType="1756-L81E" MajorRev="{MAJOR}" MinorRev="{MINOR}" ProjectCreationDate="{now}" LastModifiedDate="{now}" SFCExecutionControl="CurrentActive" SFCRestartPosition="MostRecent" SFCLastScan="DontScan" ProjectSN="16#0000_0000" MatchProjectToController="false" CanUseRPIFromProducer="false" InhibitAutomaticFirmwareUpdate="0" PassThroughConfiguration="EnabledWithAppend" DownloadProjectDocumentationAndExtendedProperties="true" DownloadProjectCustomProperties="true" ReportMinorOverflow="false">
 <Description>
-{_cdata("USS Fairfield Dual Line Temper Mill — GE Series 90-30 program TEMPER imported for 1756-L81E. Base tags are GE references without %. Nicknames are aliases. Logic uses the alias when one exists.")}
+{_cdata(title)}
 </Description>
 <RedundancyInfo Enabled="false" KeepTestEditsOnSwitchOver="false"/>
 <Security Code="0" ChangesToDetect="16#ffff_ffff_ffff_ffff"/>
@@ -169,14 +190,14 @@ def emit_l5x(conv: Conversion, controller: str = "TEMPER") -> str:
 <Tags>
 {''.join(tags_xml)}</Tags>
 <Programs>
-{program}</Programs>
+{program_xml}</Programs>
 <Tasks>
 <Task Name="MainTask" Type="CONTINUOUS" Priority="10" Watchdog="2000" DisableUpdateOutputs="false" InhibitTask="false">
 <Description>
-{_cdata("Continuous task running converted GE TEMPER logic")}
+{_cdata(f"Continuous task running converted GE {program} logic")}
 </Description>
 <ScheduledPrograms>
-<ScheduledProgram Name="TEMPER"/>
+<ScheduledProgram Name="{escape(program)}"/>
 </ScheduledPrograms>
 </Task>
 </Tasks>
@@ -193,10 +214,16 @@ def emit_l5x(conv: Conversion, controller: str = "TEMPER") -> str:
 """
 
 
-def emit_report(conv: Conversion) -> str:
+def emit_report(conv: Conversion, controller: str = "TEMPER", program: str | None = None) -> str:
+    program = program or controller
+    heading = (
+        "Program: TEMPER (USS Fairfield Dual Line Temper Mill)"
+        if program == "TEMPER"
+        else f"Program: {program} (controller {controller})"
+    )
     lines = [
         "GE Logicmaster 90-30 → ControlLogix 1756-L81E conversion report",
-        "Program: TEMPER (USS Fairfield Dual Line Temper Mill)",
+        heading,
         "",
         f"Base tags: {len(conv.tags)}",
         f"Alias tags (GE nicknames): {len(conv.aliases)}",

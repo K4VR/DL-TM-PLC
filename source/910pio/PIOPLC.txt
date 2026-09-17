@@ -1,0 +1,4348 @@
+
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page     1
+                                     910PIO
+
+
+
+
+
+                 GGGG EEEEE       FFFFF  AAA  N   N U   U  CCCC 
+                G     E           F     A   A NN  N U   U C     
+                G GGG EEEE        FFF   AAAAA N N N U   U C     
+                G   G E           F     A   A N  NN U   U C     
+                 GGG  EEEEE       F     A   A N   N  UUU   CCCC 
+
+
+
+           AAA  U   U TTTTT  OOO  M   M  AAA  TTTTT IIIII  OOO  N   N 
+          A   A U   U   T   O   O MM MM A   A   T     I   O   O NN  N 
+          AAAAA U   U   T   O   O M M M AAAAA   T     I   O   O N N N 
+          A   A U   U   T   O   O M   M A   A   T     I   O   O N  NN 
+          A   A  UUU    T    OOO  M   M A   A   T   IIIII  OOO  N   N 
+
+
+
+
+(******************************************************************************)
+(*                                                                            *)
+(*                              Program:  PIOPLC                              *)
+(*                                                                            *)
+(*        PLC PROGRAM ENVIRONMENT               HIGHEST REFERENCE USED        *)
+(*    ---------------------------------       ---------------------------     *)
+(*                INPUT (%I):     2048                   INPUT:   %I0004      *)
+(*               OUTPUT (%Q):     2048                  OUTPUT:   %Q0008      *)
+(*             INTERNAL (%M):     4096                INTERNAL:   %M0384      *)
+(*          GLOBAL DATA (%G):     1280             GLOBAL DATA:      NONE     *)
+(*            TEMPORARY (%T):      256               TEMPORARY:   %T0004      *)
+(*             REGISTER (%R):     9999                REGISTER:   %R00922     *)
+(*        ANALOG INPUT (%AI):     2048            ANALOG INPUT:   %AI0016     *)
+(*       ANALOG OUTPUT (%AQ):      512           ANALOG OUTPUT:   %AQ0003     *)
+(*                                                                            *)
+(*                      PROGRAM SIZE (BYTES):     4784                        *)
+(*                                                                            *)
+(*                                                                            *)
+(******************************************************************************)
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC                  C:\LM90\PIOPLC
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page     2
+                                     910PIO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(******************************************************************************)
+(*                                                                            *)
+(*                                BLOCK:  _MAIN                               *)
+(*                                                                            *)
+(*                                                                            *)
+(*                              BLOCK SIZE (BYTES):   227                     *)
+(*                          DECLARATIONS (ENTRIES):    82                     *)
+(*                                                                            *)
+(*                                                                            *)
+(*                          HIGHEST REFERENCE USED                            *)
+(*                       -----------------------------                        *)
+(*                                                                            *)
+(*                                INPUT (%I):      NONE                       *)
+(*                               OUTPUT (%Q):      NONE                       *)
+(*                             INTERNAL (%M):   %M0012                        *)
+(*                          GLOBAL DATA (%G):      NONE                       *)
+(*                            TEMPORARY (%T):      NONE                       *)
+(*                             REGISTER (%R):      NONE                       *)
+(*                        ANALOG INPUT (%AI):      NONE                       *)
+(*                       ANALOG OUTPUT (%AQ):      NONE                       *)
+(*                                                                            *)
+(******************************************************************************)
+
+
+
+
+
+
+
+
+
+Program: PIOPLC                  C:\LM90\PIOPLC                   Block: _MAIN
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page     3
+                                     910PIO
+
+
+│[  START OF LD  PROGRAM PIOPLC   ]       (*                                  *)
+│
+│[     VARIABLE DECLARATIONS      ]
+
+              V A R I A B L E   D E C L A R A T I O N   T A B L E
+
+          REFERENCE     NICKNAME          REFERENCE DESCRIPTION
+          ---------     --------     --------------------------------
+          %I0003        CTL_ON       Gap Ctl Requested On                 
+          %Q0001        TOP_INC      Top Op Gap Inc Ch #                  
+          %Q0002        TOP_DEC      Top Op Gap Dec Ch #                  
+          %Q0003        TDR_INC      Top Dr Gap Inc Ch #                  
+          %Q0004        TDR_DEC      Top Dr Gap Dec Ch #                  
+          %Q0005        BOP_INC      Bot Op Gap Inc Ch #                  
+          %Q0006        BOP_DEC      Bot Op Gap Dec Ch #                  
+          %Q0007        BDR_INC      Bot Dr Gap Inc CH #                  
+          %Q0008        BDR_DEC      Bot Dr Gap Dec Ch #                  
+          %Q0013        SYS_OK       system healthy signal (hi = ok)      
+          %M0001        HEARTBT      3 second heartbeat signal            
+          %R00001       TOP_REQ      Top Op Gap Requested Output          
+          %R00002       TOP_UPD      Top Op Gap Updated Output Req        
+          %R00003       TOP_ADJ      Top Op Gap Adjusted Output           
+          %R00004       TOP_CTR      Top Op Gap Output Counter            
+          %R00011       TDR_REQ      Top Dr Gap Requested Output          
+          %R00012       TDR_UPD      Top Dr Gap Updated Output Req        
+          %R00013       TDR_ADJ      Top Dr Gap Adjusted Output           
+          %R00014       TDR_CTR      Top Dr Gap Output Counter            
+          %R00021       BOP_REQ      Bot Op Gap Requested Output          
+          %R00022       BOP_UPD      Bot Op Gap Updated Output Req        
+          %R00023       BOP_ADJ      Bot Op Gap Adjusted Output           
+          %R00024       BOP_CTR      Bot Op Gap Output Counter            
+          %R00031       BDR_REQ      Bot Dr Gap Requested Output          
+          %R00032       BDR_UPD      Bot Dr Gap Updated Output Req        
+          %R00033       BDR_ADJ      Bot Dr Gap Adjusted Output           
+          %R00034       BDR_CTR      Bot Dr Gap Output Counter            
+          %R00100       BLWSDIN      Blower Speed Double Integer          
+          %R00102       BLWSMUL      Blower Speed Temp Calc 1             
+          %R00104       BLOWSEU      Blower Speed RPM*10                  
+          %R00106       BOTPDIN      Bottom Press. SP DINT                
+          %R00108       BOTPTMP      Bottom Press. SP Calc Temp 1         
+          %R00110       BOTPSEU      Bottom Press. SP EU PSI*100          
+          %R00112       TOPPDIN      Top Press. SP DINT                   
+          %R00114       TOPPTMP      Top Press. SP Calc Temp 1            
+          %R00116       TOPPSEU      Top Press. SP EU PSI*100             
+          %R00118       BOTVDIN      Bottom Valve Posn. DINT              
+          %R00120       BOTVTMP      Bottom Valve Posn. Temp 1            
+          %R00122       BOTVFEU      Bottom Valve Posn. %*100             
+          %R00124       TOPVDIN      Top Valve Posn. DINT                 
+          %R00126       TOPVTMP      Top Valve Posn. TEMP 1               
+
+Program: PIOPLC                  C:\LM90\PIOPLC                   Block: _MAIN
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page     4
+                                     910PIO
+
+
+          %R00128       TOPVFEU      Top Vavle Posn. %*100                
+          %R00200       BLOWS2       Blower Speed Squared                 
+          %R00210       TOPCOA       Top Valve Lookup Coeff A             
+          %R00220       TOPCOB       Top Valve Lookup Coeff B             
+          %R00228       TOPCOC       Top Valve Lookup Coeff C             
+          %R00230       TOPB2        Top Valve Coeff b2                   
+          %R00232       TOP4AC       Top Valve Coeff 4ac                  
+          %R00234       TOPC-Y       Top Valve Coeff C Minus Y            
+          %R00242       TOPVLU       Top Valve Lookup Value               
+          %R00260       TVGCOA       Top Valve Gain Coeff A               
+          %R00270       TVGCOB       Top Valve Gain Coeff B               
+          %R00280       TVGCOC       Top Valve Gain Coeff C               
+          %R00282       TVGB2        Top Valve Gain B2                    
+          %R00286       TVG4AC       Top Valve Gain 4AC                   
+          %R00288       TVGC-Y       Top Vavle Gain C Minus Y             
+          %AI0001       BOTPFB       Bottom Press. FB                     
+          %AI0002       BOTVFB       Bottom Valve Posn. FB                
+          %AI0003       BOTOGFB      Bottom Oper. Gap FB                  
+          %AI0004       BOTDGFB      Bottom Drive Gap FB                  
+          %AI0005       BOTANFB      Bottom Knife Angle FB                
+          %AI0006       TOPPFB       Top Press. FB                        
+          %AI0007       TOPVFB       Top Valve Posn. FB                   
+          %AI0008       TOPOGFB      Top Oper. Gap FB                     
+          %AI0009       TOPDGFB      Top Drive Gap FB                     
+          %AI0010       TOPANFB      Top Knife Angle FN                   
+          %AI0011       KNHOP        Knife Height Op. Side                
+          %AI0012       KNHDR        Knife Height Dr. Side                
+          %AI0013       STABOP       Front Stab. Roll OP                  
+          %AI0014       STABDR       Front Stab. Roll DR                  
+          %AI0015       BLOWSFB      Blower Speed FB                      
+          %AI0016       LINESP       Line Speed                           
+          %AQ0001       BOTPSP       Bottom Press. SP                     
+          %AQ0002       TOPPSP       Top Press. SP                        
+          %AQ0003       BLOWSSP      Blower Speed SP                      
+
+
+                        I D E N T I F I E R    T A B L E
+
+          IDENTIFIER     IDENTIFIER TYPE          IDENTIFIER DESCRIPTION
+          ----------     ---------------     --------------------------------
+          FT_PULS        SUBROUTINE
+          TOP_OP         SUBROUTINE          Top Op Gap Outputs Subroutine
+          TDR_OP         SUBROUTINE          Top Dr Gap Outputs Subroutine
+          BOP_OP         SUBROUTINE          Bot Op Gap Outputs Subroutine
+          BDR_OP         SUBROUTINE          Bot Dr Gap Outputs Subroutine
+          ACT_CWG        SUBROUTINE
+          PIOPLC         PROGRAM NAME
+
+
+
+Program: PIOPLC                  C:\LM90\PIOPLC                   Block: _MAIN
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page     5
+                                     910PIO
+
+
+│[       BLOCK DECLARATIONS       ]
+
+                ┌───────┐
+        SUBR  6 │FT_PULS│       LANG: LD  (*                                  *)
+                └───────┘
+
+                ┌───────┐
+        SUBR  1 │TOP_OP │       LANG: LD  (* Top Op Gap Outputs Subroutine    *)
+                └───────┘
+
+                ┌───────┐
+        SUBR  2 │TDR_OP │       LANG: LD  (* Top Dr Gap Outputs Subroutine    *)
+                └───────┘
+
+                ┌───────┐
+        SUBR  3 │BOP_OP │       LANG: LD  (* Bot Op Gap Outputs Subroutine    *)
+                └───────┘
+
+                ┌───────┐
+        SUBR  4 │BDR_OP │       LANG: LD  (* Bot Dr Gap Outputs Subroutine    *)
+                └───────┘
+
+                ┌───────┐
+        SUBR  5 │ACT_CWG│       LANG: LD  (*                                  *)
+                └───────┘
+
+      #0001  SUBR 06
+      #0002  SUBR 01
+      #0003  SUBR 02
+      #0004  SUBR 03
+      #0005  SUBR 04
+      #0006  SUBR 05
+
+
+│[     START OF PROGRAM LOGIC     ]
+│
+│(*  COMMENT  *)
+│     #0001  01   NOOP
+│
+│ << RUNG 5  STEP #0002 >>
+│
+│ALW_OFF ALW_ON                                                          %M0003
+├──┤ ├─────┤/├─────────────────────────────────────────────────────────────( )──
+│
+│     #0002  LD        %S0008
+│     #0003  AND  NOT  %S0007
+│     #0004  OUT       %M0003
+│
+
+
+Program: PIOPLC                  C:\LM90\PIOPLC                   Block: _MAIN
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page     6
+                                     910PIO
+
+
+│ << RUNG 6  STEP #0005 >>
+│
+│%M0003  %M0004                                                          %M0004
+├──┤ ├─────┤ ├─────────────────────────────────────────────────────────────( )──
+│
+│     #0005  LD        %M0003
+│     #0006  AND       %M0004
+│     #0007  OUT       %M0004
+│
+│ << RUNG 7  STEP #0008 >>
+│
+│%M0003  %M0005                                                          %M0005
+├──┤ ├─────┤ ├─────────────────────────────────────────────────────────────( )──
+│
+│     #0008  LD        %M0003
+│     #0009  AND       %M0005
+│     #0010  OUT       %M0005
+│
+│(*  COMMENT  *)
+│     #0011  01   NOOP
+│
+│ << RUNG 9  STEP #0012 >>
+│
+│ALW_ON  ┌─────────────┐
+├──┤ ├───┤ CALL TOP_OP ├
+│        │ (SUBROUTINE)│
+│        └─────────────┘
+│
+│     #0012  LD        %S0007
+│     #0013  FUNC 90   CALLSUB
+│                 P1:   00001
+│
+│ << RUNG 10  STEP #0014 >>
+│
+│ALW_ON  ┌─────────────┐
+├──┤ ├───┤ CALL TDR_OP ├
+│        │ (SUBROUTINE)│
+│        └─────────────┘
+│
+│     #0014  LD        %S0007
+│     #0015  FUNC 90   CALLSUB
+│                 P1:   00002
+│
+
+
+
+
+
+
+
+Program: PIOPLC                  C:\LM90\PIOPLC                   Block: _MAIN
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page     7
+                                     910PIO
+
+
+│ << RUNG 11  STEP #0016 >>
+│
+│ALW_ON  ┌─────────────┐
+├──┤ ├───┤ CALL BOP_OP ├
+│        │ (SUBROUTINE)│
+│        └─────────────┘
+│
+│     #0016  LD        %S0007
+│     #0017  FUNC 90   CALLSUB
+│                 P1:   00003
+│
+│ << RUNG 12  STEP #0018 >>
+│
+│ALW_ON  ┌─────────────┐
+├──┤ ├───┤ CALL BDR_OP ├
+│        │ (SUBROUTINE)│
+│        └─────────────┘
+│
+│     #0018  LD        %S0007
+│     #0019  FUNC 90   CALLSUB
+│                 P1:   00004
+│
+│ << RUNG 13  STEP #0020 >>
+│
+│ALW_ON                                                                  %M0012
+├──┤ ├─────────────────────────────────────────────────────────────────────( )──
+│
+│     #0020  LD        %S0007
+│     #0021  OUT       %M0012
+│
+│ << RUNG 14  STEP #0022 >>
+│
+│ALW_ON  ┌─────────────┐
+├──┤ ├───┤ CALL ACT_CWG├
+│        │ (SUBROUTINE)│
+│        └─────────────┘
+│
+│     #0022  LD        %S0007
+│     #0023  FUNC 90   CALLSUB
+│                 P1:   00005
+│
+│ << RUNG 15  STEP #0024 >>
+│
+│ALW_ON  ┌─────────────┐
+├──┤ ├───┤ CALL FT_PULS├
+│        │ (SUBROUTINE)│
+│        └─────────────┘
+│
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC                  C:\LM90\PIOPLC                   Block: _MAIN
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page     8
+                                     910PIO
+
+
+│     #0024  LD        %S0007
+│     #0025  FUNC 90   CALLSUB
+│                 P1:   00006
+│
+│[      END OF PROGRAM LOGIC      ]
+│
+│     #0026  END OF PROGRAM
+│
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC                  C:\LM90\PIOPLC                   Block: _MAIN
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page     9
+                                     910PIO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(******************************************************************************)
+(*                                                                            *)
+(*                               BLOCK:  FT_PULS                              *)
+(*                                                                            *)
+(*                                                                            *)
+(*                              BLOCK SIZE (BYTES):   780                     *)
+(*                          DECLARATIONS (ENTRIES):     0                     *)
+(*                                                                            *)
+(*                                                                            *)
+(*                          HIGHEST REFERENCE USED                            *)
+(*                       -----------------------------                        *)
+(*                                                                            *)
+(*                                INPUT (%I):      NONE                       *)
+(*                               OUTPUT (%Q):      NONE                       *)
+(*                             INTERNAL (%M):   %M0021                        *)
+(*                          GLOBAL DATA (%G):      NONE                       *)
+(*                            TEMPORARY (%T):      NONE                       *)
+(*                             REGISTER (%R):   %R00752                       *)
+(*                        ANALOG INPUT (%AI):      NONE                       *)
+(*                       ANALOG OUTPUT (%AQ):      NONE                       *)
+(*                                                                            *)
+(******************************************************************************)
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    10
+                                     910PIO
+
+
+│[  START LD SUBROUTINE  FT_PULS  ]
+│
+│[     VARIABLE DECLARATIONS      ]
+
+              V A R I A B L E   D E C L A R A T I O N   T A B L E
+
+          REFERENCE     NICKNAME          REFERENCE DESCRIPTION
+          ---------     --------     --------------------------------
+                          NO  VARIABLE  TABLE  ENTRIES
+
+
+
+                        I D E N T I F I E R    T A B L E
+
+          IDENTIFIER     IDENTIFIER TYPE          IDENTIFIER DESCRIPTION
+          ----------     ---------------     --------------------------------
+                         NO  IDENTIFIER  TABLE  ENTRIES
+
+
+│[   START OF SUBROUTINE LOGIC    ]
+│
+│(*  COMMENT  *)
+│     #0001  01   NOOP
+│
+│ << RUNG 4  STEP #0002 >>
+│
+│%M0017  ┌─────┐                 ┌─────┐
+├──┤/├───┤ ADD_├─────────────────┤ ADD_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│%R00448─┤I1  Q├─%R00448 %R00451─┤I1  Q├─%R00451
+│        │     │                 │     │
+│%R00465─┤I2   │          CONST ─┤I2   │
+│        └─────┘          +00001 └─────┘
+│
+│     #0002  LD   NOT  %M0017
+│     #0003  FUNC 60   ADD
+│                 P1:  %R00448
+│                 P2:  %R00465
+│                 P3:  %R00448
+│     #0004  FUNC 60   ADD
+│                 P1:  %R00451
+│                 P2:  +00001
+│                 P3:  %R00451
+│
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    11
+                                     910PIO
+
+
+│ << RUNG 5  STEP #0005 >>
+│
+│%M0018  ┌─────┐                 ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │                 │ INT │
+│        │     │                 │     │                 │     │
+│ CONST ─┤IN  Q├─%R00448  CONST ─┤IN  Q├─%R00445  CONST ─┤IN  Q├─%R00451
+│ +00000 │ LEN │          +00000 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│                 │00001│
+│        └─────┘                 └─────┘                 └─────┘
+│
+│     #0005  LD        %M0018
+│     #0006  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00448
+│     #0007  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00445
+│     #0008  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00451
+│
+│ << RUNG 6  STEP #0009 >>
+│
+│%M0017  ┌─────┐                                                         %M0017
+├──┤/├───┤ONDTR├───────────────────────────────────────────────────────────( )──
+│        │.001s│
+│%M0018  │     │
+├──┤ ├───┤R    │
+│        │     │
+│ CONST ─┤PV   │
+│ +10000 │     │
+│        └─────┘
+│        %R00445
+│
+│     #0009  LD   NOT  %M0017
+│     #0010  LD        %M0018
+│     #0011  FUNC 13   ONDTR
+│                 P1:   00000
+│                 P2:  +10000
+│                 P3:  %R00445
+│     #0012  OUT       %M0017
+│
+│(*  COMMENT  *)
+│     #0013  01   NOOP
+│
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    12
+                                     910PIO
+
+
+│ << RUNG 8  STEP #0014 >>
+│
+│ALW_ON  ┌─────┐                                                         %M0019
+├──┤ ├───┤ONDTR├───────────────────────────────────────────────────────────( )──
+│        │.001s│
+│FST_SCN │     │
+├──┤ ├───┤R    │
+│        │     │
+│ CONST ─┤PV   │
+│ +30000 │     │
+│        └─────┘
+│        %R00461
+│
+│     #0014  LD        %S0007
+│     #0015  LD        %S0001
+│     #0016  FUNC 13   ONDTR
+│                 P1:   00000
+│                 P2:  +30000
+│                 P3:  %R00461
+│     #0017  OUT       %M0019
+│
+│ << RUNG 9  STEP #0018 >>
+│
+│%M0019  ┌─────┐                 ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │                 │ INT │
+│        │     │                 │     │                 │     │
+│ CONST ─┤IN  Q├─%R00461  CONST ─┤IN  Q├─%R00464 %R00467─┤IN  Q├─%R00465
+│ +00000 │ LEN │          +00000 │ LEN │                 │ LEN │
+│        │00001│                 │00001│                 │00001│
+│        └─────┘                 └─────┘                 └─────┘
+│
+│     #0018  LD        %M0019
+│     #0019  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00461
+│     #0020  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00464
+│     #0021  FUNC 37   MOVIN
+│                 P1:  %R00467
+│                 P2:   00001
+│                 P3:  %R00465
+│
+│(*  COMMENT  *)
+│     #0022  01   NOOP
+│
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    13
+                                     910PIO
+
+
+│ << RUNG 11  STEP #0023 >>
+│
+│%M0019  ┌─────┐                 ┌─────┐
+├──┤/├───┤ SUB_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│%R00461─┤I1  Q├─%R00465 %R00465─┤IN  Q├─%R00467
+│        │     │                 │ LEN │
+│        │     │                 │00001│
+│%R00464─┤I2   │                 └─────┘
+│        └─────┘
+│
+│     #0023  LD   NOT  %M0019
+│     #0024  FUNC 62   SUB
+│                 P1:  %R00461
+│                 P2:  %R00464
+│                 P3:  %R00465
+│     #0025  FUNC 37   MOVIN
+│                 P1:  %R00465
+│                 P2:   00001
+│                 P3:  %R00467
+│
+│ << RUNG 12  STEP #0026 >>
+│
+│%M0019  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00461─┤IN  Q├─%R00464
+│        │ LEN │
+│        │00001│
+│        └─────┘
+│
+│     #0026  LD   NOT  %M0019
+│     #0027  FUNC 37   MOVIN
+│                 P1:  %R00461
+│                 P2:   00001
+│                 P3:  %R00464
+│
+│(*  COMMENT  *)
+│     #0028  01   NOOP
+│
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    14
+                                     910PIO
+
+
+│ << RUNG 14  STEP #0029 >>
+│
+│ALW_ON  ┌─────┐                                                         %M0020
+├──┤ ├───┤ GE_ │                                        ┌──────────────────(^)──
+│        │ INT │                                        │
+│        │     │         ┌─────┐                 ┌─────┐│
+│%R00411─┤I1  Q├─────────┤MOVE_├─────────────────┤MOVE_├┘
+│        │     │         │ INT │                 │ INT │
+│        │     │         │     │                 │     │
+│ CONST ─┤I2   │ %R00411─┤IN  Q├─%R00415  CONST ─┤IN  Q├─%R00411
+│ +00100 └─────┘         │ LEN │          +00000 │ LEN │
+│                        │00001│                 │00001│
+│                        └─────┘                 └─────┘
+│
+│     #0029  LD        %S0007
+│     #0030  FUNC 55   GE
+│                 P1:  %R00411
+│                 P2:  +00100
+│     #0031  FUNC 37   MOVIN
+│                 P1:  %R00411
+│                 P2:   00001
+│                 P3:  %R00415
+│     #0032  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00411
+│     #0033  OUT+      %M0020
+│
+│ << RUNG 15  STEP #0034 >>
+│
+│ALW_ON                                                                  %M0021
+├──┤ ├─────────────────────────────────────────────────────────────────────( )──
+│
+│     #0034  LD        %S0007
+│     #0035  OUT       %M0021
+│
+│ << RUNG 16  STEP #0036 >>
+│
+│%M0020  %M0021                                                          %M0016
+├──┤ ├─────┤/├──┬──────────────────────────────────────────────────────────( )──
+│               │
+│ALW_ON  %M0021 │
+├──┤ ├─────┤ ├──┘
+│
+│     #0036  LD        %M0020
+│     #0037  AND  NOT  %M0021
+│     #0038  LD        %S0007
+│     #0039  AND       %M0021
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    15
+                                     910PIO
+
+
+│     #0040  OR   BLK  
+│     #0041  OUT       %M0016
+│
+│ << RUNG 17  STEP #0042 >>
+│
+│%M0021  ┌─────┐
+├──┤/├───┤ONDTR├─
+│        │.001s│
+│FST_SCN │     │
+├──┤ ├───┤R    │
+│        │     │
+│ CONST ─┤PV   │
+│ +32000 │     │
+│        └─────┘
+│        %R00411
+│
+│     #0042  LD   NOT  %M0021
+│     #0043  LD        %S0001
+│     #0044  FUNC 13   ONDTR
+│                 P1:   00000
+│                 P2:  +32000
+│                 P3:  %R00411
+│
+│(*  COMMENT  *)
+│     #0045  01   NOOP
+│
+│ << RUNG 19  STEP #0046 >>
+│
+│%M0021  ┌─────┐
+├──┤ ├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00465─┤IN  Q├─%R00411
+│        │ LEN │
+│        │00001│
+│        └─────┘
+│
+│     #0046  LD        %M0021
+│     #0047  FUNC 37   MOVIN
+│                 P1:  %R00465
+│                 P2:   00001
+│                 P3:  %R00411
+│
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    16
+                                     910PIO
+
+
+│ << RUNG 20  STEP #0048 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│%R00421─┤IN  Q├─%R00425  CONST ─┤IN  Q├─%R00421
+│        │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0048  LD        %S0007
+│     #0049  FUNC 37   MOVIN
+│                 P1:  %R00421
+│                 P2:   00001
+│                 P3:  %R00425
+│     #0050  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00421
+│
+│(*  COMMENT  *)
+│     #0051  01   NOOP
+│
+│ << RUNG 22  STEP #0052 >>
+│
+│FST_SCN         ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ MUL_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│         CONST ─┤I1  Q├─%R00361                  CONST ─┤I1  Q├─%R00363
+│    +0000001000 │     │                     +0000000060 │     │
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000000001 └─────┘                     +0000001000 └─────┘
+│
+│     #0052  LD        %S0001
+│     #0053  FUNC 65   DPMUL
+│                 P1:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0055  01   NOOP
+│
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    17
+                                     910PIO
+
+
+│ << RUNG 24  STEP #0056 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00605─┤I1  Q├─%R00749                 %R00749─┤I1  Q├─%R00751
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000001200 └─────┘                     +0000001000 └─────┘
+│
+│     #0056  LD        %S0007
+│     #0057  FUNC 65   DPMUL
+│                 P1:  %R00605
+│                 P2:   +000000│             
+│
+│ << RUNG 25  STEP #0059 >>
+│
+│%M0016          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ ADD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00751─┤I1  Q├─%R00365                 %R00365─┤I1  Q├─%R00385
+│                │     │                                 │     │
+│        %R00361─┤I2   │                         %R00369─┤I2   │
+│                └─────┘                                 └─────┘
+│
+│     #0059  LD        %M0016
+│     #0060  FUNC 65   DPMUL
+│                 P1:  %R00751
+│                 P2:  %R00361
+│                 P3:  %R00365
+│     #0061  FUNC 61   DPADD
+│                 P1:  %R00365
+│                 P2:  %R00369
+│                 P3:  %R00385
+│
+│ << RUNG 26  STEP #0062 >>
+│
+│%M0016          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ DIV_├─────────────────────────────────┤ MOD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00365─┤I1  Q├─%R00367                 %R00385─┤I1  Q├─%R00369
+│                │     │                                 │     │
+│        %R00363─┤I2   │                         %R00363─┤I2   │
+│                └─────┘                                 └─────┘
+│
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    18
+                                     910PIO
+
+
+│     #0062  LD        %M0016
+│     #0063  FUNC 67   DPDIV
+│                 P1:  %R00365
+│                 P2:  %R00363
+│                 P3:  %R00367
+│     #0064  FUNC 69   DPMOD
+│                 P1:  %R00385
+│                 P2:  %R00363
+│                 P3:  %R00369
+│
+│ << RUNG 27  STEP #0065 >>
+│
+│%M0016          ┌─────┐
+├──┤ ├───────────┤ MUL_├─
+│                │ DINT│
+│                │     │
+│        %R00367─┤I1  Q├─%R00371
+│                │     │
+│        %R00465─┤I2   │
+│                └─────┘
+│
+│     #0065  LD        %M0016
+│     #0066  FUNC 65   DPMUL
+│                 P1:  %R00367
+│                 P2:  %R00465
+│                 P3:  %R00371
+│
+│(*  COMMENT  *)
+│     #0067  01   NOOP
+│
+│ << RUNG 29  STEP #0068 >>
+│
+│%M0016          ┌─────┐
+├──┤ ├───────────┤ ADD_├─
+│                │ DINT│
+│                │     │
+│        %R00375─┤I1  Q├─%R00375
+│                │     │
+│        %R00371─┤I2   │
+│                └─────┘
+│
+│     #0068  LD        %M0016
+│     #0069  FUNC 61   DPADD
+│                 P1:  %R00375
+│                 P2:  %R00371
+│                 P3:  %R00375
+│
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    19
+                                     910PIO
+
+
+│ << RUNG 30  STEP #0070 >>
+│
+│%M0016          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│         CONST ─┤I1  Q├─%R00377                 %R00375─┤I1  Q├─%R00379
+│    +0000000012 │     │                                 │     │
+│                │     │                                 │     │
+│        %R00361─┤I2   │                         %R00377─┤I2   │
+│                └─────┘                                 └─────┘
+│
+│     #0070  LD        %M0016
+│     #0071  FUNC 65   DPMUL
+│                 P1:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0073  01   NOOP
+│
+│ << RUNG 32  STEP #0074 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ MUL_├─
+│                │ DINT│
+│                │     │
+│        %R00379─┤I1  Q├─%R00623
+│                │     │
+│         CONST ─┤I2   │
+│    +0000000001 └─────┘
+│
+│     #0074  LD        %S0007
+│     #0075  FUNC 65   DPMUL
+│                 P1:  %R00379
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0076  01   NOOP
+│
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    20
+                                     910PIO
+
+
+│ << RUNG 34  STEP #0077 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ GE_ │
+│                │ DINT│
+│                │     │                 ┌─────┐
+│        %R00379─┤I1  Q├─────────────────┤ ADD_├─
+│                │     │                 │ DINT│
+│                │     │                 │     │
+│         CONST ─┤I2   │          CONST ─┤I1  Q├─%R00375
+│    +0000001000 └─────┘     +0000000000 │     │
+│                                        │     │
+│                                 CONST ─┤I2   │
+│                            +0000000000 └─────┘
+│
+│     #0077  LD        %S0007
+│     #0078  FUNC 75   DPGE
+│                 P1:  %R00379
+│                 P2:   +000000│             
+│
+│[    END OF SUBROUTINE LOGIC     ]
+│
+│     #0080  END OF SUBR
+│
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: FT_PULS(SUBR 06)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    21
+                                     910PIO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(******************************************************************************)
+(*                                                                            *)
+(*                               BLOCK:  TOP_OP                               *)
+(*                                                                            *)
+(*                                                                            *)
+(*                              BLOCK SIZE (BYTES):   291                     *)
+(*                          DECLARATIONS (ENTRIES):     0                     *)
+(*                                                                            *)
+(*                                                                            *)
+(*                          HIGHEST REFERENCE USED                            *)
+(*                       -----------------------------                        *)
+(*                                                                            *)
+(*                                INPUT (%I):   %I0003                        *)
+(*                               OUTPUT (%Q):   %Q0002                        *)
+(*                             INTERNAL (%M):      NONE                       *)
+(*                          GLOBAL DATA (%G):      NONE                       *)
+(*                            TEMPORARY (%T):   %T0004                        *)
+(*                             REGISTER (%R):   %R00006                       *)
+(*                        ANALOG INPUT (%AI):      NONE                       *)
+(*                       ANALOG OUTPUT (%AQ):      NONE                       *)
+(*                                                                            *)
+(******************************************************************************)
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TOP_OP(SUBR 01)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    22
+                                     910PIO
+
+
+│[  START LD SUBROUTINE  TOP_OP   ]
+│
+│[     VARIABLE DECLARATIONS      ]
+
+              V A R I A B L E   D E C L A R A T I O N   T A B L E
+
+          REFERENCE     NICKNAME          REFERENCE DESCRIPTION
+          ---------     --------     --------------------------------
+                          NO  VARIABLE  TABLE  ENTRIES
+
+
+
+                        I D E N T I F I E R    T A B L E
+
+          IDENTIFIER     IDENTIFIER TYPE          IDENTIFIER DESCRIPTION
+          ----------     ---------------     --------------------------------
+                         NO  IDENTIFIER  TABLE  ENTRIES
+
+
+│[   START OF SUBROUTINE LOGIC    ]
+│
+│ << RUNG 3  STEP #0001 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0004
+├──┤ ├───┤ NE_ │┌──────────────────────────────────────────────────────────( )──
+│        │ INT ││
+│        │     ││
+│TOP_REQ─┤I1  Q├┘
+│        │     │
+│ CONST ─┤I2   │
+│ +00000 └─────┘
+│
+│     #0001  LD        %I0003
+│     #0002  FUNC 53   NE
+│                 P1:  %R00001
+│                 P2:  +00000
+│     #0003  OUT       %T0004
+│
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TOP_OP(SUBR 01)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    23
+                                     910PIO
+
+
+│ << RUNG 4  STEP #0004 >>
+│
+│%T0004  ┌─────┐                 ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │                 │ INT │
+│        │     │                 │     │                 │     │
+│TOP_REQ─┤IN  Q├─TOP_UPD  CONST ─┤IN  Q├─TOP_REQ  CONST ─┤IN  Q├─TOP_CTR
+│        │ LEN │          +00000 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│                 │00001│
+│        └─────┘                 └─────┘                 └─────┘
+│
+│     #0004  LD        %T0004
+│     #0005  FUNC 37   MOVIN
+│                 P1:  %R00001
+│                 P2:   00001
+│                 P3:  %R00002
+│     #0006  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00001
+│     #0007  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00004
+│
+│ << RUNG 5  STEP #0008 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0001
+├──┤ ├───┤ GE_ │                ┌──────────────────────────────────────────( )──
+│        │ INT │                │
+│        │     │         ┌─────┐│
+│TOP_UPD─┤I1  Q├─────────┤ MUL_├┘
+│        │     │         │ INT │
+│        │     │         │     │
+│ CONST ─┤I2   │ TOP_UPD─┤I1  Q├─TOP_ADJ
+│ +00000 └─────┘         │     │
+│                        │     │
+│                 CONST ─┤I2   │
+│                 +00001 └─────┘
+│
+│     #0008  LD        %I0003
+│     #0009  FUNC 55   GE
+│                 P1:  %R00002
+│                 P2:  +00000
+│     #0010  FUNC 64   MUL
+│                 P1:  %R00002
+│                 P2:  +00001
+│                 P3:  %R00003
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TOP_OP(SUBR 01)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    24
+                                     910PIO
+
+
+│     #0011  OUT       %T0001
+│
+│ << RUNG 6  STEP #0012 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0002
+├──┤ ├───┤ LT_ │                ┌──────────────────────────────────────────( )──
+│        │ INT │                │
+│        │     │         ┌─────┐│
+│TOP_UPD─┤I1  Q├─────────┤ MUL_├┘
+│        │     │         │ INT │
+│        │     │         │     │
+│ CONST ─┤I2   │ TOP_UPD─┤I1  Q├─TOP_ADJ
+│ +00000 └─────┘         │     │
+│                        │     │
+│                 CONST ─┤I2   │
+│                 -00001 └─────┘
+│
+│     #0012  LD        %I0003
+│     #0013  FUNC 56   LT
+│                 P1:  %R00002
+│                 P2:  +00000
+│     #0014  FUNC 64   MUL
+│                 P1:  %R00002
+│                 P2:  -00001
+│                 P3:  %R00003
+│     #0015  OUT       %T0002
+│
+│ << RUNG 7  STEP #0016 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0003
+├──┤ ├───┤ TMR ├───────────────────────────────────────────────────────────(/)──
+│        │0.01s│
+│        │     │
+│TOP_ADJ─┤PV   │
+│        │     │
+│        └─────┘
+│        TOP_CTR
+│
+│     #0016  LD        %I0003
+│     #0017  FUNC 10   TMR
+│                 P1:   00001
+│                 P2:  %R00003
+│                 P3:  %R00004
+│     #0018  OUT  NOT  %T0003
+│
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TOP_OP(SUBR 01)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    25
+                                     910PIO
+
+
+│ << RUNG 8  STEP #0019 >>
+│
+│CTL_ON  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│ CONST ─┤IN  Q├─TOP_UPD
+│ +00000 │ LEN │
+│        │00002│
+│        └─────┘
+│
+│     #0019  LD   NOT  %I0003
+│     #0020  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00002
+│                 P3:  %R00002
+│
+│ << RUNG 9  STEP #0021 >>
+│
+│CTL_ON  %T0001  %T0003                                                  TOP_INC
+├──┤ ├─────┤ ├─────┤ ├─────────────────────────────────────────────────────( )──
+│
+│     #0021  LD        %I0003
+│     #0022  AND       %T0001
+│     #0023  AND       %T0003
+│     #0024  OUT       %Q0001
+│
+│ << RUNG 10  STEP #0025 >>
+│
+│CTL_ON  %T0002  %T0003                                                  TOP_DEC
+├──┤ ├─────┤ ├─────┤ ├─────────────────────────────────────────────────────( )──
+│
+│     #0025  LD        %I0003
+│     #0026  AND       %T0002
+│     #0027  AND       %T0003
+│     #0028  OUT       %Q0002
+│
+│[    END OF SUBROUTINE LOGIC     ]
+│
+│     #0029  END OF SUBR
+│
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TOP_OP(SUBR 01)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    26
+                                     910PIO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(******************************************************************************)
+(*                                                                            *)
+(*                               BLOCK:  TDR_OP                               *)
+(*                                                                            *)
+(*                                                                            *)
+(*                              BLOCK SIZE (BYTES):   291                     *)
+(*                          DECLARATIONS (ENTRIES):     0                     *)
+(*                                                                            *)
+(*                                                                            *)
+(*                          HIGHEST REFERENCE USED                            *)
+(*                       -----------------------------                        *)
+(*                                                                            *)
+(*                                INPUT (%I):   %I0003                        *)
+(*                               OUTPUT (%Q):   %Q0004                        *)
+(*                             INTERNAL (%M):      NONE                       *)
+(*                          GLOBAL DATA (%G):      NONE                       *)
+(*                            TEMPORARY (%T):   %T0004                        *)
+(*                             REGISTER (%R):   %R00016                       *)
+(*                        ANALOG INPUT (%AI):      NONE                       *)
+(*                       ANALOG OUTPUT (%AQ):      NONE                       *)
+(*                                                                            *)
+(******************************************************************************)
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TDR_OP(SUBR 02)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    27
+                                     910PIO
+
+
+│[  START LD SUBROUTINE  TDR_OP   ]
+│
+│[     VARIABLE DECLARATIONS      ]
+
+              V A R I A B L E   D E C L A R A T I O N   T A B L E
+
+          REFERENCE     NICKNAME          REFERENCE DESCRIPTION
+          ---------     --------     --------------------------------
+                          NO  VARIABLE  TABLE  ENTRIES
+
+
+
+                        I D E N T I F I E R    T A B L E
+
+          IDENTIFIER     IDENTIFIER TYPE          IDENTIFIER DESCRIPTION
+          ----------     ---------------     --------------------------------
+                         NO  IDENTIFIER  TABLE  ENTRIES
+
+
+│[   START OF SUBROUTINE LOGIC    ]
+│
+│ << RUNG 3  STEP #0001 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0004
+├──┤ ├───┤ NE_ │┌──────────────────────────────────────────────────────────( )──
+│        │ INT ││
+│        │     ││
+│TDR_REQ─┤I1  Q├┘
+│        │     │
+│ CONST ─┤I2   │
+│ +00000 └─────┘
+│
+│     #0001  LD        %I0003
+│     #0002  FUNC 53   NE
+│                 P1:  %R00011
+│                 P2:  +00000
+│     #0003  OUT       %T0004
+│
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TDR_OP(SUBR 02)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    28
+                                     910PIO
+
+
+│ << RUNG 4  STEP #0004 >>
+│
+│%T0004  ┌─────┐                 ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │                 │ INT │
+│        │     │                 │     │                 │     │
+│TDR_REQ─┤IN  Q├─TDR_UPD  CONST ─┤IN  Q├─TDR_REQ  CONST ─┤IN  Q├─TDR_CTR
+│        │ LEN │          +00000 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│                 │00001│
+│        └─────┘                 └─────┘                 └─────┘
+│
+│     #0004  LD        %T0004
+│     #0005  FUNC 37   MOVIN
+│                 P1:  %R00011
+│                 P2:   00001
+│                 P3:  %R00012
+│     #0006  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00011
+│     #0007  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00014
+│
+│ << RUNG 5  STEP #0008 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0001
+├──┤ ├───┤ GE_ │                ┌──────────────────────────────────────────( )──
+│        │ INT │                │
+│        │     │         ┌─────┐│
+│TDR_UPD─┤I1  Q├─────────┤ MUL_├┘
+│        │     │         │ INT │
+│        │     │         │     │
+│ CONST ─┤I2   │ TDR_UPD─┤I1  Q├─TDR_ADJ
+│ +00000 └─────┘         │     │
+│                        │     │
+│                 CONST ─┤I2   │
+│                 +00001 └─────┘
+│
+│     #0008  LD        %I0003
+│     #0009  FUNC 55   GE
+│                 P1:  %R00012
+│                 P2:  +00000
+│     #0010  FUNC 64   MUL
+│                 P1:  %R00012
+│                 P2:  +00001
+│                 P3:  %R00013
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TDR_OP(SUBR 02)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    29
+                                     910PIO
+
+
+│     #0011  OUT       %T0001
+│
+│ << RUNG 6  STEP #0012 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0002
+├──┤ ├───┤ LT_ │                ┌──────────────────────────────────────────( )──
+│        │ INT │                │
+│        │     │         ┌─────┐│
+│TDR_UPD─┤I1  Q├─────────┤ MUL_├┘
+│        │     │         │ INT │
+│        │     │         │     │
+│ CONST ─┤I2   │ TDR_UPD─┤I1  Q├─TDR_ADJ
+│ +00000 └─────┘         │     │
+│                        │     │
+│                 CONST ─┤I2   │
+│                 -00001 └─────┘
+│
+│     #0012  LD        %I0003
+│     #0013  FUNC 56   LT
+│                 P1:  %R00012
+│                 P2:  +00000
+│     #0014  FUNC 64   MUL
+│                 P1:  %R00012
+│                 P2:  -00001
+│                 P3:  %R00013
+│     #0015  OUT       %T0002
+│
+│ << RUNG 7  STEP #0016 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0003
+├──┤ ├───┤ TMR ├───────────────────────────────────────────────────────────(/)──
+│        │0.01s│
+│        │     │
+│TDR_ADJ─┤PV   │
+│        │     │
+│        └─────┘
+│        TDR_CTR
+│
+│     #0016  LD        %I0003
+│     #0017  FUNC 10   TMR
+│                 P1:   00001
+│                 P2:  %R00013
+│                 P3:  %R00014
+│     #0018  OUT  NOT  %T0003
+│
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TDR_OP(SUBR 02)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    30
+                                     910PIO
+
+
+│ << RUNG 8  STEP #0019 >>
+│
+│CTL_ON  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│ CONST ─┤IN  Q├─TDR_UPD
+│ +00000 │ LEN │
+│        │00002│
+│        └─────┘
+│
+│     #0019  LD   NOT  %I0003
+│     #0020  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00002
+│                 P3:  %R00012
+│
+│ << RUNG 9  STEP #0021 >>
+│
+│CTL_ON  %T0001  %T0003                                                  TDR_INC
+├──┤ ├─────┤ ├─────┤ ├─────────────────────────────────────────────────────( )──
+│
+│     #0021  LD        %I0003
+│     #0022  AND       %T0001
+│     #0023  AND       %T0003
+│     #0024  OUT       %Q0003
+│
+│ << RUNG 10  STEP #0025 >>
+│
+│CTL_ON  %T0002  %T0003                                                  TDR_DEC
+├──┤ ├─────┤ ├─────┤ ├─────────────────────────────────────────────────────( )──
+│
+│     #0025  LD        %I0003
+│     #0026  AND       %T0002
+│     #0027  AND       %T0003
+│     #0028  OUT       %Q0004
+│
+│[    END OF SUBROUTINE LOGIC     ]
+│
+│     #0029  END OF SUBR
+│
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: TDR_OP(SUBR 02)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    31
+                                     910PIO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(******************************************************************************)
+(*                                                                            *)
+(*                               BLOCK:  BOP_OP                               *)
+(*                                                                            *)
+(*                                                                            *)
+(*                              BLOCK SIZE (BYTES):   291                     *)
+(*                          DECLARATIONS (ENTRIES):     0                     *)
+(*                                                                            *)
+(*                                                                            *)
+(*                          HIGHEST REFERENCE USED                            *)
+(*                       -----------------------------                        *)
+(*                                                                            *)
+(*                                INPUT (%I):   %I0003                        *)
+(*                               OUTPUT (%Q):   %Q0006                        *)
+(*                             INTERNAL (%M):      NONE                       *)
+(*                          GLOBAL DATA (%G):      NONE                       *)
+(*                            TEMPORARY (%T):   %T0004                        *)
+(*                             REGISTER (%R):   %R00026                       *)
+(*                        ANALOG INPUT (%AI):      NONE                       *)
+(*                       ANALOG OUTPUT (%AQ):      NONE                       *)
+(*                                                                            *)
+(******************************************************************************)
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BOP_OP(SUBR 03)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    32
+                                     910PIO
+
+
+│[  START LD SUBROUTINE  BOP_OP   ]
+│
+│[     VARIABLE DECLARATIONS      ]
+
+              V A R I A B L E   D E C L A R A T I O N   T A B L E
+
+          REFERENCE     NICKNAME          REFERENCE DESCRIPTION
+          ---------     --------     --------------------------------
+                          NO  VARIABLE  TABLE  ENTRIES
+
+
+
+                        I D E N T I F I E R    T A B L E
+
+          IDENTIFIER     IDENTIFIER TYPE          IDENTIFIER DESCRIPTION
+          ----------     ---------------     --------------------------------
+                         NO  IDENTIFIER  TABLE  ENTRIES
+
+
+│[   START OF SUBROUTINE LOGIC    ]
+│
+│ << RUNG 3  STEP #0001 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0004
+├──┤ ├───┤ NE_ │┌──────────────────────────────────────────────────────────( )──
+│        │ INT ││
+│        │     ││
+│BOP_REQ─┤I1  Q├┘
+│        │     │
+│ CONST ─┤I2   │
+│ +00000 └─────┘
+│
+│     #0001  LD        %I0003
+│     #0002  FUNC 53   NE
+│                 P1:  %R00021
+│                 P2:  +00000
+│     #0003  OUT       %T0004
+│
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BOP_OP(SUBR 03)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    33
+                                     910PIO
+
+
+│ << RUNG 4  STEP #0004 >>
+│
+│%T0004  ┌─────┐                 ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │                 │ INT │
+│        │     │                 │     │                 │     │
+│BOP_REQ─┤IN  Q├─BOP_UPD  CONST ─┤IN  Q├─BOP_REQ  CONST ─┤IN  Q├─BOP_CTR
+│        │ LEN │          +00000 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│                 │00001│
+│        └─────┘                 └─────┘                 └─────┘
+│
+│     #0004  LD        %T0004
+│     #0005  FUNC 37   MOVIN
+│                 P1:  %R00021
+│                 P2:   00001
+│                 P3:  %R00022
+│     #0006  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00021
+│     #0007  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00024
+│
+│ << RUNG 5  STEP #0008 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0001
+├──┤ ├───┤ GE_ │                ┌──────────────────────────────────────────( )──
+│        │ INT │                │
+│        │     │         ┌─────┐│
+│BOP_UPD─┤I1  Q├─────────┤ MUL_├┘
+│        │     │         │ INT │
+│        │     │         │     │
+│ CONST ─┤I2   │ BOP_UPD─┤I1  Q├─BOP_ADJ
+│ +00000 └─────┘         │     │
+│                        │     │
+│                 CONST ─┤I2   │
+│                 +00001 └─────┘
+│
+│     #0008  LD        %I0003
+│     #0009  FUNC 55   GE
+│                 P1:  %R00022
+│                 P2:  +00000
+│     #0010  FUNC 64   MUL
+│                 P1:  %R00022
+│                 P2:  +00001
+│                 P3:  %R00023
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BOP_OP(SUBR 03)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    34
+                                     910PIO
+
+
+│     #0011  OUT       %T0001
+│
+│ << RUNG 6  STEP #0012 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0002
+├──┤ ├───┤ LT_ │                ┌──────────────────────────────────────────( )──
+│        │ INT │                │
+│        │     │         ┌─────┐│
+│BOP_UPD─┤I1  Q├─────────┤ MUL_├┘
+│        │     │         │ INT │
+│        │     │         │     │
+│ CONST ─┤I2   │ BOP_UPD─┤I1  Q├─BOP_ADJ
+│ +00000 └─────┘         │     │
+│                        │     │
+│                 CONST ─┤I2   │
+│                 -00001 └─────┘
+│
+│     #0012  LD        %I0003
+│     #0013  FUNC 56   LT
+│                 P1:  %R00022
+│                 P2:  +00000
+│     #0014  FUNC 64   MUL
+│                 P1:  %R00022
+│                 P2:  -00001
+│                 P3:  %R00023
+│     #0015  OUT       %T0002
+│
+│ << RUNG 7  STEP #0016 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0003
+├──┤ ├───┤ TMR ├───────────────────────────────────────────────────────────(/)──
+│        │0.01s│
+│        │     │
+│BOP_ADJ─┤PV   │
+│        │     │
+│        └─────┘
+│        BOP_CTR
+│
+│     #0016  LD        %I0003
+│     #0017  FUNC 10   TMR
+│                 P1:   00001
+│                 P2:  %R00023
+│                 P3:  %R00024
+│     #0018  OUT  NOT  %T0003
+│
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BOP_OP(SUBR 03)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    35
+                                     910PIO
+
+
+│ << RUNG 8  STEP #0019 >>
+│
+│CTL_ON  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│ CONST ─┤IN  Q├─BOP_UPD
+│ +00000 │ LEN │
+│        │00002│
+│        └─────┘
+│
+│     #0019  LD   NOT  %I0003
+│     #0020  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00002
+│                 P3:  %R00022
+│
+│ << RUNG 9  STEP #0021 >>
+│
+│CTL_ON  %T0001  %T0003                                                  BOP_INC
+├──┤ ├─────┤ ├─────┤ ├─────────────────────────────────────────────────────( )──
+│
+│     #0021  LD        %I0003
+│     #0022  AND       %T0001
+│     #0023  AND       %T0003
+│     #0024  OUT       %Q0005
+│
+│ << RUNG 10  STEP #0025 >>
+│
+│CTL_ON  %T0002  %T0003                                                  BOP_DEC
+├──┤ ├─────┤ ├─────┤ ├─────────────────────────────────────────────────────( )──
+│
+│     #0025  LD        %I0003
+│     #0026  AND       %T0002
+│     #0027  AND       %T0003
+│     #0028  OUT       %Q0006
+│
+│[    END OF SUBROUTINE LOGIC     ]
+│
+│     #0029  END OF SUBR
+│
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BOP_OP(SUBR 03)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    36
+                                     910PIO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(******************************************************************************)
+(*                                                                            *)
+(*                               BLOCK:  BDR_OP                               *)
+(*                                                                            *)
+(*                                                                            *)
+(*                              BLOCK SIZE (BYTES):   291                     *)
+(*                          DECLARATIONS (ENTRIES):     0                     *)
+(*                                                                            *)
+(*                                                                            *)
+(*                          HIGHEST REFERENCE USED                            *)
+(*                       -----------------------------                        *)
+(*                                                                            *)
+(*                                INPUT (%I):   %I0003                        *)
+(*                               OUTPUT (%Q):   %Q0008                        *)
+(*                             INTERNAL (%M):      NONE                       *)
+(*                          GLOBAL DATA (%G):      NONE                       *)
+(*                            TEMPORARY (%T):   %T0004                        *)
+(*                             REGISTER (%R):   %R00036                       *)
+(*                        ANALOG INPUT (%AI):      NONE                       *)
+(*                       ANALOG OUTPUT (%AQ):      NONE                       *)
+(*                                                                            *)
+(******************************************************************************)
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BDR_OP(SUBR 04)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    37
+                                     910PIO
+
+
+│[  START LD SUBROUTINE  BDR_OP   ]
+│
+│[     VARIABLE DECLARATIONS      ]
+
+              V A R I A B L E   D E C L A R A T I O N   T A B L E
+
+          REFERENCE     NICKNAME          REFERENCE DESCRIPTION
+          ---------     --------     --------------------------------
+                          NO  VARIABLE  TABLE  ENTRIES
+
+
+
+                        I D E N T I F I E R    T A B L E
+
+          IDENTIFIER     IDENTIFIER TYPE          IDENTIFIER DESCRIPTION
+          ----------     ---------------     --------------------------------
+                         NO  IDENTIFIER  TABLE  ENTRIES
+
+
+│[   START OF SUBROUTINE LOGIC    ]
+│
+│ << RUNG 3  STEP #0001 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0004
+├──┤ ├───┤ NE_ │┌──────────────────────────────────────────────────────────( )──
+│        │ INT ││
+│        │     ││
+│BDR_REQ─┤I1  Q├┘
+│        │     │
+│ CONST ─┤I2   │
+│ +00000 └─────┘
+│
+│     #0001  LD        %I0003
+│     #0002  FUNC 53   NE
+│                 P1:  %R00031
+│                 P2:  +00000
+│     #0003  OUT       %T0004
+│
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BDR_OP(SUBR 04)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    38
+                                     910PIO
+
+
+│ << RUNG 4  STEP #0004 >>
+│
+│%T0004  ┌─────┐                 ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │                 │ INT │
+│        │     │                 │     │                 │     │
+│BDR_REQ─┤IN  Q├─BDR_UPD  CONST ─┤IN  Q├─BDR_REQ  CONST ─┤IN  Q├─BDR_CTR
+│        │ LEN │          +00000 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│                 │00001│
+│        └─────┘                 └─────┘                 └─────┘
+│
+│     #0004  LD        %T0004
+│     #0005  FUNC 37   MOVIN
+│                 P1:  %R00031
+│                 P2:   00001
+│                 P3:  %R00032
+│     #0006  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00031
+│     #0007  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00034
+│
+│ << RUNG 5  STEP #0008 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0001
+├──┤ ├───┤ GE_ │                ┌──────────────────────────────────────────( )──
+│        │ INT │                │
+│        │     │         ┌─────┐│
+│BDR_UPD─┤I1  Q├─────────┤ MUL_├┘
+│        │     │         │ INT │
+│        │     │         │     │
+│ CONST ─┤I2   │ BDR_UPD─┤I1  Q├─BDR_ADJ
+│ +00000 └─────┘         │     │
+│                        │     │
+│                 CONST ─┤I2   │
+│                 +00001 └─────┘
+│
+│     #0008  LD        %I0003
+│     #0009  FUNC 55   GE
+│                 P1:  %R00032
+│                 P2:  +00000
+│     #0010  FUNC 64   MUL
+│                 P1:  %R00032
+│                 P2:  +00001
+│                 P3:  %R00033
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BDR_OP(SUBR 04)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    39
+                                     910PIO
+
+
+│     #0011  OUT       %T0001
+│
+│ << RUNG 6  STEP #0012 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0002
+├──┤ ├───┤ LT_ │                ┌──────────────────────────────────────────( )──
+│        │ INT │                │
+│        │     │         ┌─────┐│
+│BDR_UPD─┤I1  Q├─────────┤ MUL_├┘
+│        │     │         │ INT │
+│        │     │         │     │
+│ CONST ─┤I2   │ BDR_UPD─┤I1  Q├─BDR_ADJ
+│ +00000 └─────┘         │     │
+│                        │     │
+│                 CONST ─┤I2   │
+│                 -00001 └─────┘
+│
+│     #0012  LD        %I0003
+│     #0013  FUNC 56   LT
+│                 P1:  %R00032
+│                 P2:  +00000
+│     #0014  FUNC 64   MUL
+│                 P1:  %R00032
+│                 P2:  -00001
+│                 P3:  %R00033
+│     #0015  OUT       %T0002
+│
+│ << RUNG 7  STEP #0016 >>
+│
+│CTL_ON  ┌─────┐                                                         %T0003
+├──┤ ├───┤ TMR ├───────────────────────────────────────────────────────────(/)──
+│        │0.01s│
+│        │     │
+│BDR_ADJ─┤PV   │
+│        │     │
+│        └─────┘
+│        BDR_CTR
+│
+│     #0016  LD        %I0003
+│     #0017  FUNC 10   TMR
+│                 P1:   00001
+│                 P2:  %R00033
+│                 P3:  %R00034
+│     #0018  OUT  NOT  %T0003
+│
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BDR_OP(SUBR 04)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    40
+                                     910PIO
+
+
+│ << RUNG 8  STEP #0019 >>
+│
+│CTL_ON  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│ CONST ─┤IN  Q├─BDR_UPD
+│ +00000 │ LEN │
+│        │00002│
+│        └─────┘
+│
+│     #0019  LD   NOT  %I0003
+│     #0020  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00002
+│                 P3:  %R00032
+│
+│ << RUNG 9  STEP #0021 >>
+│
+│CTL_ON  %T0001  %T0003                                                  BDR_INC
+├──┤ ├─────┤ ├─────┤ ├─────────────────────────────────────────────────────( )──
+│
+│     #0021  LD        %I0003
+│     #0022  AND       %T0001
+│     #0023  AND       %T0003
+│     #0024  OUT       %Q0007
+│
+│ << RUNG 10  STEP #0025 >>
+│
+│CTL_ON  %T0002  %T0003                                                  BDR_DEC
+├──┤ ├─────┤ ├─────┤ ├─────────────────────────────────────────────────────( )──
+│
+│     #0025  LD        %I0003
+│     #0026  AND       %T0002
+│     #0027  AND       %T0003
+│     #0028  OUT       %Q0008
+│
+│[    END OF SUBROUTINE LOGIC     ]
+│
+│     #0029  END OF SUBR
+│
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: BDR_OP(SUBR 04)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    41
+                                     910PIO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(******************************************************************************)
+(*                                                                            *)
+(*                               BLOCK:  ACT_CWG                              *)
+(*                                                                            *)
+(*                                                                            *)
+(*                              BLOCK SIZE (BYTES):  2538                     *)
+(*                          DECLARATIONS (ENTRIES):     0                     *)
+(*                                                                            *)
+(*                                                                            *)
+(*                          HIGHEST REFERENCE USED                            *)
+(*                       -----------------------------                        *)
+(*                                                                            *)
+(*                                INPUT (%I):   %I0004                        *)
+(*                               OUTPUT (%Q):      NONE                       *)
+(*                             INTERNAL (%M):   %M0384                        *)
+(*                          GLOBAL DATA (%G):      NONE                       *)
+(*                            TEMPORARY (%T):      NONE                       *)
+(*                             REGISTER (%R):   %R00922                       *)
+(*                        ANALOG INPUT (%AI):   %AI0016                       *)
+(*                       ANALOG OUTPUT (%AQ):   %AQ0003                       *)
+(*                                                                            *)
+(******************************************************************************)
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    42
+                                     910PIO
+
+
+│[  START LD SUBROUTINE  ACT_CWG  ]
+│
+│[     VARIABLE DECLARATIONS      ]
+
+              V A R I A B L E   D E C L A R A T I O N   T A B L E
+
+          REFERENCE     NICKNAME          REFERENCE DESCRIPTION
+          ---------     --------     --------------------------------
+                          NO  VARIABLE  TABLE  ENTRIES
+
+
+
+                        I D E N T I F I E R    T A B L E
+
+          IDENTIFIER     IDENTIFIER TYPE          IDENTIFIER DESCRIPTION
+          ----------     ---------------     --------------------------------
+                         NO  IDENTIFIER  TABLE  ENTRIES
+
+
+│[   START OF SUBROUTINE LOGIC    ]
+│
+│(*  COMMENT  *)
+│     #0001  01   NOOP
+│
+│ << RUNG 4  STEP #0002 >>
+│
+│ALW_ON  ┌─────┐
+├──┤ ├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00701─┤IN  Q├─%M0321
+│        │ LEN │
+│        │00004│
+│        └─────┘
+│
+│     #0002  LD        %S0007
+│     #0003  FUNC 37   MOVIN
+│                 P1:  %R00701
+│                 P2:   00004
+│                 P3:  %M0321
+│
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    43
+                                     910PIO
+
+
+│ << RUNG 5  STEP #0004 >>
+│
+│%M0002  ┌─────┐                                                         HEARTBT
+├──┤/├───┤ONDTR├───────────────────────────────────────────────────────────( )──
+│        │0.10s│
+│%M0002  │     │
+├──┤ ├───┤R    │
+│        │     │
+│ CONST ─┤PV   │
+│ +00030 │     │
+│        └─────┘
+│        %R00401
+│
+│     #0004  LD   NOT  %M0002
+│     #0005  LD        %M0002
+│     #0006  FUNC 13   ONDTR
+│                 P1:   00002
+│                 P2:  +00030
+│                 P3:  %R00401
+│     #0007  OUT       %M0001
+│
+│ << RUNG 6  STEP #0008 >>
+│
+│HEARTBT ┌─────┐                                                         %M0002
+├──┤ ├───┤ONDTR├───────────────────────────────────────────────────────────( )──
+│        │0.10s│
+│%M0002  │     │
+├──┤ ├───┤R    │
+│        │     │
+│ CONST ─┤PV   │
+│ +00030 │     │
+│        └─────┘
+│        %R00404
+│
+│     #0008  LD        %M0001
+│     #0009  LD        %M0002
+│     #0010  FUNC 13   ONDTR
+│                 P1:   00002
+│                 P2:  +00030
+│                 P3:  %R00404
+│     #0011  OUT       %M0002
+│
+│(*  COMMENT  *)
+│     #0012  01   NOOP
+│
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    44
+                                     910PIO
+
+
+│ << RUNG 8  STEP #0013 >>
+│
+│HEARTBT                                                                 %M0129
+├──┤ ├─────────────────────────────────────────────────────────────────────( )──
+│
+│     #0013  LD        %M0001
+│     #0014  OUT       %M0129
+│
+│(*  COMMENT  *)
+│     #0015  01   NOOP
+│
+│ << RUNG 10  STEP #0016 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00302 LINESP ─┤IN  Q├─%R00301
+│ +00000 │ LEN │                 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0016  LD        %S0007
+│     #0017  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00302
+│     #0018  FUNC 37   MOVIN
+│                 P1:  %AI0016
+│                 P2:   00001
+│                 P3:  %R00301
+│
+│(*  COMMENT  *)
+│     #0019  01   NOOP
+│
+│ << RUNG 12  STEP #0020 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00301─┤I1  Q├─%R00303                 %R00303─┤I1  Q├─%R00305
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000001000 └─────┘                     +0000032000 └─────┘
+│
+│     #0020  LD        %S0007
+│     #0021  FUNC 65   DPMUL
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    45
+                                     910PIO
+
+
+│                 P1:  %R00301
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0023  01   NOOP
+│
+│ << RUNG 14  STEP #0024 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ ADD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00305─┤I1  Q├─%R00307                 %R00307─┤I1  Q├─%R00309
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000000006 └─────┘                     -0000000009 └─────┘
+│
+│     #0024  LD        %S0007
+│     #0025  FUNC 65   DPMUL
+│                 P1:  %R00305
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0027  01   NOOP
+│
+│ << RUNG 16  STEP #0028 >>
+│
+│ALW_OFF         ┌─────┐
+├──┤ ├───────────┤ MUL_├─
+│                │ DINT│
+│                │     │
+│        %R00309─┤I1  Q├─%R00605
+│                │     │
+│         CONST ─┤I2   │
+│    +0000000001 └─────┘
+│
+│     #0028  LD        %S0008
+│     #0029  FUNC 65   DPMUL
+│                 P1:  %R00309
+│                 P2:   +000000│             
+│
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    46
+                                     910PIO
+
+
+│ << RUNG 17  STEP #0030 >>
+│
+│ALW_ON  ┌─────┐
+├──┤ ├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00917─┤IN  Q├─%R00605
+│        │ LEN │
+│        │00001│
+│        └─────┘
+│
+│     #0030  LD        %S0007
+│     #0031  FUNC 37   MOVIN
+│                 P1:  %R00917
+│                 P2:   00001
+│                 P3:  %R00605
+│
+│(*  COMMENT  *)
+│     #0032  01   NOOP
+│
+│(*  COMMENT  *)
+│     #0033  01   NOOP
+│
+│ << RUNG 20  STEP #0034 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00312 TOPPFB ─┤IN  Q├─%R00311
+│ +00000 │ LEN │                 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0034  LD        %S0007
+│     #0035  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00312
+│     #0036  FUNC 37   MOVIN
+│                 P1:  %AI0006
+│                 P2:   00001
+│                 P3:  %R00311
+│
+│(*  COMMENT  *)
+│     #0037  01   NOOP
+│
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    47
+                                     910PIO
+
+
+│ << RUNG 22  STEP #0038 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00311─┤I1  Q├─%R00313                 %R00313─┤I1  Q├─%R00315
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000001000 └─────┘                     +0000032000 └─────┘
+│
+│     #0038  LD        %S0007
+│     #0039  FUNC 65   DPMUL
+│                 P1:  %R00311
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0041  01   NOOP
+│
+│ << RUNG 24  STEP #0042 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ ADD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00315─┤I1  Q├─%R00317                 %R00317─┤I1  Q├─%R00319
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000000001 └─────┘                     +0000000000 └─────┘
+│
+│     #0042  LD        %S0007
+│     #0043  FUNC 65   DPMUL
+│                 P1:  %R00315
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0045  01   NOOP
+│
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    48
+                                     910PIO
+
+
+│ << RUNG 26  STEP #0046 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ MUL_├─
+│                │ DINT│
+│                │     │
+│        %R00319─┤I1  Q├─%R00609
+│                │     │
+│         CONST ─┤I2   │
+│    +0000000001 └─────┘
+│
+│     #0046  LD        %S0007
+│     #0047  FUNC 65   DPMUL
+│                 P1:  %R00319
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0048  01   NOOP
+│
+│ << RUNG 28  STEP #0049 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00322 BOTPFB ─┤IN  Q├─%R00321
+│ +00000 │ LEN │                 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0049  LD        %S0007
+│     #0050  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00322
+│     #0051  FUNC 37   MOVIN
+│                 P1:  %AI0001
+│                 P2:   00001
+│                 P3:  %R00321
+│
+│(*  COMMENT  *)
+│     #0052  01   NOOP
+│
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    49
+                                     910PIO
+
+
+│ << RUNG 30  STEP #0053 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00321─┤I1  Q├─%R00323                 %R00323─┤I1  Q├─%R00325
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000001000 └─────┘                     +0000032000 └─────┘
+│
+│     #0053  LD        %S0007
+│     #0054  FUNC 65   DPMUL
+│                 P1:  %R00321
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0056  01   NOOP
+│
+│ << RUNG 32  STEP #0057 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ ADD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00325─┤I1  Q├─%R00327                 %R00327─┤I1  Q├─%R00329
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000000001 └─────┘                     +0000000000 └─────┘
+│
+│     #0057  LD        %S0007
+│     #0058  FUNC 65   DPMUL
+│                 P1:  %R00325
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0060  01   NOOP
+│
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    50
+                                     910PIO
+
+
+│ << RUNG 34  STEP #0061 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ MUL_├─
+│                │ DINT│
+│                │     │
+│        %R00329─┤I1  Q├─%R00607
+│                │     │
+│         CONST ─┤I2   │
+│    +0000000001 └─────┘
+│
+│     #0061  LD        %S0007
+│     #0062  FUNC 65   DPMUL
+│                 P1:  %R00329
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0063  01   NOOP
+│
+│ << RUNG 36  STEP #0064 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00332  KNHOP ─┤IN  Q├─%R00331
+│ +00000 │ LEN │                 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0064  LD        %S0007
+│     #0065  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00332
+│     #0066  FUNC 37   MOVIN
+│                 P1:  %AI0011
+│                 P2:   00001
+│                 P3:  %R00331
+│
+│(*  COMMENT  *)
+│     #0067  01   NOOP
+│
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    51
+                                     910PIO
+
+
+│ << RUNG 38  STEP #0068 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00331─┤I1  Q├─%R00333                 %R00333─┤I1  Q├─%R00335
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000001000 └─────┘                     +0000032000 └─────┘
+│
+│     #0068  LD        %S0007
+│     #0069  FUNC 65   DPMUL
+│                 P1:  %R00331
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0071  01   NOOP
+│
+│ << RUNG 40  STEP #0072 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ MUL_├─
+│                │ DINT│
+│                │     │
+│         CONST ─┤I1  Q├─%R00291
+│    +0000000357 │     │
+│                │     │
+│         CONST ─┤I2   │
+│    -0000001000 └─────┘
+│
+│     #0072  LD        %S0007
+│     #0073  FUNC 65   DPMUL
+│                 P1:   +000000│             
+│
+│ << RUNG 41  STEP #0074 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ ADD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00335─┤I1  Q├─%R00337                 %R00337─┤I1  Q├─%R00339
+│                │     │                                 │     │
+│         CONST ─┤I2   │                         %R00291─┤I2   │
+│    +0000003038 └─────┘                                 └─────┘
+│
+│     #0074  LD        %S0007
+│     #0075  FUNC 65   DPMUL
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    52
+                                     910PIO
+
+
+│                 P1:  %R00335
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0077  01   NOOP
+│
+│ << RUNG 43  STEP #0078 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ DIV_├─
+│                │ DINT│
+│                │     │
+│        %R00339─┤I1  Q├─%R00611
+│                │     │
+│         CONST ─┤I2   │
+│    +0000001000 └─────┘
+│
+│     #0078  LD        %S0007
+│     #0079  FUNC 67   DPDIV
+│                 P1:  %R00339
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0080  01   NOOP
+│
+│ << RUNG 45  STEP #0081 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00342  KNHDR ─┤IN  Q├─%R00341
+│ +00000 │ LEN │                 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0081  LD        %S0007
+│     #0082  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00342
+│     #0083  FUNC 37   MOVIN
+│                 P1:  %AI0012
+│                 P2:   00001
+│                 P3:  %R00341
+│
+│(*  COMMENT  *)
+│     #0084  01   NOOP
+│
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    53
+                                     910PIO
+
+
+│ << RUNG 47  STEP #0085 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00341─┤I1  Q├─%R00343                 %R00343─┤I1  Q├─%R00345
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000001000 └─────┘                     +0000032000 └─────┘
+│
+│     #0085  LD        %S0007
+│     #0086  FUNC 65   DPMUL
+│                 P1:  %R00341
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0088  01   NOOP
+│
+│ << RUNG 49  STEP #0089 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ MUL_├─
+│                │ DINT│
+│                │     │
+│         CONST ─┤I1  Q├─%R00293
+│    +0000003400 │     │
+│                │     │
+│         CONST ─┤I2   │
+│    -0000000100 └─────┘
+│
+│     #0089  LD        %S0007
+│     #0090  FUNC 65   DPMUL
+│                 P1:   +000000│             
+│
+│ << RUNG 50  STEP #0091 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ ADD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00345─┤I1  Q├─%R00347                 %R00347─┤I1  Q├─%R00349
+│                │     │                                 │     │
+│         CONST ─┤I2   │                         %R00293─┤I2   │
+│    +0000003110 └─────┘                                 └─────┘
+│
+│     #0091  LD        %S0007
+│     #0092  FUNC 65   DPMUL
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    54
+                                     910PIO
+
+
+│                 P1:  %R00345
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0094  01   NOOP
+│
+│ << RUNG 52  STEP #0095 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ DIV_├─
+│                │ DINT│
+│                │     │
+│        %R00349─┤I1  Q├─%R00613
+│                │     │
+│         CONST ─┤I2   │
+│    +0000001000 └─────┘
+│
+│     #0095  LD        %S0007
+│     #0096  FUNC 67   DPDIV
+│                 P1:  %R00349
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0097  01   NOOP
+│
+│ << RUNG 54  STEP #0098 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00552 BLOWSFB─┤IN  Q├─%R00551
+│ +00000 │ LEN │                 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0098  LD        %S0007
+│     #0099  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00552
+│     #0100  FUNC 37   MOVIN
+│                 P1:  %AI0015
+│                 P2:   00001
+│                 P3:  %R00551
+│
+│(*  COMMENT  *)
+│     #0101  01   NOOP
+│
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    55
+                                     910PIO
+
+
+│ << RUNG 56  STEP #0102 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00551─┤I1  Q├─%R00553                 %R00553─┤I1  Q├─%R00555
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000001000 └─────┘                     +0000032182 └─────┘
+│
+│     #0102  LD        %S0007
+│     #0103  FUNC 65   DPMUL
+│                 P1:  %R00551
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0105  01   NOOP
+│
+│ << RUNG 58  STEP #0106 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00555─┤I1  Q├─%R00557                 %R00557─┤I1  Q├─%R00559
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000003600 └─────┘                     +0000000100 └─────┘
+│
+│     #0106  LD        %S0007
+│     #0107  FUNC 65   DPMUL
+│                 P1:  %R00555
+│                 P2:   +000000│             
+│
+│ << RUNG 59  STEP #0109 >>
+│
+│ALW_ON  ┌─────┐                                                         %M0036
+├──┤ ├───┤ GE_ │┌──────────────────────────────────────────────────────────( )──
+│        │ INT ││
+│        │     ││
+│%R00593─┤I1  Q├┘
+│        │     │
+│ CONST ─┤I2   │
+│ +03500 └─────┘
+│
+│     #0109  LD        %S0007
+│     #0110  FUNC 55   GE
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    56
+                                     910PIO
+
+
+│                 P1:  %R00593
+│                 P2:  +03500
+│     #0111  OUT       %M0036
+│
+│ << RUNG 60  STEP #0112 >>
+│
+│ALW_ON  ┌─────┐                                                         %M0046
+├──┤ ├───┤ LE_ │┌──────────────────────────────────────────────────────────( )──
+│        │ INT ││
+│        │     ││
+│%R00593─┤I1  Q├┘
+│        │     │
+│ CONST ─┤I2   │
+│ +01000 └─────┘
+│
+│     #0112  LD        %S0007
+│     #0113  FUNC 54   LE
+│                 P1:  %R00593
+│                 P2:  +01000
+│     #0114  OUT       %M0046
+│
+│(*  COMMENT  *)
+│     #0115  01   NOOP
+│
+│ << RUNG 62  STEP #0116 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00559─┤I1  Q├─%R00617                 %R00617─┤I1  Q├─%R00593
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000000001 └─────┘                     +0000000010 └─────┘
+│
+│     #0116  LD        %S0007
+│     #0117  FUNC 65   DPMUL
+│                 P1:  %R00559
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0119  01   NOOP
+│
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    57
+                                     910PIO
+
+
+│ << RUNG 64  STEP #0120 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ ADD_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00611─┤I1  Q├─%R00399                 %R00399─┤I1  Q├─%R00615
+│                │     │                                 │     │
+│        %R00613─┤I2   │                          CONST ─┤I2   │
+│                └─────┘                     +0000000002 └─────┘
+│
+│     #0120  LD        %S0007
+│     #0121  FUNC 61   DPADD
+│                 P1:  %R00611
+│                 P2:  %R00613
+│                 P3:  %R00399
+│     #0122  FUNC 67   DPDIV
+│                 P1:  %R00399
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0123  01   NOOP
+│
+│ << RUNG 66  STEP #0124 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00532 BOTVFB ─┤IN  Q├─%R00531
+│ +00000 │ LEN │                 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0124  LD        %S0007
+│     #0125  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00532
+│     #0126  FUNC 37   MOVIN
+│                 P1:  %AI0002
+│                 P2:   00001
+│                 P3:  %R00531
+│
+│(*  COMMENT  *)
+│     #0127  01   NOOP
+│
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    58
+                                     910PIO
+
+
+│ << RUNG 68  STEP #0128 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00531─┤I1  Q├─%R00533                 %R00533─┤I1  Q├─%R00535
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000001000 └─────┘                     +0000032000 └─────┘
+│
+│     #0128  LD        %S0007
+│     #0129  FUNC 65   DPMUL
+│                 P1:  %R00531
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0131  01   NOOP
+│
+│ << RUNG 70  STEP #0132 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ MUL_├─
+│                │ DINT│
+│                │     │
+│         CONST ─┤I1  Q├─%R00295
+│    +0000030295 │     │
+│                │     │
+│         CONST ─┤I2   │
+│    +0000000001 └─────┘
+│
+│     #0132  LD        %S0007
+│     #0133  FUNC 65   DPMUL
+│                 P1:   +000003│             
+│
+│ << RUNG 71  STEP #0134 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ ADD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00535─┤I1  Q├─%R00537                 %R00537─┤I1  Q├─%R00539
+│                │     │                                 │     │
+│         CONST ─┤I2   │                         %R00295─┤I2   │
+│    +0000009953 └─────┘                                 └─────┘
+│
+│     #0134  LD        %S0007
+│     #0135  FUNC 65   DPMUL
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    59
+                                     910PIO
+
+
+│                 P1:  %R00535
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0137  01   NOOP
+│
+│ << RUNG 73  STEP #0138 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ DIV_├─
+│                │ DINT│
+│                │     │
+│        %R00539─┤I1  Q├─%R00619
+│                │     │
+│         CONST ─┤I2   │
+│    +0000010000 └─────┘
+│
+│     #0138  LD        %S0007
+│     #0139  FUNC 67   DPDIV
+│                 P1:  %R00539
+│                 P2:   +000001│             
+│
+│(*  COMMENT  *)
+│     #0140  01   NOOP
+│
+│ << RUNG 75  STEP #0141 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00542 TOPVFB ─┤IN  Q├─%R00541
+│ +00000 │ LEN │                 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0141  LD        %S0007
+│     #0142  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00542
+│     #0143  FUNC 37   MOVIN
+│                 P1:  %AI0007
+│                 P2:   00001
+│                 P3:  %R00541
+│
+│(*  COMMENT  *)
+│     #0144  01   NOOP
+│
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    60
+                                     910PIO
+
+
+│ << RUNG 77  STEP #0145 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00541─┤I1  Q├─%R00543                 %R00543─┤I1  Q├─%R00545
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000001000 └─────┘                     +0000032000 └─────┘
+│
+│     #0145  LD        %S0007
+│     #0146  FUNC 65   DPMUL
+│                 P1:  %R00541
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0148  01   NOOP
+│
+│ << RUNG 79  STEP #0149 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ MUL_├─
+│                │ DINT│
+│                │     │
+│         CONST ─┤I1  Q├─%R00297
+│    +0000030295 │     │
+│                │     │
+│         CONST ─┤I2   │
+│    +0000000001 └─────┘
+│
+│     #0149  LD        %S0007
+│     #0150  FUNC 65   DPMUL
+│                 P1:   +000003│             
+│
+│ << RUNG 80  STEP #0151 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ ADD_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00545─┤I1  Q├─%R00547                 %R00547─┤I1  Q├─%R00549
+│                │     │                                 │     │
+│         CONST ─┤I2   │                         %R00297─┤I2   │
+│    +0000009953 └─────┘                                 └─────┘
+│
+│     #0151  LD        %S0007
+│     #0152  FUNC 65   DPMUL
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    61
+                                     910PIO
+
+
+│                 P1:  %R00545
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0154  01   NOOP
+│
+│ << RUNG 82  STEP #0155 >>
+│
+│ALW_ON          ┌─────┐
+├──┤ ├───────────┤ DIV_├─
+│                │ DINT│
+│                │     │
+│        %R00549─┤I1  Q├─%R00621
+│                │     │
+│         CONST ─┤I2   │
+│    +0000010000 └─────┘
+│
+│     #0155  LD        %S0007
+│     #0156  FUNC 67   DPDIV
+│                 P1:  %R00549
+│                 P2:   +000001│             
+│
+│(*  COMMENT  *)
+│     #0157  01   NOOP
+│
+│ << RUNG 84  STEP #0158 >>
+│
+│ALW_ON  ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│%R00707─┤IN  Q├─%R00907 %R00709─┤IN  Q├─%R00909
+│        │ LEN │                 │ LEN │
+│        │00002│                 │00002│
+│        └─────┘                 └─────┘
+│
+│     #0158  LD        %S0007
+│     #0159  FUNC 37   MOVIN
+│                 P1:  %R00707
+│                 P2:   00002
+│                 P3:  %R00907
+│     #0160  FUNC 37   MOVIN
+│                 P1:  %R00709
+│                 P2:   00002
+│                 P3:  %R00909
+│
+│(*  COMMENT  *)
+│     #0161  01   NOOP
+│
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    62
+                                     910PIO
+
+
+│ << RUNG 86  STEP #0162 >>
+│
+│%I0004  %I0001  %I0002          %M0012                                  %M0130
+├──┤ ├──┬──┤ ├─────┤ ├──────────┬──┤ ├─────────────────────────────────────( )──
+│       │                       │
+│%M0005 │                       │
+├──┤ ├──┘                       │
+│                               │
+│%I0001  %I0004  FST_SCN ALW_OFF│
+├──┤ ├──┬──┤ ├─────┤/├─────┤/├──┘
+│       │
+│%I0002 │
+├──┤ ├──┘
+│
+│     #0162  LD        %I0004
+│     #0163  OR        %M0005
+│     #0164  AND       %I0001
+│     #0165  AND       %I0002
+│     #0166  LD        %I0001
+│     #0167  OR        %I0002
+│     #0168  AND       %I0004
+│     #0169  AND  NOT  %S0001
+│     #0170  AND  NOT  %S0008
+│     #0171  OR   BLK  
+│     #0172  AND       %M0012
+│     #0173  OUT       %M0130
+│
+│ << RUNG 87  STEP #0174 >>
+│
+│%M0130  %I0001  %I0002  ALW_ON                                          %M0014
+├──┤ ├──┬──┤ ├─────┤ ├──┬──┤ ├─────────────────────────────────────────────( )──
+│       │               │
+│       │%M0004         │
+│       └──┤ ├──────────┘
+│
+│     #0174  LD        %M0130
+│     #0175  LD        %I0001
+│     #0176  AND       %I0002
+│     #0177  OR        %M0004
+│     #0178  AND  BLK  
+│     #0179  AND       %S0007
+│     #0180  OUT       %M0014
+│
+│(*  COMMENT  *)
+│     #0181  01   NOOP
+│
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    63
+                                     910PIO
+
+
+│ << RUNG 89  STEP #0182 >>
+│
+│%M0014  ALW_ON  ┌─────┐                                                 %M0051
+├──┤ ├─────┤ ├───>UPCTR├───────────────────────────────────────────────────( )──
+│                │     │
+│%M0130          │     │
+├──┤/├──┬────────┤R    │
+│       │        │     │
+│%I0004 │        │     │
+├──┤/├──┘ CONST ─┤PV   │
+│         +00001 │     │
+│                └─────┘
+│                %R00129
+│
+│     #0182  LD        %M0014
+│     #0183  AND       %S0007
+│     #0184  LD   NOT  %M0130
+│     #0185  OR   NOT  %I0004
+│     #0186  FUNC 15   UPCTR
+│                 P1:  +00001
+│                 P2:  %R00129
+│     #0187  OUT       %M0051
+│
+│(*  COMMENT  *)
+│     #0188  01   NOOP
+│
+│ << RUNG 91  STEP #0189 >>
+│
+│%M0014  %M0321                                                          %M0047
+├──┤ ├─────┤/├─────────────────────────────────────────────────────────────( )──
+│
+│     #0189  LD        %M0014
+│     #0190  AND  NOT  %M0321
+│     #0191  OUT       %M0047
+│
+│(*  COMMENT  *)
+│     #0192  01   NOOP
+│
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    64
+                                     910PIO
+
+
+│ << RUNG 93  STEP #0193 >>
+│
+│%M0014          %M0051                                                  %M0131
+├──┤/├──────────┬──┤ ├─────────────────────────────────────────────────────( )──
+│               │
+│%M0131  %M0006 │
+├──┤ ├─────┤/├──┤
+│               │
+│%M0012         │
+├──┤/├──────────┘
+│
+│     #0193  LD   NOT  %M0014
+│     #0194  LD        %M0131
+│     #0195  AND  NOT  %M0006
+│     #0196  OR   BLK  
+│     #0197  OR   NOT  %M0012
+│     #0198  AND       %M0051
+│     #0199  OUT       %M0131
+│
+│ << RUNG 94  STEP #0200 >>
+│
+│%M0014  %M0051  ┌─────┐                                                 %M0006
+├──┤ ├─────┤/├───┤ONDTR├───────────────────────────────────────────────────( )──
+│                │0.10s│
+│%M0014          │     │
+├──┤/├───────────┤R    │
+│                │     │
+│         CONST ─┤PV   │
+│         +00050 │     │
+│                └─────┘
+│                %R00920
+│
+│     #0200  LD        %M0014
+│     #0201  AND  NOT  %M0051
+│     #0202  LD   NOT  %M0014
+│     #0203  FUNC 13   ONDTR
+│                 P1:   00002
+│                 P2:  +00050
+│                 P3:  %R00920
+│     #0204  OUT       %M0006
+│
+│ << RUNG 95  STEP #0205 >>
+│
+│%M0014  ALW_ON                                                          %M0007
+├──┤ ├─────┤ ├─────────────────────────────────────────────────────────────( )──
+│
+│     #0205  LD        %M0014
+│     #0206  AND       %S0007
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    65
+                                     910PIO
+
+
+│     #0207  OUT       %M0007
+│
+│(*  COMMENT  *)
+│     #0208  01   NOOP
+│
+│ << RUNG 97  STEP #0209 >>
+│
+│FST_SCN ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00569  CONST ─┤IN  Q├─%R00570
+│ +00200 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0209  LD        %S0001
+│     #0210  FUNC 37   MOVIN
+│                 P1:  +00200
+│                 P2:   00001
+│                 P3:  %R00569
+│     #0211  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00570
+│
+│ << RUNG 98  STEP #0212 >>
+│
+│FST_SCN ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00571  CONST ─┤IN  Q├─%R00572
+│ +00500 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0212  LD        %S0001
+│     #0213  FUNC 37   MOVIN
+│                 P1:  +00500
+│                 P2:   00001
+│                 P3:  %R00571
+│     #0214  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00572
+│
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    66
+                                     910PIO
+
+
+│ << RUNG 99  STEP #0215 >>
+│
+│FST_SCN ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00565  CONST ─┤IN  Q├─%R00566
+│ +00250 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0215  LD        %S0001
+│     #0216  FUNC 37   MOVIN
+│                 P1:  +00250
+│                 P2:   00001
+│                 P3:  %R00565
+│     #0217  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00566
+│
+│ << RUNG 100  STEP #0218 >>
+│
+│FST_SCN ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00567  CONST ─┤IN  Q├─%R00568
+│ +00500 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0218  LD        %S0001
+│     #0219  FUNC 37   MOVIN
+│                 P1:  +00500
+│                 P2:   00001
+│                 P3:  %R00567
+│     #0220  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00568
+│
+│(*  COMMENT  *)
+│     #0221  01   NOOP
+│
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    67
+                                     910PIO
+
+
+│ << RUNG 102  STEP #0222 >>
+│
+│FST_SCN ┌─────┐                 ┌─────┐
+├──┤ ├───┤MOVE_├─────────────────┤MOVE_├─
+│        │ INT │                 │ INT │
+│        │     │                 │     │
+│ CONST ─┤IN  Q├─%R00561  CONST ─┤IN  Q├─%R00562
+│ +00005 │ LEN │          +00000 │ LEN │
+│        │00001│                 │00001│
+│        └─────┘                 └─────┘
+│
+│     #0222  LD        %S0001
+│     #0223  FUNC 37   MOVIN
+│                 P1:  +00005
+│                 P2:   00001
+│                 P3:  %R00561
+│     #0224  FUNC 37   MOVIN
+│                 P1:  +00000
+│                 P2:   00001
+│                 P3:  %R00562
+│
+│ << RUNG 103  STEP #0225 >>
+│
+│FST_SCN         ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00561─┤I1  Q├─%R00573                 %R00573─┤I1  Q├─%R00563
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000032000 └─────┘                     +0000001000 └─────┘
+│
+│     #0225  LD        %S0001
+│     #0226  FUNC 65   DPMUL
+│                 P1:  %R00561
+│                 P2:   +000003│             
+│
+│(*  COMMENT  *)
+│     #0228  01   NOOP
+│
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    68
+                                     910PIO
+
+
+│ << RUNG 105  STEP #0229 >>
+│
+│ALW_ON          ┌─────┐                                                 %M0042
+├──┤ ├───────────┤ GT_ │┌──────────────────────────────────────────────────( )──
+│                │ DINT││
+│                │     ││
+│        %R00619─┤I1  Q├┘
+│                │     │
+│        %R00571─┤I2   │
+│                └─────┘
+│
+│     #0229  LD        %S0007
+│     #0230  FUNC 77   DPGT
+│                 P1:  %R00619
+│                 P2:  %R00571
+│     #0231  OUT       %M0042
+│
+│ << RUNG 106  STEP #0232 >>
+│
+│ALW_ON          ┌─────┐                                                 %M0041
+├──┤ ├───────────┤ LT_ │┌──────────────────────────────────────────────────( )──
+│                │ DINT││
+│                │     ││
+│        %R00619─┤I1  Q├┘
+│                │     │
+│        %R00569─┤I2   │
+│                └─────┘
+│
+│     #0232  LD        %S0007
+│     #0233  FUNC 76   DPLT
+│                 P1:  %R00619
+│                 P2:  %R00569
+│     #0234  OUT       %M0041
+│
+│ << RUNG 107  STEP #0235 >>
+│
+│%M0042  %M0041                                                          %M0043
+├──┤/├─────┤/├─────────────────────────────────────────────────────────────( )──
+│
+│     #0235  LD   NOT  %M0042
+│     #0236  AND  NOT  %M0041
+│     #0237  OUT       %M0043
+│
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    69
+                                     910PIO
+
+
+│ << RUNG 108  STEP #0238 >>
+│
+│ALW_ON          ┌─────┐                                                 %M0032
+├──┤ ├───────────┤ GT_ │┌──────────────────────────────────────────────────( )──
+│                │ DINT││
+│                │     ││
+│        %R00621─┤I1  Q├┘
+│                │     │
+│        %R00567─┤I2   │
+│                └─────┘
+│
+│     #0238  LD        %S0007
+│     #0239  FUNC 77   DPGT
+│                 P1:  %R00621
+│                 P2:  %R00567
+│     #0240  OUT       %M0032
+│
+│ << RUNG 109  STEP #0241 >>
+│
+│ALW_ON          ┌─────┐                                                 %M0031
+├──┤ ├───────────┤ LT_ │┌──────────────────────────────────────────────────( )──
+│                │ DINT││
+│                │     ││
+│        %R00621─┤I1  Q├┘
+│                │     │
+│        %R00565─┤I2   │
+│                └─────┘
+│
+│     #0241  LD        %S0007
+│     #0242  FUNC 76   DPLT
+│                 P1:  %R00621
+│                 P2:  %R00565
+│     #0243  OUT       %M0031
+│
+│ << RUNG 110  STEP #0244 >>
+│
+│%M0032  %M0031                                                          %M0033
+├──┤/├─────┤/├─────────────────────────────────────────────────────────────( )──
+│
+│     #0244  LD   NOT  %M0032
+│     #0245  AND  NOT  %M0031
+│     #0246  OUT       %M0033
+│
+│(*  COMMENT  *)
+│     #0247  01   NOOP
+│
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    70
+                                     910PIO
+
+
+│ << RUNG 112  STEP #0248 >>
+│
+│%M0042  %M0041  %M0044  %M0007  %I0004  %M0036   T_SEC                  %M0035
+├──┤ ├─────┤/├──┬──┤/├──┬──┤ ├──┬──┤ ├──┬──┤/├─────┤ ├─────────────────────(^)──
+│               │       │       │       │
+│%M0032  %M0031 │       │%M0004 │%M0005 │
+├──┤ ├─────┤/├──┘       ├──┤ ├──┼──┤ ├──┘
+│                       │       │
+│                       │ALW_ON │
+│                       └──┤ ├──┘
+│
+│     #0248  LD        %M0042
+│     #0249  AND  NOT  %M0041
+│     #0250  LD        %M0032
+│     #0251  AND  NOT  %M0031
+│     #0252  OR   BLK  
+│     #0253  AND  NOT  %M0044
+│     #0254  LD        %M0007
+│     #0255  OR        %M0004
+│     #0256  OR        %S0007
+│     #0257  AND  BLK  
+│     #0258  LD        %I0004
+│     #0259  OR        %M0005
+│     #0260  AND  BLK  
+│     #0261  AND  NOT  %M0036
+│     #0262  AND       %S0005
+│     #0263  OUT+      %M0035
+│
+│ << RUNG 113  STEP #0264 >>
+│
+│%M0041  %M0042  %M0044  %M0007  %I0004  %M0046   T_SEC                  %M0045
+├──┤ ├─────┤/├──┬──┤/├──┬──┤ ├──┬──┤ ├──┬──┤/├─────┤ ├─────────────────────(^)──
+│               │       │       │       │
+│%M0031  %M0032 │       │%M0004 │%M0005 │
+├──┤ ├─────┤/├──┘       ├──┤ ├──┼──┤ ├──┘
+│                       │       │
+│                       │ALW_ON │
+│                       └──┤ ├──┘
+│
+│     #0264  LD        %M0041
+│     #0265  AND  NOT  %M0042
+│     #0266  LD        %M0031
+│     #0267  AND  NOT  %M0032
+│     #0268  OR   BLK  
+│     #0269  AND  NOT  %M0044
+│     #0270  LD        %M0007
+│     #0271  OR        %M0004
+│     #0272  OR        %S0007
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    71
+                                     910PIO
+
+
+│     #0273  AND  BLK  
+│     #0274  LD        %I0004
+│     #0275  OR        %M0005
+│     #0276  AND  BLK  
+│     #0277  AND  NOT  %M0046
+│     #0278  AND       %S0005
+│     #0279  OUT+      %M0045
+│
+│ << RUNG 114  STEP #0280 >>
+│
+│%M0041  %M0032                                                          %M0044
+├──┤ ├─────┤ ├──┬──────────────────────────────────────────────────────────( )──
+│               │
+│%M0042  %M0031 │
+├──┤ ├─────┤ ├──┘
+│
+│     #0280  LD        %M0041
+│     #0281  AND       %M0032
+│     #0282  LD        %M0042
+│     #0283  AND       %M0031
+│     #0284  OR   BLK  
+│     #0285  OUT       %M0044
+│
+│(*  COMMENT  *)
+│     #0286  01   NOOP
+│
+│ << RUNG 116  STEP #0287 >>
+│
+│%M0007          ┌─────┐                                 ┌─────┐
+├──┤/├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00617─┤I1  Q├─%R00575                 %R00575─┤I1  Q├─%R00577
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000003200 └─────┘                     +0000003600 └─────┘
+│
+│     #0287  LD   NOT  %M0007
+│     #0288  FUNC 65   DPMUL
+│                 P1:  %R00617
+│                 P2:   +000000│             
+│
+│(*  COMMENT  *)
+│     #0290  01   NOOP
+│
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    72
+                                     910PIO
+
+
+│ << RUNG 118  STEP #0291 >>
+│
+│%M0035          ┌─────┐
+├──┤ ├───────────┤ ADD_├─
+│                │ DINT│
+│                │     │
+│        %R00577─┤I1  Q├─%R00577
+│                │     │
+│        %R00563─┤I2   │
+│                └─────┘
+│
+│     #0291  LD        %M0035
+│     #0292  FUNC 61   DPADD
+│                 P1:  %R00577
+│                 P2:  %R00563
+│                 P3:  %R00577
+│
+│ << RUNG 119  STEP #0293 >>
+│
+│%M0045          ┌─────┐
+├──┤ ├───────────┤ SUB_├─
+│                │ DINT│
+│                │     │
+│        %R00577─┤I1  Q├─%R00577
+│                │     │
+│        %R00563─┤I2   │
+│                └─────┘
+│
+│     #0293  LD        %M0045
+│     #0294  FUNC 63   DPSUB
+│                 P1:  %R00577
+│                 P2:  %R00563
+│                 P3:  %R00577
+│
+│(*  COMMENT  *)
+│     #0295  01   NOOP
+│
+│ << RUNG 121  STEP #0296 >>
+│
+│%M0003  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00577─┤IN  Q├─BLOWSSP
+│        │ LEN │
+│        │00001│
+│        └─────┘
+│
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    73
+                                     910PIO
+
+
+│     #0296  LD   NOT  %M0003
+│     #0297  FUNC 37   MOVIN
+│                 P1:  %R00577
+│                 P2:   00001
+│                 P3:  %AQ0003
+│
+│(*  COMMENT  *)
+│     #0298  01   NOOP
+│
+│ << RUNG 123  STEP #0299 >>
+│
+│%M0007  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00609─┤IN  Q├─%R00579
+│        │ LEN │
+│        │00002│
+│        └─────┘
+│
+│     #0299  LD   NOT  %M0007
+│     #0300  FUNC 37   MOVIN
+│                 P1:  %R00609
+│                 P2:   00002
+│                 P3:  %R00579
+│
+│ << RUNG 124  STEP #0301 >>
+│
+│%M0007  ┌─────┐
+├──┤ ├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00707─┤IN  Q├─%R00579
+│        │ LEN │
+│        │00001│
+│        └─────┘
+│
+│     #0301  LD        %M0007
+│     #0302  FUNC 37   MOVIN
+│                 P1:  %R00707
+│                 P2:   00001
+│                 P3:  %R00579
+│
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    74
+                                     910PIO
+
+
+│ << RUNG 125  STEP #0303 >>
+│
+│%I0002  %M0321  ┌─────┐
+├──┤ ├─────┤ ├───┤MOVE_├─
+│                │ INT │
+│                │     │
+│        %R00609─┤IN  Q├─%R00802
+│                │ LEN │
+│                │00001│
+│                └─────┘
+│
+│     #0303  LD        %I0002
+│     #0304  AND       %M0321
+│     #0305  FUNC 37   MOVIN
+│                 P1:  %R00609
+│                 P2:   00001
+│                 P3:  %R00802
+│
+│ << RUNG 126  STEP #0306 >>
+│
+│%I0002  %M0321  ALW_ON  ┌─────┐
+├──┤ ├─────┤/├─────┤ ├───┤MOVE_├─
+│                        │ INT │
+│                        │     │
+│                %R00802─┤IN  Q├─%R00579
+│                        │ LEN │
+│                        │00001│
+│                        └─────┘
+│
+│     #0306  LD        %I0002
+│     #0307  AND  NOT  %M0321
+│     #0308  AND       %S0007
+│     #0309  FUNC 37   MOVIN
+│                 P1:  %R00802
+│                 P2:   00001
+│                 P3:  %R00579
+│
+│ << RUNG 127  STEP #0310 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00579─┤I1  Q├─%R00581                 %R00581─┤I1  Q├─%R00587
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000032000 └─────┘                     +0000001000 └─────┘
+│
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    75
+                                     910PIO
+
+
+│     #0310  LD        %S0007
+│     #0311  FUNC 65   DPMUL
+│                 P1:  %R00579
+│                 P2:   +000003│             
+│
+│ << RUNG 128  STEP #0313 >>
+│
+│%M0003  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00587─┤IN  Q├─TOPPSP
+│        │ LEN │
+│        │00001│
+│        └─────┘
+│
+│     #0313  LD   NOT  %M0003
+│     #0314  FUNC 37   MOVIN
+│                 P1:  %R00587
+│                 P2:   00001
+│                 P3:  %AQ0002
+│
+│(*  COMMENT  *)
+│     #0315  01   NOOP
+│
+│ << RUNG 130  STEP #0316 >>
+│
+│%M0007  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00607─┤IN  Q├─%R00583
+│        │ LEN │
+│        │00002│
+│        └─────┘
+│
+│     #0316  LD   NOT  %M0007
+│     #0317  FUNC 37   MOVIN
+│                 P1:  %R00607
+│                 P2:   00002
+│                 P3:  %R00583
+│
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    76
+                                     910PIO
+
+
+│ << RUNG 131  STEP #0318 >>
+│
+│%M0007  ┌─────┐
+├──┤ ├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00709─┤IN  Q├─%R00583
+│        │ LEN │
+│        │00001│
+│        └─────┘
+│
+│     #0318  LD        %M0007
+│     #0319  FUNC 37   MOVIN
+│                 P1:  %R00709
+│                 P2:   00001
+│                 P3:  %R00583
+│
+│ << RUNG 132  STEP #0320 >>
+│
+│%I0001  %M0321  ┌─────┐
+├──┤ ├─────┤ ├───┤MOVE_├─
+│                │ INT │
+│                │     │
+│        %R00607─┤IN  Q├─%R00801
+│                │ LEN │
+│                │00001│
+│                └─────┘
+│
+│     #0320  LD        %I0001
+│     #0321  AND       %M0321
+│     #0322  FUNC 37   MOVIN
+│                 P1:  %R00607
+│                 P2:   00001
+│                 P3:  %R00801
+│
+│ << RUNG 133  STEP #0323 >>
+│
+│%I0001  %M0321  ALW_ON  ┌─────┐
+├──┤ ├─────┤/├─────┤ ├───┤MOVE_├─
+│                        │ INT │
+│                        │     │
+│                %R00801─┤IN  Q├─%R00583
+│                        │ LEN │
+│                        │00001│
+│                        └─────┘
+│
+│     #0323  LD        %I0001
+│     #0324  AND  NOT  %M0321
+----- IL TEXT FOR RUNG CONTINUED NEXT PAGE -----
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    77
+                                     910PIO
+
+
+│     #0325  AND       %S0007
+│     #0326  FUNC 37   MOVIN
+│                 P1:  %R00801
+│                 P2:   00001
+│                 P3:  %R00583
+│
+│ << RUNG 134  STEP #0327 >>
+│
+│ALW_ON          ┌─────┐                                 ┌─────┐
+├──┤ ├───────────┤ MUL_├─────────────────────────────────┤ DIV_├─
+│                │ DINT│                                 │ DINT│
+│                │     │                                 │     │
+│        %R00583─┤I1  Q├─%R00585                 %R00585─┤I1  Q├─%R00589
+│                │     │                                 │     │
+│         CONST ─┤I2   │                          CONST ─┤I2   │
+│    +0000032000 └─────┘                     +0000001000 └─────┘
+│
+│     #0327  LD        %S0007
+│     #0328  FUNC 65   DPMUL
+│                 P1:  %R00583
+│                 P2:   +000003│             
+│
+│ << RUNG 135  STEP #0330 >>
+│
+│%M0003  ┌─────┐
+├──┤/├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%R00589─┤IN  Q├─BOTPSP
+│        │ LEN │
+│        │00001│
+│        └─────┘
+│
+│     #0330  LD   NOT  %M0003
+│     #0331  FUNC 37   MOVIN
+│                 P1:  %R00589
+│                 P2:   00001
+│                 P3:  %AQ0001
+│
+│(*  COMMENT  *)
+│     #0332  01   NOOP
+│
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)         Page    78
+                                     910PIO
+
+
+│ << RUNG 137  STEP #0333 >>
+│
+│ALW_ON  ┌─────┐
+├──┤ ├───┤MOVE_├─
+│        │ INT │
+│        │     │
+│%M0129 ─┤IN  Q├─%R00601
+│        │ LEN │
+│        │00004│
+│        └─────┘
+│
+│     #0333  LD        %S0007
+│     #0334  FUNC 37   MOVIN
+│                 P1:  %M0129
+│                 P2:   00004
+│                 P3:  %R00601
+│
+│[    END OF SUBROUTINE LOGIC     ]
+│
+│     #0335  END OF SUBR
+│
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC              Block: ACT_CWG(SUBR 05)
+09-10-26  09:59     GE FANUC SERIES 90-30/90-20/MICRO (v9.05)     Contents     1
+
+
+
+
+
+
+         *****   L O G I C   T A B L E   O F   C O N T E N T S   *****
+
+                                                            
+                 PIOPLC                                    1
+                                                            
+                 _MAIN                                     2
+                    Variable Table                         3
+                    Logic                                  5
+                                                            
+                 FT_PULS                                   9
+                    Variable Table                        10
+                    Logic                                 10
+                                                            
+                 TOP_OP                                   21
+                    Variable Table                        22
+                    Logic                                 22
+                                                            
+                 TDR_OP                                   26
+                    Variable Table                        27
+                    Logic                                 27
+                                                            
+                 BOP_OP                                   31
+                    Variable Table                        32
+                    Logic                                 32
+                                                            
+                 BDR_OP                                   36
+                    Variable Table                        37
+                    Logic                                 37
+                                                            
+                 ACT_CWG                                  41
+                    Variable Table                        42
+                    Logic                                 42
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program: PIOPLC             C:\LM90\PIOPLC                     TABLE OF CONTENTS
+
+

@@ -1,0 +1,5939 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="32.11" TargetName="PIOPLC" TargetType="Controller" ContainsContext="false" Owner="DL-TM-PLC conversion" ExportDate="Thu Sep 17 14:45:33 2026" ExportOptions="NoRawData L5KData DecoratedData ForceProtectedEncoding AllProjDocTrans">
+<Controller Use="Target" Name="PIOPLC" ProcessorType="1756-L81E" MajorRev="32" MinorRev="11" ProjectCreationDate="Thu Sep 17 14:45:33 2026" LastModifiedDate="Thu Sep 17 14:45:33 2026" SFCExecutionControl="CurrentActive" SFCRestartPosition="MostRecent" SFCLastScan="DontScan" ProjectSN="16#0000_0000" MatchProjectToController="false" CanUseRPIFromProducer="false" InhibitAutomaticFirmwareUpdate="0" PassThroughConfiguration="EnabledWithAppend" DownloadProjectDocumentationAndExtendedProperties="true" DownloadProjectCustomProperties="true" ReportMinorOverflow="false">
+<Description>
+<![CDATA[GE Logicmaster 90-30 program PIOPLC (910PIO printout) imported for 1756-L81E. Base tags are GE references without %. Nicknames are aliases. Logic uses the alias when one exists.]]>
+</Description>
+<RedundancyInfo Enabled="false" KeepTestEditsOnSwitchOver="false"/>
+<Security Code="0" ChangesToDetect="16#ffff_ffff_ffff_ffff"/>
+<SafetyInfo/>
+<DataTypes/>
+<Modules>
+<Module Name="Local" CatalogNumber="1756-L81E" Vendor="1" ProductType="14" ProductCode="164" Major="32" Minor="11" ParentModule="Local" ParentModPortId="1" Inhibited="false" MajorFault="true">
+<EKey State="Disabled"/>
+<Ports>
+<Port Id="1" Address="0" Type="ICP" Upstream="false">
+<Bus Size="10"/>
+</Port>
+<Port Id="2" Type="Ethernet" Upstream="false">
+<Bus/>
+</Port>
+</Ports>
+</Module>
+</Modules>
+<AddOnInstructionDefinitions/>
+<Tags>
+<Tag Name="AI0001" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0002" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Valve Posn. FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0003" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Oper. Gap FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0004" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Drive Gap FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0005" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Knife Angle FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0006" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0007" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Posn. FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0008" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Oper. Gap FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0009" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Drive Gap FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0010" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Knife Angle FN]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0011" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Knife Height Op. Side]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0012" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Knife Height Dr. Side]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0013" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Front Stab. Roll OP]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0014" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Front Stab. Roll DR]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0015" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed FB]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AI0016" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Line Speed]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AQ0001" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. SP]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AQ0002" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. SP]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="AQ0003" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed SP]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="CLK100_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at CLK100]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="CLKMIN_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at CLKMIN]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="CLKSEC_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at CLKSEC]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="FirstScanDone" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Set after first controller scan]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="I0001" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="I0002" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="I0003" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Gap Ctl Requested On]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="I0004" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0001" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[3 second heartbeat signal]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0002" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0003" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0004" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0005" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0006" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0007" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0012" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0014" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0016" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0017" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0018" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0019" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0020" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0021" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0031" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0032" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0033" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0035" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0036" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0041" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0042" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0043" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0044" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0045" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0046" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0047" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0051" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0129" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0130" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0131" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="M0321" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="NEG_BDR_OP_7_T0003" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Negated GE coil hold]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="NEG_BOP_OP_7_T0003" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Negated GE coil hold]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="NEG_TDR_OP_7_T0003" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Negated GE coil hold]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="NEG_TOP_OP_7_T0003" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Negated GE coil hold]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="OSR_M0020" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[One-shot storage for M0020]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="OSR_M0035" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[One-shot storage for M0035]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="OSR_M0045" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[One-shot storage for M0045]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Q0001" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Inc Ch #]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Q0002" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Dec Ch #]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Q0003" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Inc Ch #]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Q0004" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Dec Ch #]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Q0005" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Inc Ch #]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Q0006" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Dec Ch #]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Q0007" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Inc CH #]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Q0008" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Dec Ch #]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Q0013" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[system healthy signal (hi = ok)]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00001" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Requested Output]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00002" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Updated Output Req]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00003" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Adjusted Output]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00004" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Output Counter]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00011" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Requested Output]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00012" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Updated Output Req]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00013" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Adjusted Output]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00014" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Output Counter]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00021" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Requested Output]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00022" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Updated Output Req]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00023" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Adjusted Output]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00024" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Output Counter]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00031" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Requested Output]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00032" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Updated Output Req]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00033" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Adjusted Output]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00034" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Output Counter]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00100" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed Double Integer]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00102" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed Temp Calc 1]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00104" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed RPM*10]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00106" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. SP DINT]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00108" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. SP Calc Temp 1]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00110" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. SP EU PSI*100]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00112" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. SP DINT]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00114" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. SP Calc Temp 1]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00116" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. SP EU PSI*100]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00118" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Valve Posn. DINT]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00120" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Valve Posn. Temp 1]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00122" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Valve Posn. %*100]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00124" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Posn. DINT]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00126" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Posn. TEMP 1]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00128" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Vavle Posn. %*100]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00129" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00129_CTR" TagType="Base" DataType="COUNTER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE up-counter at R00129]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="COUNTER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="CU" DataType="BOOL" Value="0"/>
+<DataValueMember Name="CD" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OV" DataType="BOOL" Value="0"/>
+<DataValueMember Name="UN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="R00200" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed Squared]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00210" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Lookup Coeff A]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00220" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Lookup Coeff B]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00228" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Lookup Coeff C]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00230" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Coeff b2]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00232" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Coeff 4ac]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00234" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Coeff C Minus Y]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00242" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Lookup Value]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00260" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain Coeff A]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00270" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain Coeff B]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00280" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain Coeff C]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00282" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain B2]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00286" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain 4AC]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00288" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Vavle Gain C Minus Y]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00291" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00291D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00291/R00292]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00293" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00293D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00293/R00294]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00295" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00295D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00295/R00296]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00297" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00297D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00297/R00298]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00301" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00301D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00301/R00302]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00302" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00303" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00303D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00303/R00304]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00305" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00305D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00305/R00306]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00307" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00307D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00307/R00308]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00309" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00309D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00309/R00310]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00311" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00311D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00311/R00312]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00312" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00313" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00313D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00313/R00314]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00315" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00315D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00315/R00316]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00317" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00317D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00317/R00318]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00319" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00319D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00319/R00320]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00321" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00321D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00321/R00322]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00322" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00323" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00323D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00323/R00324]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00325" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00325D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00325/R00326]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00327" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00327D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00327/R00328]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00329" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00329D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00329/R00330]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00331" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00331D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00331/R00332]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00332" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00333" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00333D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00333/R00334]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00335" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00335D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00335/R00336]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00337" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00337D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00337/R00338]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00339" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00339D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00339/R00340]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00341" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00341D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00341/R00342]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00342" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00343" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00343D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00343/R00344]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00345" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00345D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00345/R00346]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00347" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00347D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00347/R00348]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00349" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00349D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00349/R00350]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00361" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00361D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00361/R00362]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00363" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00363D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00363/R00364]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00365" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00365D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00365/R00366]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00367" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00367D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00367/R00368]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00369" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00369D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00369/R00370]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00371" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00371D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00371/R00372]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00375" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00375D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00375/R00376]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00377" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00377D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00377/R00378]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00379" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00379D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00379/R00380]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00385" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00385D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00385/R00386]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00399" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00399D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00399/R00400]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00401" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00401_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at R00401]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="R00404" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00404_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at R00404]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="R00411" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00411_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at R00411]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="R00415" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00421" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00425" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00445" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00445_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at R00445]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="R00448" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00451" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00461" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00461_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at R00461]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="R00464" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00465" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00465D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00465/R00466]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00467" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00531" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00531D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00531/R00532]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00532" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00533" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00533D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00533/R00534]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00535" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00535D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00535/R00536]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00537" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00537D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00537/R00538]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00539" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00539D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00539/R00540]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00541" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00541D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00541/R00542]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00542" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00543" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00543D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00543/R00544]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00545" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00545D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00545/R00546]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00547" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00547D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00547/R00548]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00549" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00549D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00549/R00550]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00551" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00551D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00551/R00552]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00552" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00553" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00553D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00553/R00554]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00555" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00555D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00555/R00556]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00557" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00557D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00557/R00558]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00559" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00559D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00559/R00560]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00561" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00561D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00561/R00562]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00562" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00563" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00563D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00563/R00564]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00565" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00565D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00565/R00566]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00566" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00567" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00567D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00567/R00568]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00568" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00569" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00569D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00569/R00570]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00570" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00571" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00571D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00571/R00572]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00572" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00573" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00573D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00573/R00574]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00575" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00575D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00575/R00576]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00577" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00577D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00577/R00578]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00579" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00579D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00579/R00580]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00581" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00581D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00581/R00582]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00583" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00583D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00583/R00584]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00585" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00585D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00585/R00586]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00587" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00587D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00587/R00588]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00589" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00589D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00589/R00590]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00593" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00593D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00593/R00594]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00601" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00605" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00605D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00605/R00606]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00607" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00607D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00607/R00608]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00609" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00609D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00609/R00610]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00611" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00611D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00611/R00612]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00613" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00613D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00613/R00614]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00615" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00615D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00615/R00616]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00617" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00617D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00617/R00618]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00619" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00619D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00619/R00620]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00621" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00621D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00621/R00622]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00623" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00623D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00623/R00624]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00701" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00707" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00709" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00749" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00749D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00749/R00750]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00751" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00751D" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[DINT overlay of GE R00751/R00752]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00801" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00802" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00907" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00909" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00917" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00920" TagType="Base" DataType="INT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="R00920_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at R00920]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="R9_TMR" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[GE timer at R9]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[[0,0,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="S0001" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[First scan]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="S0002" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[First execution]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="S0003" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[0.01 second clock]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="S0004" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[0.1 second clock]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="S0005" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[1 second clock]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="S0006" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[1 minute clock]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="S0007" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Always ON]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="S0008" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Always OFF]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="S0011" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Override present]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="SA009" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Configuration mismatch]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="SA011" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Low battery]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="SA014" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Loss of I/O module]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="SA015" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Loss of serial I/O]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="SC009" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Any fault]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="SC013" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[I/O present / I/O fault]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="T0001" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="T0002" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="T0003" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="T0004" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="ALW_OFF" TagType="Alias" Radix="Decimal" AliasFor="S0008" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Always OFF]]>
+</Description>
+</Tag>
+<Tag Name="ALW_ON" TagType="Alias" Radix="Decimal" AliasFor="S0007" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Always ON]]>
+</Description>
+</Tag>
+<Tag Name="ANY_FLT" TagType="Alias" Radix="Decimal" AliasFor="SC009" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Any fault]]>
+</Description>
+</Tag>
+<Tag Name="BDR_ADJ" TagType="Alias" Radix="Decimal" AliasFor="R00033" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Adjusted Output]]>
+</Description>
+</Tag>
+<Tag Name="BDR_CTR" TagType="Alias" Radix="Decimal" AliasFor="R00034" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Output Counter]]>
+</Description>
+</Tag>
+<Tag Name="BDR_DEC" TagType="Alias" Radix="Decimal" AliasFor="Q0008" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Dec Ch #]]>
+</Description>
+</Tag>
+<Tag Name="BDR_INC" TagType="Alias" Radix="Decimal" AliasFor="Q0007" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Inc CH #]]>
+</Description>
+</Tag>
+<Tag Name="BDR_REQ" TagType="Alias" Radix="Decimal" AliasFor="R00031" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Requested Output]]>
+</Description>
+</Tag>
+<Tag Name="BDR_UPD" TagType="Alias" Radix="Decimal" AliasFor="R00032" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Dr Gap Updated Output Req]]>
+</Description>
+</Tag>
+<Tag Name="BLOWS2" TagType="Alias" Radix="Decimal" AliasFor="R00200" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed Squared]]>
+</Description>
+</Tag>
+<Tag Name="BLOWSEU" TagType="Alias" Radix="Decimal" AliasFor="R00104" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed RPM*10]]>
+</Description>
+</Tag>
+<Tag Name="BLOWSFB" TagType="Alias" Radix="Decimal" AliasFor="AI0015" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed FB]]>
+</Description>
+</Tag>
+<Tag Name="BLOWSSP" TagType="Alias" Radix="Decimal" AliasFor="AQ0003" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed SP]]>
+</Description>
+</Tag>
+<Tag Name="BLWSDIN" TagType="Alias" Radix="Decimal" AliasFor="R00100" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed Double Integer]]>
+</Description>
+</Tag>
+<Tag Name="BLWSMUL" TagType="Alias" Radix="Decimal" AliasFor="R00102" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Blower Speed Temp Calc 1]]>
+</Description>
+</Tag>
+<Tag Name="BOP_ADJ" TagType="Alias" Radix="Decimal" AliasFor="R00023" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Adjusted Output]]>
+</Description>
+</Tag>
+<Tag Name="BOP_CTR" TagType="Alias" Radix="Decimal" AliasFor="R00024" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Output Counter]]>
+</Description>
+</Tag>
+<Tag Name="BOP_DEC" TagType="Alias" Radix="Decimal" AliasFor="Q0006" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Dec Ch #]]>
+</Description>
+</Tag>
+<Tag Name="BOP_INC" TagType="Alias" Radix="Decimal" AliasFor="Q0005" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Inc Ch #]]>
+</Description>
+</Tag>
+<Tag Name="BOP_REQ" TagType="Alias" Radix="Decimal" AliasFor="R00021" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Requested Output]]>
+</Description>
+</Tag>
+<Tag Name="BOP_UPD" TagType="Alias" Radix="Decimal" AliasFor="R00022" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bot Op Gap Updated Output Req]]>
+</Description>
+</Tag>
+<Tag Name="BOTANFB" TagType="Alias" Radix="Decimal" AliasFor="AI0005" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Knife Angle FB]]>
+</Description>
+</Tag>
+<Tag Name="BOTDGFB" TagType="Alias" Radix="Decimal" AliasFor="AI0004" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Drive Gap FB]]>
+</Description>
+</Tag>
+<Tag Name="BOTOGFB" TagType="Alias" Radix="Decimal" AliasFor="AI0003" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Oper. Gap FB]]>
+</Description>
+</Tag>
+<Tag Name="BOTPDIN" TagType="Alias" Radix="Decimal" AliasFor="R00106" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. SP DINT]]>
+</Description>
+</Tag>
+<Tag Name="BOTPFB" TagType="Alias" Radix="Decimal" AliasFor="AI0001" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. FB]]>
+</Description>
+</Tag>
+<Tag Name="BOTPSEU" TagType="Alias" Radix="Decimal" AliasFor="R00110" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. SP EU PSI*100]]>
+</Description>
+</Tag>
+<Tag Name="BOTPSP" TagType="Alias" Radix="Decimal" AliasFor="AQ0001" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. SP]]>
+</Description>
+</Tag>
+<Tag Name="BOTPTMP" TagType="Alias" Radix="Decimal" AliasFor="R00108" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Press. SP Calc Temp 1]]>
+</Description>
+</Tag>
+<Tag Name="BOTVDIN" TagType="Alias" Radix="Decimal" AliasFor="R00118" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Valve Posn. DINT]]>
+</Description>
+</Tag>
+<Tag Name="BOTVFB" TagType="Alias" Radix="Decimal" AliasFor="AI0002" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Valve Posn. FB]]>
+</Description>
+</Tag>
+<Tag Name="BOTVFEU" TagType="Alias" Radix="Decimal" AliasFor="R00122" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Valve Posn. %*100]]>
+</Description>
+</Tag>
+<Tag Name="BOTVTMP" TagType="Alias" Radix="Decimal" AliasFor="R00120" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Bottom Valve Posn. Temp 1]]>
+</Description>
+</Tag>
+<Tag Name="CFG_MM" TagType="Alias" Radix="Decimal" AliasFor="SA009" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Configuration mismatch]]>
+</Description>
+</Tag>
+<Tag Name="CTL_ON" TagType="Alias" Radix="Decimal" AliasFor="I0003" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Gap Ctl Requested On]]>
+</Description>
+</Tag>
+<Tag Name="FST_EXE" TagType="Alias" Radix="Decimal" AliasFor="S0002" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[First execution]]>
+</Description>
+</Tag>
+<Tag Name="FST_SCN" TagType="Alias" Radix="Decimal" AliasFor="S0001" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[First scan]]>
+</Description>
+</Tag>
+<Tag Name="HEARTBT" TagType="Alias" Radix="Decimal" AliasFor="M0001" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[3 second heartbeat signal]]>
+</Description>
+</Tag>
+<Tag Name="IO_PRES" TagType="Alias" Radix="Decimal" AliasFor="SC013" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[I/O present / I/O fault]]>
+</Description>
+</Tag>
+<Tag Name="KNHDR" TagType="Alias" Radix="Decimal" AliasFor="AI0012" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Knife Height Dr. Side]]>
+</Description>
+</Tag>
+<Tag Name="KNHOP" TagType="Alias" Radix="Decimal" AliasFor="AI0011" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Knife Height Op. Side]]>
+</Description>
+</Tag>
+<Tag Name="LINESP" TagType="Alias" Radix="Decimal" AliasFor="AI0016" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Line Speed]]>
+</Description>
+</Tag>
+<Tag Name="LOS_IOM" TagType="Alias" Radix="Decimal" AliasFor="SA014" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Loss of I/O module]]>
+</Description>
+</Tag>
+<Tag Name="LOS_SIO" TagType="Alias" Radix="Decimal" AliasFor="SA015" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Loss of serial I/O]]>
+</Description>
+</Tag>
+<Tag Name="LOW_BAT" TagType="Alias" Radix="Decimal" AliasFor="SA011" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Low battery]]>
+</Description>
+</Tag>
+<Tag Name="OVR_PRE" TagType="Alias" Radix="Decimal" AliasFor="S0011" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Override present]]>
+</Description>
+</Tag>
+<Tag Name="STABDR" TagType="Alias" Radix="Decimal" AliasFor="AI0014" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Front Stab. Roll DR]]>
+</Description>
+</Tag>
+<Tag Name="STABOP" TagType="Alias" Radix="Decimal" AliasFor="AI0013" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Front Stab. Roll OP]]>
+</Description>
+</Tag>
+<Tag Name="SYS_OK" TagType="Alias" Radix="Decimal" AliasFor="Q0013" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[system healthy signal (hi = ok)]]>
+</Description>
+</Tag>
+<Tag Name="TDR_ADJ" TagType="Alias" Radix="Decimal" AliasFor="R00013" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Adjusted Output]]>
+</Description>
+</Tag>
+<Tag Name="TDR_CTR" TagType="Alias" Radix="Decimal" AliasFor="R00014" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Output Counter]]>
+</Description>
+</Tag>
+<Tag Name="TDR_DEC" TagType="Alias" Radix="Decimal" AliasFor="Q0004" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Dec Ch #]]>
+</Description>
+</Tag>
+<Tag Name="TDR_INC" TagType="Alias" Radix="Decimal" AliasFor="Q0003" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Inc Ch #]]>
+</Description>
+</Tag>
+<Tag Name="TDR_REQ" TagType="Alias" Radix="Decimal" AliasFor="R00011" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Requested Output]]>
+</Description>
+</Tag>
+<Tag Name="TDR_UPD" TagType="Alias" Radix="Decimal" AliasFor="R00012" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Dr Gap Updated Output Req]]>
+</Description>
+</Tag>
+<Tag Name="TOP4AC" TagType="Alias" Radix="Decimal" AliasFor="R00232" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Coeff 4ac]]>
+</Description>
+</Tag>
+<Tag Name="TOPANFB" TagType="Alias" Radix="Decimal" AliasFor="AI0010" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Knife Angle FN]]>
+</Description>
+</Tag>
+<Tag Name="TOPB2" TagType="Alias" Radix="Decimal" AliasFor="R00230" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Coeff b2]]>
+</Description>
+</Tag>
+<Tag Name="TOPCOA" TagType="Alias" Radix="Decimal" AliasFor="R00210" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Lookup Coeff A]]>
+</Description>
+</Tag>
+<Tag Name="TOPCOB" TagType="Alias" Radix="Decimal" AliasFor="R00220" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Lookup Coeff B]]>
+</Description>
+</Tag>
+<Tag Name="TOPCOC" TagType="Alias" Radix="Decimal" AliasFor="R00228" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Lookup Coeff C]]>
+</Description>
+</Tag>
+<Tag Name="TOPC_Y" TagType="Alias" Radix="Decimal" AliasFor="R00234" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Coeff C Minus Y]]>
+</Description>
+</Tag>
+<Tag Name="TOPDGFB" TagType="Alias" Radix="Decimal" AliasFor="AI0009" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Drive Gap FB]]>
+</Description>
+</Tag>
+<Tag Name="TOPOGFB" TagType="Alias" Radix="Decimal" AliasFor="AI0008" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Oper. Gap FB]]>
+</Description>
+</Tag>
+<Tag Name="TOPPDIN" TagType="Alias" Radix="Decimal" AliasFor="R00112" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. SP DINT]]>
+</Description>
+</Tag>
+<Tag Name="TOPPFB" TagType="Alias" Radix="Decimal" AliasFor="AI0006" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. FB]]>
+</Description>
+</Tag>
+<Tag Name="TOPPSEU" TagType="Alias" Radix="Decimal" AliasFor="R00116" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. SP EU PSI*100]]>
+</Description>
+</Tag>
+<Tag Name="TOPPSP" TagType="Alias" Radix="Decimal" AliasFor="AQ0002" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. SP]]>
+</Description>
+</Tag>
+<Tag Name="TOPPTMP" TagType="Alias" Radix="Decimal" AliasFor="R00114" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Press. SP Calc Temp 1]]>
+</Description>
+</Tag>
+<Tag Name="TOPVDIN" TagType="Alias" Radix="Decimal" AliasFor="R00124" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Posn. DINT]]>
+</Description>
+</Tag>
+<Tag Name="TOPVFB" TagType="Alias" Radix="Decimal" AliasFor="AI0007" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Posn. FB]]>
+</Description>
+</Tag>
+<Tag Name="TOPVFEU" TagType="Alias" Radix="Decimal" AliasFor="R00128" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Vavle Posn. %*100]]>
+</Description>
+</Tag>
+<Tag Name="TOPVLU" TagType="Alias" Radix="Decimal" AliasFor="R00242" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Lookup Value]]>
+</Description>
+</Tag>
+<Tag Name="TOPVTMP" TagType="Alias" Radix="Decimal" AliasFor="R00126" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Posn. TEMP 1]]>
+</Description>
+</Tag>
+<Tag Name="TOP_ADJ" TagType="Alias" Radix="Decimal" AliasFor="R00003" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Adjusted Output]]>
+</Description>
+</Tag>
+<Tag Name="TOP_CTR" TagType="Alias" Radix="Decimal" AliasFor="R00004" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Output Counter]]>
+</Description>
+</Tag>
+<Tag Name="TOP_DEC" TagType="Alias" Radix="Decimal" AliasFor="Q0002" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Dec Ch #]]>
+</Description>
+</Tag>
+<Tag Name="TOP_INC" TagType="Alias" Radix="Decimal" AliasFor="Q0001" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Inc Ch #]]>
+</Description>
+</Tag>
+<Tag Name="TOP_REQ" TagType="Alias" Radix="Decimal" AliasFor="R00001" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Requested Output]]>
+</Description>
+</Tag>
+<Tag Name="TOP_UPD" TagType="Alias" Radix="Decimal" AliasFor="R00002" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Op Gap Updated Output Req]]>
+</Description>
+</Tag>
+<Tag Name="TVG4AC" TagType="Alias" Radix="Decimal" AliasFor="R00286" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain 4AC]]>
+</Description>
+</Tag>
+<Tag Name="TVGB2" TagType="Alias" Radix="Decimal" AliasFor="R00282" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain B2]]>
+</Description>
+</Tag>
+<Tag Name="TVGCOA" TagType="Alias" Radix="Decimal" AliasFor="R00260" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain Coeff A]]>
+</Description>
+</Tag>
+<Tag Name="TVGCOB" TagType="Alias" Radix="Decimal" AliasFor="R00270" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain Coeff B]]>
+</Description>
+</Tag>
+<Tag Name="TVGCOC" TagType="Alias" Radix="Decimal" AliasFor="R00280" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Valve Gain Coeff C]]>
+</Description>
+</Tag>
+<Tag Name="TVGC_Y" TagType="Alias" Radix="Decimal" AliasFor="R00288" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Top Vavle Gain C Minus Y]]>
+</Description>
+</Tag>
+<Tag Name="T_100MS" TagType="Alias" Radix="Decimal" AliasFor="S0004" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[0.1 second clock]]>
+</Description>
+</Tag>
+<Tag Name="T_10MS" TagType="Alias" Radix="Decimal" AliasFor="S0003" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[0.01 second clock]]>
+</Description>
+</Tag>
+<Tag Name="T_MIN" TagType="Alias" Radix="Decimal" AliasFor="S0006" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[1 minute clock]]>
+</Description>
+</Tag>
+<Tag Name="T_SEC" TagType="Alias" Radix="Decimal" AliasFor="S0005" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[1 second clock]]>
+</Description>
+</Tag>
+</Tags>
+<Programs>
+<Program Name="PIOPLC" TestEdits="false" MainRoutineName="MainRoutine" Disabled="false" UseAsFolder="false">
+<Description>
+<![CDATA[GE Logicmaster 90-30 program PIOPLC converted for ControlLogix 1756-L81E]]>
+</Description>
+<Tags/>
+<Routines>
+<Routine Name="SYSBITS" Type="RLL">
+<Description>
+<![CDATA[GE %S/%SA/%SC emulation]]>
+</Description>
+<RLLContent>
+<Rung Number="0" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate FST_SCN (%S0001)]]>
+</Description>
+<Text>
+<![CDATA[XIO(FirstScanDone)OTE(FST_SCN);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — latch first-scan complete]]>
+</Description>
+<Text>
+<![CDATA[OTE(FirstScanDone);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate ALW_ON (%S0007)]]>
+</Description>
+<Text>
+<![CDATA[OTE(ALW_ON);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate T_100MS (%S0004) timer]]>
+</Description>
+<Text>
+<![CDATA[TON(CLK100_TMR,100,0);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate T_100MS (%S0004) pulse]]>
+</Description>
+<Text>
+<![CDATA[XIC(CLK100_TMR.DN)OTE(T_100MS);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate T_100MS (%S0004) reset]]>
+</Description>
+<Text>
+<![CDATA[XIC(CLK100_TMR.DN)RES(CLK100_TMR);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate T_SEC (%S0005) timer]]>
+</Description>
+<Text>
+<![CDATA[TON(CLKSEC_TMR,1000,0);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate T_SEC (%S0005) pulse]]>
+</Description>
+<Text>
+<![CDATA[XIC(CLKSEC_TMR.DN)OTE(T_SEC);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate T_SEC (%S0005) reset]]>
+</Description>
+<Text>
+<![CDATA[XIC(CLKSEC_TMR.DN)RES(CLKSEC_TMR);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate T_MIN (%S0006) timer]]>
+</Description>
+<Text>
+<![CDATA[TON(CLKMIN_TMR,60000,0);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate T_MIN (%S0006) pulse]]>
+</Description>
+<Text>
+<![CDATA[XIC(CLKMIN_TMR.DN)OTE(T_MIN);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — emulate T_MIN (%S0006) reset]]>
+</Description>
+<Text>
+<![CDATA[XIC(CLKMIN_TMR.DN)RES(CLKMIN_TMR);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="MainRoutine" Type="RLL">
+<Description>
+<![CDATA[GE _MAIN block]]>
+</Description>
+<RLLContent>
+<Rung Number="0" Type="N">
+<Description>
+<![CDATA[GE Rung 0 — run system-bit emulation before _MAIN]]>
+</Description>
+<Text>
+<![CDATA[JSR(SYSBITS,0);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_OFF)XIO(ALW_ON)OTE(M0003);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0003)XIC(M0004)OTE(M0004);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0003)XIC(M0005)OTE(M0005);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Description>
+<![CDATA[GE Rung 9]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)JSR(TOP_OP,0);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Description>
+<![CDATA[GE Rung 10]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)JSR(TDR_OP,0);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Description>
+<![CDATA[GE Rung 11]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)JSR(BOP_OP,0);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Description>
+<![CDATA[GE Rung 12]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)JSR(BDR_OP,0);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Description>
+<![CDATA[GE Rung 13]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)OTE(M0012);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Description>
+<![CDATA[GE Rung 14]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)JSR(ACT_CWG,0);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Description>
+<![CDATA[GE Rung 15]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)JSR(FT_PULS,0);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="FT_PULS" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0017)ADD(R00448,R00465,R00448);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0017)ADD(R00448,1,R00451);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0018)MOV(0,R00448);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0018)MOV(0,R00445);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0018)MOV(0,R00451);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0017)RTO(R00445_TMR,1000000,0);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(R00445_TMR.DN)OTE(M0017);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Description>
+<![CDATA[GE Rung 8]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)RTO(R00461_TMR,3000000,0);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Description>
+<![CDATA[GE Rung 8]]>
+</Description>
+<Text>
+<![CDATA[XIC(R00461_TMR.DN)OTE(M0019);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Description>
+<![CDATA[GE Rung 9]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0019)MOV(0,R00461);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Description>
+<![CDATA[GE Rung 9]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0019)MOV(0,R00464);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Description>
+<![CDATA[GE Rung 9]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0019)MOV(R00464,R00465);]]>
+</Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Description>
+<![CDATA[GE Rung 11]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0019)SUB(R00461,R00464,R00465);]]>
+</Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Description>
+<![CDATA[GE Rung 11]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0019)MOV(R00465,R00467);]]>
+</Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Description>
+<![CDATA[GE Rung 12]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0019)MOV(R00461,R00464);]]>
+</Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Description>
+<![CDATA[GE Rung 14]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)GEQ(R00411,100)ONS(OSR_M0020)OTE(M0020);]]>
+</Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Description>
+<![CDATA[GE Rung 14]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(100,R00415);]]>
+</Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Description>
+<![CDATA[GE Rung 14]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00411);]]>
+</Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Description>
+<![CDATA[GE Rung 15]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)OTE(M0021);]]>
+</Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Description>
+<![CDATA[GE Rung 16]]>
+</Description>
+<Text>
+<![CDATA[[XIC(M0020)XIO(M0021),XIC(M0021)XIC(M0021)]OTE(M0016);]]>
+</Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Description>
+<![CDATA[GE Rung 17]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0021)RTO(R00411_TMR,3200000,0);]]>
+</Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Description>
+<![CDATA[GE Rung 19]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0021)MOV(R00465,R00411);]]>
+</Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Description>
+<![CDATA[GE Rung 20]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00421,R00425);]]>
+</Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Description>
+<![CDATA[GE Rung 20]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00421);]]>
+</Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Description>
+<![CDATA[GE Rung 22]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MUL(1000,1,R00361D);]]>
+</Text>
+</Rung>
+<Rung Number="25" Type="N">
+<Description>
+<![CDATA[GE Rung 22]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MUL(60,1000,R00363D);]]>
+</Text>
+</Rung>
+<Rung Number="26" Type="N">
+<Description>
+<![CDATA[GE Rung 24]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00605D,1200,R00749D);]]>
+</Text>
+</Rung>
+<Rung Number="27" Type="N">
+<Description>
+<![CDATA[GE Rung 24]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00749D,1000,R00751D);]]>
+</Text>
+</Rung>
+<Rung Number="28" Type="N">
+<Description>
+<![CDATA[GE Rung 25]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0016)MUL(R00751D,R00361D,R00365D);]]>
+</Text>
+</Rung>
+<Rung Number="29" Type="N">
+<Description>
+<![CDATA[GE Rung 25]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0016)ADD(R00365D,R00369D,R00385D);]]>
+</Text>
+</Rung>
+<Rung Number="30" Type="N">
+<Description>
+<![CDATA[GE Rung 26]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0016)DIV(R00365D,R00363D,R00367D);]]>
+</Text>
+</Rung>
+<Rung Number="31" Type="N">
+<Description>
+<![CDATA[GE Rung 26]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0016)MOD(R00385D,R00363D,R00369D);]]>
+</Text>
+</Rung>
+<Rung Number="32" Type="N">
+<Description>
+<![CDATA[GE Rung 27]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0016)MUL(R00367D,R00465D,R00371D);]]>
+</Text>
+</Rung>
+<Rung Number="33" Type="N">
+<Description>
+<![CDATA[GE Rung 29]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0016)ADD(R00375D,R00371D,R00375D);]]>
+</Text>
+</Rung>
+<Rung Number="34" Type="N">
+<Description>
+<![CDATA[GE Rung 30]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0016)MUL(12,R00361D,R00377D);]]>
+</Text>
+</Rung>
+<Rung Number="35" Type="N">
+<Description>
+<![CDATA[GE Rung 30]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0016)DIV(R00375D,R00377D,R00379D);]]>
+</Text>
+</Rung>
+<Rung Number="36" Type="N">
+<Description>
+<![CDATA[GE Rung 32]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00379D,1,R00623D);]]>
+</Text>
+</Rung>
+<Rung Number="37" Type="N">
+<Description>
+<![CDATA[GE Rung 34]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)ADD(0,0,R00375D);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="TOP_OP" Type="RLL">
+<Description>
+<![CDATA[Top Op Gap Outputs Subroutine]]>
+</Description>
+<RLLContent>
+<Rung Number="0" Type="N">
+<Description>
+<![CDATA[GE Rung 3]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)NEQ(TOP_REQ,0)OTE(T0004);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(TOP_REQ,TOP_UPD);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(0,TOP_REQ);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(0,TOP_CTR);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)GEQ(TOP_UPD,0)OTE(T0001);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)MUL(0,1,TOP_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)LES(TOP_UPD,0)OTE(T0002);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)MUL(0,-1,TOP_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)TON(R9_TMR,10,0);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)OTE(NEG_TOP_OP_7_T0003);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIO(NEG_TOP_OP_7_T0003)OTE(T0003);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Description>
+<![CDATA[GE Rung 8]]>
+</Description>
+<Text>
+<![CDATA[XIO(CTL_ON)MOV(0,TOP_UPD)MOV(0,TOP_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Description>
+<![CDATA[GE Rung 9]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0001)XIC(T0001)XIC(T0003)OTE(TOP_INC);]]>
+</Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Description>
+<![CDATA[GE Rung 10]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0002)XIC(T0002)XIC(T0003)OTE(TOP_DEC);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="TDR_OP" Type="RLL">
+<Description>
+<![CDATA[Top Dr Gap Outputs Subroutine]]>
+</Description>
+<RLLContent>
+<Rung Number="0" Type="N">
+<Description>
+<![CDATA[GE Rung 3]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)NEQ(TDR_REQ,0)OTE(T0004);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(TDR_REQ,TDR_UPD);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(0,TDR_REQ);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(0,TDR_CTR);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)GEQ(TDR_UPD,0)OTE(T0001);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)MUL(0,1,TDR_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)LES(TDR_UPD,0)OTE(T0002);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)MUL(0,-1,TDR_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)TON(R9_TMR,10,0);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)OTE(NEG_TDR_OP_7_T0003);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIO(NEG_TDR_OP_7_T0003)OTE(T0003);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Description>
+<![CDATA[GE Rung 8]]>
+</Description>
+<Text>
+<![CDATA[XIO(CTL_ON)MOV(0,TDR_UPD)MOV(0,TDR_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Description>
+<![CDATA[GE Rung 9]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0001)XIC(T0001)XIC(T0003)OTE(TDR_INC);]]>
+</Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Description>
+<![CDATA[GE Rung 10]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0002)XIC(T0002)XIC(T0003)OTE(TDR_DEC);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="BOP_OP" Type="RLL">
+<Description>
+<![CDATA[Bot Op Gap Outputs Subroutine]]>
+</Description>
+<RLLContent>
+<Rung Number="0" Type="N">
+<Description>
+<![CDATA[GE Rung 3]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)NEQ(BOP_REQ,0)OTE(T0004);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(BOP_REQ,BOP_UPD);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(0,BOP_REQ);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(0,BOP_CTR);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)GEQ(BOP_UPD,0)OTE(T0001);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)MUL(0,1,BOP_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)LES(BOP_UPD,0)OTE(T0002);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)MUL(0,-1,BOP_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)TON(R9_TMR,10,0);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)OTE(NEG_BOP_OP_7_T0003);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIO(NEG_BOP_OP_7_T0003)OTE(T0003);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Description>
+<![CDATA[GE Rung 8]]>
+</Description>
+<Text>
+<![CDATA[XIO(CTL_ON)MOV(0,BOP_UPD)MOV(0,BOP_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Description>
+<![CDATA[GE Rung 9]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0001)XIC(T0001)XIC(T0003)OTE(BOP_INC);]]>
+</Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Description>
+<![CDATA[GE Rung 10]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0002)XIC(T0002)XIC(T0003)OTE(BOP_DEC);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="BDR_OP" Type="RLL">
+<Description>
+<![CDATA[Bot Dr Gap Outputs Subroutine]]>
+</Description>
+<RLLContent>
+<Rung Number="0" Type="N">
+<Description>
+<![CDATA[GE Rung 3]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)NEQ(BDR_REQ,0)OTE(T0004);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(BDR_REQ,BDR_UPD);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(0,BDR_REQ);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0004)MOV(0,BDR_CTR);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)GEQ(BDR_UPD,0)OTE(T0001);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)MUL(0,1,BDR_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)LES(BDR_UPD,0)OTE(T0002);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)MUL(0,-1,BDR_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)TON(R9_TMR,10,0);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIC(CTL_ON)OTE(NEG_BDR_OP_7_T0003);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Description>
+<![CDATA[GE Rung 7]]>
+</Description>
+<Text>
+<![CDATA[XIO(NEG_BDR_OP_7_T0003)OTE(T0003);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Description>
+<![CDATA[GE Rung 8]]>
+</Description>
+<Text>
+<![CDATA[XIO(CTL_ON)MOV(0,BDR_UPD)MOV(0,BDR_ADJ);]]>
+</Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Description>
+<![CDATA[GE Rung 9]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0001)XIC(T0001)XIC(T0003)OTE(BDR_INC);]]>
+</Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Description>
+<![CDATA[GE Rung 10]]>
+</Description>
+<Text>
+<![CDATA[XIC(T0002)XIC(T0002)XIC(T0003)OTE(BDR_DEC);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="ACT_CWG" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Description>
+<![CDATA[GE Rung 4]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)COP(R00701,M0321,4);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0002)RTO(R00401_TMR,3000,0);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Description>
+<![CDATA[GE Rung 5]]>
+</Description>
+<Text>
+<![CDATA[XIC(R00401_TMR.DN)OTE(HEARTBT);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(HEARTBT)RTO(R00404_TMR,3000,0);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Description>
+<![CDATA[GE Rung 6]]>
+</Description>
+<Text>
+<![CDATA[XIC(R00404_TMR.DN)OTE(M0002);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Description>
+<![CDATA[GE Rung 8]]>
+</Description>
+<Text>
+<![CDATA[XIC(HEARTBT)OTE(M0129);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Description>
+<![CDATA[GE Rung 10]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00302);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Description>
+<![CDATA[GE Rung 10]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00302,R00301);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Description>
+<![CDATA[GE Rung 12]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00301D,1000,R00303D);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Description>
+<![CDATA[GE Rung 12]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00303D,32000,R00305D);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Description>
+<![CDATA[GE Rung 14]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00305D,6,R00307D);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Description>
+<![CDATA[GE Rung 14]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)ADD(R00307D,-9,R00309D);]]>
+</Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Description>
+<![CDATA[GE Rung 16]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_OFF)MUL(R00309D,1,R00605D);]]>
+</Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Description>
+<![CDATA[GE Rung 17]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00917,R00605);]]>
+</Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Description>
+<![CDATA[GE Rung 20]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00312);]]>
+</Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Description>
+<![CDATA[GE Rung 20]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00312,R00311);]]>
+</Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Description>
+<![CDATA[GE Rung 22]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00311D,1000,R00313D);]]>
+</Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Description>
+<![CDATA[GE Rung 22]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00313D,32000,R00315D);]]>
+</Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Description>
+<![CDATA[GE Rung 24]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00315D,1,R00317D);]]>
+</Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Description>
+<![CDATA[GE Rung 24]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)ADD(R00317D,0,R00319D);]]>
+</Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Description>
+<![CDATA[GE Rung 26]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00319D,1,R00609D);]]>
+</Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Description>
+<![CDATA[GE Rung 28]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00322);]]>
+</Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Description>
+<![CDATA[GE Rung 28]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00322,R00321);]]>
+</Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Description>
+<![CDATA[GE Rung 30]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00321D,1000,R00323D);]]>
+</Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Description>
+<![CDATA[GE Rung 30]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00323D,32000,R00325D);]]>
+</Text>
+</Rung>
+<Rung Number="25" Type="N">
+<Description>
+<![CDATA[GE Rung 32]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00325D,1,R00327D);]]>
+</Text>
+</Rung>
+<Rung Number="26" Type="N">
+<Description>
+<![CDATA[GE Rung 32]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)ADD(R00327D,0,R00329D);]]>
+</Text>
+</Rung>
+<Rung Number="27" Type="N">
+<Description>
+<![CDATA[GE Rung 34]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00329D,1,R00607D);]]>
+</Text>
+</Rung>
+<Rung Number="28" Type="N">
+<Description>
+<![CDATA[GE Rung 36]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00332);]]>
+</Text>
+</Rung>
+<Rung Number="29" Type="N">
+<Description>
+<![CDATA[GE Rung 36]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00332,R00331);]]>
+</Text>
+</Rung>
+<Rung Number="30" Type="N">
+<Description>
+<![CDATA[GE Rung 38]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00331D,1000,R00333D);]]>
+</Text>
+</Rung>
+<Rung Number="31" Type="N">
+<Description>
+<![CDATA[GE Rung 38]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00333D,32000,R00335D);]]>
+</Text>
+</Rung>
+<Rung Number="32" Type="N">
+<Description>
+<![CDATA[GE Rung 40]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(357,-1000,R00291D);]]>
+</Text>
+</Rung>
+<Rung Number="33" Type="N">
+<Description>
+<![CDATA[GE Rung 41]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00335D,3038,R00337D);]]>
+</Text>
+</Rung>
+<Rung Number="34" Type="N">
+<Description>
+<![CDATA[GE Rung 41]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)ADD(R00337D,R00291D,R00339D);]]>
+</Text>
+</Rung>
+<Rung Number="35" Type="N">
+<Description>
+<![CDATA[GE Rung 43]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00339D,1000,R00611D);]]>
+</Text>
+</Rung>
+<Rung Number="36" Type="N">
+<Description>
+<![CDATA[GE Rung 45]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00342);]]>
+</Text>
+</Rung>
+<Rung Number="37" Type="N">
+<Description>
+<![CDATA[GE Rung 45]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00342,R00341);]]>
+</Text>
+</Rung>
+<Rung Number="38" Type="N">
+<Description>
+<![CDATA[GE Rung 47]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00341D,1000,R00343D);]]>
+</Text>
+</Rung>
+<Rung Number="39" Type="N">
+<Description>
+<![CDATA[GE Rung 47]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00343D,32000,R00345D);]]>
+</Text>
+</Rung>
+<Rung Number="40" Type="N">
+<Description>
+<![CDATA[GE Rung 49]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(3400,-100,R00293D);]]>
+</Text>
+</Rung>
+<Rung Number="41" Type="N">
+<Description>
+<![CDATA[GE Rung 50]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00345D,3110,R00347D);]]>
+</Text>
+</Rung>
+<Rung Number="42" Type="N">
+<Description>
+<![CDATA[GE Rung 50]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)ADD(R00347D,R00293D,R00349D);]]>
+</Text>
+</Rung>
+<Rung Number="43" Type="N">
+<Description>
+<![CDATA[GE Rung 52]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00349D,1000,R00613D);]]>
+</Text>
+</Rung>
+<Rung Number="44" Type="N">
+<Description>
+<![CDATA[GE Rung 54]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00552);]]>
+</Text>
+</Rung>
+<Rung Number="45" Type="N">
+<Description>
+<![CDATA[GE Rung 54]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00552,R00551);]]>
+</Text>
+</Rung>
+<Rung Number="46" Type="N">
+<Description>
+<![CDATA[GE Rung 56]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00551D,1000,R00553D);]]>
+</Text>
+</Rung>
+<Rung Number="47" Type="N">
+<Description>
+<![CDATA[GE Rung 56]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00553D,32182,R00555D);]]>
+</Text>
+</Rung>
+<Rung Number="48" Type="N">
+<Description>
+<![CDATA[GE Rung 58]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00555D,3600,R00557D);]]>
+</Text>
+</Rung>
+<Rung Number="49" Type="N">
+<Description>
+<![CDATA[GE Rung 58]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00557D,100,R00559D);]]>
+</Text>
+</Rung>
+<Rung Number="50" Type="N">
+<Description>
+<![CDATA[GE Rung 59]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)GEQ(R00593,3500)OTE(M0036);]]>
+</Text>
+</Rung>
+<Rung Number="51" Type="N">
+<Description>
+<![CDATA[GE Rung 60]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)LEQ(R00593,1000)OTE(M0046);]]>
+</Text>
+</Rung>
+<Rung Number="52" Type="N">
+<Description>
+<![CDATA[GE Rung 62]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00559D,1,R00617D);]]>
+</Text>
+</Rung>
+<Rung Number="53" Type="N">
+<Description>
+<![CDATA[GE Rung 62]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00617D,10,R00593D);]]>
+</Text>
+</Rung>
+<Rung Number="54" Type="N">
+<Description>
+<![CDATA[GE Rung 64]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)ADD(R00611D,R00613D,R00399D);]]>
+</Text>
+</Rung>
+<Rung Number="55" Type="N">
+<Description>
+<![CDATA[GE Rung 64]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00399D,2,R00615D);]]>
+</Text>
+</Rung>
+<Rung Number="56" Type="N">
+<Description>
+<![CDATA[GE Rung 66]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00532);]]>
+</Text>
+</Rung>
+<Rung Number="57" Type="N">
+<Description>
+<![CDATA[GE Rung 66]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00532,R00531);]]>
+</Text>
+</Rung>
+<Rung Number="58" Type="N">
+<Description>
+<![CDATA[GE Rung 68]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00531D,1000,R00533D);]]>
+</Text>
+</Rung>
+<Rung Number="59" Type="N">
+<Description>
+<![CDATA[GE Rung 68]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00533D,32000,R00535D);]]>
+</Text>
+</Rung>
+<Rung Number="60" Type="N">
+<Description>
+<![CDATA[GE Rung 70]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(30295,1,R00295D);]]>
+</Text>
+</Rung>
+<Rung Number="61" Type="N">
+<Description>
+<![CDATA[GE Rung 71]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00535D,9953,R00537D);]]>
+</Text>
+</Rung>
+<Rung Number="62" Type="N">
+<Description>
+<![CDATA[GE Rung 71]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)ADD(R00537D,R00295D,R00539D);]]>
+</Text>
+</Rung>
+<Rung Number="63" Type="N">
+<Description>
+<![CDATA[GE Rung 73]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00539D,10000,R00619D);]]>
+</Text>
+</Rung>
+<Rung Number="64" Type="N">
+<Description>
+<![CDATA[GE Rung 75]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(0,R00542);]]>
+</Text>
+</Rung>
+<Rung Number="65" Type="N">
+<Description>
+<![CDATA[GE Rung 75]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MOV(R00542,R00541);]]>
+</Text>
+</Rung>
+<Rung Number="66" Type="N">
+<Description>
+<![CDATA[GE Rung 77]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00541D,1000,R00543D);]]>
+</Text>
+</Rung>
+<Rung Number="67" Type="N">
+<Description>
+<![CDATA[GE Rung 77]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00543D,32000,R00545D);]]>
+</Text>
+</Rung>
+<Rung Number="68" Type="N">
+<Description>
+<![CDATA[GE Rung 79]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(30295,1,R00297D);]]>
+</Text>
+</Rung>
+<Rung Number="69" Type="N">
+<Description>
+<![CDATA[GE Rung 80]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00545D,9953,R00547D);]]>
+</Text>
+</Rung>
+<Rung Number="70" Type="N">
+<Description>
+<![CDATA[GE Rung 80]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)ADD(R00547D,R00297D,R00549D);]]>
+</Text>
+</Rung>
+<Rung Number="71" Type="N">
+<Description>
+<![CDATA[GE Rung 82]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00549D,10000,R00621D);]]>
+</Text>
+</Rung>
+<Rung Number="72" Type="N">
+<Description>
+<![CDATA[GE Rung 84]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)COP(R00707,R00907,2);]]>
+</Text>
+</Rung>
+<Rung Number="73" Type="N">
+<Description>
+<![CDATA[GE Rung 84]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)COP(R00907,R00909,2);]]>
+</Text>
+</Rung>
+<Rung Number="74" Type="N">
+<Description>
+<![CDATA[GE Rung 86]]>
+</Description>
+<Text>
+<![CDATA[[XIC(I0004),XIC(M0005),XIC(I0001)XIC(I0004)XIO(FST_SCN)XIO(ALW_OFF),XIC(I0002)]XIC(I0001)XIC(I0002)XIC(M0012)OTE(M0130);]]>
+</Text>
+</Rung>
+<Rung Number="75" Type="N">
+<Description>
+<![CDATA[GE Rung 87]]>
+</Description>
+<Text>
+<![CDATA[[XIC(M0130),XIC(M0004)]XIC(I0001)XIC(I0002)XIC(ALW_ON)OTE(M0014);]]>
+</Text>
+</Rung>
+<Rung Number="76" Type="N">
+<Description>
+<![CDATA[GE Rung 89]]>
+</Description>
+<Text>
+<![CDATA[[XIC(M0014)XIC(ALW_ON),XIO(I0004)]CTU(R00129_CTR,1,0);]]>
+</Text>
+</Rung>
+<Rung Number="77" Type="N">
+<Description>
+<![CDATA[GE Rung 89]]>
+</Description>
+<Text>
+<![CDATA[XIC(R00129_CTR.DN)OTE(M0051);]]>
+</Text>
+</Rung>
+<Rung Number="78" Type="N">
+<Description>
+<![CDATA[GE Rung 91]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0014)XIO(M0321)OTE(M0047);]]>
+</Text>
+</Rung>
+<Rung Number="79" Type="N">
+<Description>
+<![CDATA[GE Rung 93]]>
+</Description>
+<Text>
+<![CDATA[[XIO(M0014),XIC(M0131)XIO(M0006),XIO(M0012)]XIC(M0051)OTE(M0131);]]>
+</Text>
+</Rung>
+<Rung Number="80" Type="N">
+<Description>
+<![CDATA[GE Rung 94]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0014)XIO(M0051)RTO(R00920_TMR,5000,0);]]>
+</Text>
+</Rung>
+<Rung Number="81" Type="N">
+<Description>
+<![CDATA[GE Rung 94]]>
+</Description>
+<Text>
+<![CDATA[XIC(R00920_TMR.DN)OTE(M0006);]]>
+</Text>
+</Rung>
+<Rung Number="82" Type="N">
+<Description>
+<![CDATA[GE Rung 95]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0014)XIC(ALW_ON)OTE(M0007);]]>
+</Text>
+</Rung>
+<Rung Number="83" Type="N">
+<Description>
+<![CDATA[GE Rung 97]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(200,R00569);]]>
+</Text>
+</Rung>
+<Rung Number="84" Type="N">
+<Description>
+<![CDATA[GE Rung 97]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(0,R00570);]]>
+</Text>
+</Rung>
+<Rung Number="85" Type="N">
+<Description>
+<![CDATA[GE Rung 98]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(500,R00571);]]>
+</Text>
+</Rung>
+<Rung Number="86" Type="N">
+<Description>
+<![CDATA[GE Rung 98]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(0,R00572);]]>
+</Text>
+</Rung>
+<Rung Number="87" Type="N">
+<Description>
+<![CDATA[GE Rung 99]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(250,R00565);]]>
+</Text>
+</Rung>
+<Rung Number="88" Type="N">
+<Description>
+<![CDATA[GE Rung 99]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(0,R00566);]]>
+</Text>
+</Rung>
+<Rung Number="89" Type="N">
+<Description>
+<![CDATA[GE Rung 100]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(500,R00567);]]>
+</Text>
+</Rung>
+<Rung Number="90" Type="N">
+<Description>
+<![CDATA[GE Rung 100]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(0,R00568);]]>
+</Text>
+</Rung>
+<Rung Number="91" Type="N">
+<Description>
+<![CDATA[GE Rung 102]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(5,R00561);]]>
+</Text>
+</Rung>
+<Rung Number="92" Type="N">
+<Description>
+<![CDATA[GE Rung 102]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MOV(0,R00562);]]>
+</Text>
+</Rung>
+<Rung Number="93" Type="N">
+<Description>
+<![CDATA[GE Rung 103]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)MUL(R00561D,32000,R00573D);]]>
+</Text>
+</Rung>
+<Rung Number="94" Type="N">
+<Description>
+<![CDATA[GE Rung 103]]>
+</Description>
+<Text>
+<![CDATA[XIC(FST_SCN)DIV(R00573D,1000,R00563D);]]>
+</Text>
+</Rung>
+<Rung Number="95" Type="N">
+<Description>
+<![CDATA[GE Rung 105]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)GRT(R00619D,R00571D)OTE(M0042);]]>
+</Text>
+</Rung>
+<Rung Number="96" Type="N">
+<Description>
+<![CDATA[GE Rung 106]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)LES(R00619D,R00569D)OTE(M0041);]]>
+</Text>
+</Rung>
+<Rung Number="97" Type="N">
+<Description>
+<![CDATA[GE Rung 107]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0042)XIO(M0041)OTE(M0043);]]>
+</Text>
+</Rung>
+<Rung Number="98" Type="N">
+<Description>
+<![CDATA[GE Rung 108]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)GRT(R00621D,R00567D)OTE(M0032);]]>
+</Text>
+</Rung>
+<Rung Number="99" Type="N">
+<Description>
+<![CDATA[GE Rung 109]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)LES(R00621D,R00565D)OTE(M0031);]]>
+</Text>
+</Rung>
+<Rung Number="100" Type="N">
+<Description>
+<![CDATA[GE Rung 110]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0032)XIO(M0031)OTE(M0033);]]>
+</Text>
+</Rung>
+<Rung Number="101" Type="N">
+<Description>
+<![CDATA[GE Rung 112]]>
+</Description>
+<Text>
+<![CDATA[[XIC(M0042)XIO(M0041),XIC(M0032)XIO(M0031)XIC(M0004)XIC(M0005),XIC(ALW_ON)]XIO(M0044)XIC(M0007)XIC(I0004)XIO(M0036)XIC(T_SEC)ONS(OSR_M0035)OTE(M0035);]]>
+</Text>
+</Rung>
+<Rung Number="102" Type="N">
+<Description>
+<![CDATA[GE Rung 113]]>
+</Description>
+<Text>
+<![CDATA[[XIC(M0041)XIO(M0042),XIC(M0031)XIO(M0032)XIC(M0004)XIC(M0005),XIC(ALW_ON)]XIO(M0044)XIC(M0007)XIC(I0004)XIO(M0046)XIC(T_SEC)ONS(OSR_M0045)OTE(M0045);]]>
+</Text>
+</Rung>
+<Rung Number="103" Type="N">
+<Description>
+<![CDATA[GE Rung 114]]>
+</Description>
+<Text>
+<![CDATA[[XIC(M0041)XIC(M0032),XIC(M0042)XIC(M0031)]OTE(M0044);]]>
+</Text>
+</Rung>
+<Rung Number="104" Type="N">
+<Description>
+<![CDATA[GE Rung 116]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0007)MUL(R00617D,3200,R00575D);]]>
+</Text>
+</Rung>
+<Rung Number="105" Type="N">
+<Description>
+<![CDATA[GE Rung 116]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0007)DIV(R00575D,3600,R00577D);]]>
+</Text>
+</Rung>
+<Rung Number="106" Type="N">
+<Description>
+<![CDATA[GE Rung 118]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0035)ADD(R00577D,R00563D,R00577D);]]>
+</Text>
+</Rung>
+<Rung Number="107" Type="N">
+<Description>
+<![CDATA[GE Rung 119]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0045)SUB(R00577D,R00563D,R00577D);]]>
+</Text>
+</Rung>
+<Rung Number="108" Type="N">
+<Description>
+<![CDATA[GE Rung 121]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0003)MOV(R00577,BLOWSSP);]]>
+</Text>
+</Rung>
+<Rung Number="109" Type="N">
+<Description>
+<![CDATA[GE Rung 123]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0007)COP(R00609,R00579,2);]]>
+</Text>
+</Rung>
+<Rung Number="110" Type="N">
+<Description>
+<![CDATA[GE Rung 124]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0007)MOV(R00707,R00579);]]>
+</Text>
+</Rung>
+<Rung Number="111" Type="N">
+<Description>
+<![CDATA[GE Rung 125]]>
+</Description>
+<Text>
+<![CDATA[XIC(I0002)XIC(M0321)MOV(R00609,R00802);]]>
+</Text>
+</Rung>
+<Rung Number="112" Type="N">
+<Description>
+<![CDATA[GE Rung 126]]>
+</Description>
+<Text>
+<![CDATA[XIC(I0002)XIO(M0321)XIC(ALW_ON)MOV(R00802,R00579);]]>
+</Text>
+</Rung>
+<Rung Number="113" Type="N">
+<Description>
+<![CDATA[GE Rung 127]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00579D,32000,R00581D);]]>
+</Text>
+</Rung>
+<Rung Number="114" Type="N">
+<Description>
+<![CDATA[GE Rung 127]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00581D,1000,R00587D);]]>
+</Text>
+</Rung>
+<Rung Number="115" Type="N">
+<Description>
+<![CDATA[GE Rung 128]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0003)MOV(R00587,TOPPSP);]]>
+</Text>
+</Rung>
+<Rung Number="116" Type="N">
+<Description>
+<![CDATA[GE Rung 130]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0007)COP(R00607,R00583,2);]]>
+</Text>
+</Rung>
+<Rung Number="117" Type="N">
+<Description>
+<![CDATA[GE Rung 131]]>
+</Description>
+<Text>
+<![CDATA[XIC(M0007)MOV(R00709,R00583);]]>
+</Text>
+</Rung>
+<Rung Number="118" Type="N">
+<Description>
+<![CDATA[GE Rung 132]]>
+</Description>
+<Text>
+<![CDATA[XIC(I0001)XIC(M0321)MOV(R00607,R00801);]]>
+</Text>
+</Rung>
+<Rung Number="119" Type="N">
+<Description>
+<![CDATA[GE Rung 133]]>
+</Description>
+<Text>
+<![CDATA[XIC(I0001)XIO(M0321)XIC(ALW_ON)MOV(R00801,R00583);]]>
+</Text>
+</Rung>
+<Rung Number="120" Type="N">
+<Description>
+<![CDATA[GE Rung 134]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)MUL(R00583D,32000,R00585D);]]>
+</Text>
+</Rung>
+<Rung Number="121" Type="N">
+<Description>
+<![CDATA[GE Rung 134]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)DIV(R00585D,1000,R00589D);]]>
+</Text>
+</Rung>
+<Rung Number="122" Type="N">
+<Description>
+<![CDATA[GE Rung 135]]>
+</Description>
+<Text>
+<![CDATA[XIO(M0003)MOV(R00589,BOTPSP);]]>
+</Text>
+</Rung>
+<Rung Number="123" Type="N">
+<Description>
+<![CDATA[GE Rung 137]]>
+</Description>
+<Text>
+<![CDATA[XIC(ALW_ON)COP(M0129,R00601,4);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+</Routines>
+</Program>
+</Programs>
+<Tasks>
+<Task Name="MainTask" Type="CONTINUOUS" Priority="10" Watchdog="2000" DisableUpdateOutputs="false" InhibitTask="false">
+<Description>
+<![CDATA[Continuous task running converted GE PIOPLC logic]]>
+</Description>
+<ScheduledPrograms>
+<ScheduledProgram Name="PIOPLC"/>
+</ScheduledPrograms>
+</Task>
+</Tasks>
+<CST MasterID="0"/>
+<WallClockTime LocalTimeAdjustment="0" TimeZone="0"/>
+<Trends/>
+<DataLogs/>
+<TimeSynchronize Priority1="128" Priority2="128" PTPEnable="false"/>
+<EthernetPorts>
+<EthernetPort Port="1" Label="1" PortEnabled="true"/>
+</EthernetPorts>
+</Controller>
+</RSLogix5000Content>
