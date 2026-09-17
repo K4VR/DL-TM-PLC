@@ -93,6 +93,7 @@ class BlockDef:
 class Conversion:
     tags: dict[str, TagDef] = field(default_factory=dict)
     aliases: dict[str, TagDef] = field(default_factory=dict)
+    nicknames: dict[str, str] = field(default_factory=dict)
     blocks: list[BlockDef] = field(default_factory=list)
     subroutines: dict[str, str] = field(default_factory=dict)
     notes: list[str] = field(default_factory=list)
