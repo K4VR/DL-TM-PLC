@@ -32,7 +32,7 @@ BOX_NAMES = {
     "DNCTR", "CALL", "MCR",
 }
 
-PAGE_TITLES = {"airknife", "9_10_2026", "uss01 90-30 plc", "temper_mill"}
+PAGE_TITLES = {"airknife", "airknif", "9_10_2026", "uss01 90-30 plc", "temper_mill"}
 PLACEHOLDER_COMMENTS = {"comment", "comments"}
 
 
@@ -135,7 +135,7 @@ def normalize_logic_line(line: str) -> str:
     return line.rstrip()
 
 
-def is_page_header(line: str) -> bool:
+def is_page_header(line: str, page_title: str = "") -> bool:
     s = line.strip()
     if not s:
         return False
@@ -144,6 +144,8 @@ def is_page_header(line: str) -> bool:
     if "GE FANUC SERIES" in line:
         return True
     if s.lower() in PAGE_TITLES:
+        return True
+    if page_title and s.lower() == page_title.strip().lower():
         return True
     if s.startswith("C:\\") or s.startswith("C:/"):
         return True
@@ -250,21 +252,23 @@ def summarize_rung(rung: Rung) -> str:
 
 
 def parse_print_date_and_title(lines: list[str]) -> tuple[str, str]:
+    """Return the print date and the centered folder/program title under the page header."""
     date = ""
     title = ""
-    for line in lines[:30]:
-        if "GE FANUC SERIES" in line:
-            date = line.strip().split("GE FANUC")[0].strip()
-        s = line.strip()
-        if s and s.lower() not in {"", "ge fanuc"} and "GGGG" not in s and s.lower() not in PAGE_TITLES:
+    for i, line in enumerate(lines[:80]):
+        if "GE FANUC SERIES" not in line:
             continue
-        if s.lower() in PAGE_TITLES:
-            title = s
-    for line in lines[:40]:
-        s = line.strip()
-        if s in {"Airknife", "9_10_2026"}:
+        date = line.strip().split("GE FANUC")[0].strip()
+        for nxt in lines[i + 1 : i + 8]:
+            s = nxt.strip()
+            if not s:
+                continue
+            # Stop if we ran into the GE logo art instead of a title.
+            if s.startswith("G") and "EEEE" in s:
+                break
             title = s
             break
+        break
     return date, title
 
 
@@ -344,7 +348,7 @@ def parse_declarations(lines: list[str]) -> list[Decl]:
     return decls
 
 
-def parse_rungs(lines: list[str]) -> tuple[list[Rung], list[str]]:
+def parse_rungs(lines: list[str], page_title: str = "") -> tuple[list[Rung], list[str]]:
     rungs: list[Rung] = []
     block_order: list[str] = []
     current_block = "_MAIN"
@@ -406,13 +410,13 @@ def parse_rungs(lines: list[str]) -> tuple[list[Rung], list[str]]:
         if in_xref:
             if RUNG_RE.search(raw) or "END OF PROGRAM" in raw or "END OF BLOCK" in raw:
                 in_xref = False
-            elif is_page_header(raw):
+            elif is_page_header(raw, page_title):
                 continue
             elif raw.strip().startswith("%") or (raw.strip() and not raw.strip().startswith("|") and not raw.strip().startswith("*") and "<<" not in raw):
                 continue
             else:
                 in_xref = False
-        if is_page_header(raw):
+        if is_page_header(raw, page_title):
             continue
         if raw.strip().startswith("===="):
             continue
@@ -458,7 +462,7 @@ def parse_printout(path: Path, label: str) -> Printout:
     date, title = parse_print_date_and_title(lines)
     program_size, env_rows, block_sizes = parse_environment(lines)
     decls = parse_declarations(lines)
-    rungs, block_order = parse_rungs(lines)
+    rungs, block_order = parse_rungs(lines, title)
     return Printout(
         label=label,
         path=str(path),
